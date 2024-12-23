@@ -1,0 +1,158 @@
+<article class="flex flex-col items-center justify-center gap-2">
+  <a href="{{ blog.url }}">
+    <h1 class="text-6xl text-center w-full font-bold">{{ blog.title }}</h1>
+  </a>
+  <img src="{{ article.image |  img_url: 'master'  }}" alt="{{ article.image.alt }}" style="width: 100%;height:500px;">
+  <h1 class="text-6xl font-bold capitalize">{{ article.title }}</h1>
+  <div class="flex items-center justify-between max-w-md">
+    {% if section.settings.enable_author %}
+      <small>{{ article.author }}</small>
+    {% endif %}
+    {% if section.settings.enable_published_date %}
+      <time datetime="{{ article.published_at |  date: '%Y-%m-%d' }}">{{ article.published_at | date: '%Y-%m-%d' }}</time>
+    {% endif %}
+  </div>
+  <div class="">{{ article.content }}</div>
+</article>
+
+{% if blog.comments_enabled? %}
+  <div id="comments" class="my-8">
+    {% if article.comments_count > 0 %}
+      <div class="flex-1 items-center justify-center mx-auto max-w-4xl px-4">
+        <h1 class="text-lg mb-4 font-medium">See What People are Saying</h1>
+        {% paginate article.comments by 6 %}
+          {% for comment in article.comments %}
+            <div class="flex-1 border my-4 px-4 py-2 sm:py-4 leading-relaxed">
+              <span class="comment-author">{{ comment.author }}</span>
+              <span class="text-xs text-gray-400">{{ comment.created_at | date: format: 'default' }}</span>
+              <p class="text-sm">{{ comment.content }}</p>
+            </div>
+          {% endfor %}
+          <div class="max-w-6xl mx-auto">
+            {% comment %} {% render 'pagination'
+                                                  , pagination: paginate %} {% endcomment %}
+          </div>
+        {% endpaginate %}
+      </div>
+    {% else %}
+      there are no comments available in this article
+    {% endif %}
+  </div>
+  <div id="comments_form" class="mb-8">
+    {% form 'new_comment'
+      , article %}
+      <div class="flex mx-auto flex-col items-center justify-center max-w-4xl px-4">
+        {% if form.errors %}
+          <div class="border p-5">
+            <div class="flex flex-row items-center w-full my-3">
+              <div class="text-red-500">
+                {% render 'icon-failed' %}
+              </div>
+              <div class="text-sm font-medium ml-3">
+                oh no! your comment was not posted
+              </div>
+            </div>
+            <ul class="px-4 mb-3 ml-7 list-decimal">
+              {% for error in form.errors %}
+                <li>
+                  <span>{{ form.errors.messages[error] }}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% elsif form.posted_successfully? %}
+          <div class="border p-5">
+            <div class="flex flex-row items-center w-full my-3">
+              <div class="text-green-500">
+                {% render 'icon-success' %}
+              </div>
+              <div class="text-sm font-medium ml-3">
+                your comment posted successfully
+              </div>
+            </div>
+          </div>
+        {% endif %}
+        <div class="px-1 md:flex mb-3 w-full">
+          <div class="px-3 md:w-1/2">
+            <label for="comment_author" class="text-gray-700 font-medium uppercase text-xs mb-2">Name</label>
+            <input
+              type="text"
+              name="comment[author]"
+              id="comment_author"
+              placeholder="Name"
+              required
+              class="w-full text-gray-700 border py-3 px-4 mb-3 focus:outline-none">
+          </div>
+          <div class="px-3 md:w-1/2">
+            <label for="comment_email" class="text-gray-700 font-medium uppercase text-xs mb-2">Email</label>
+            <input
+              type="email"
+              name="comment[email]"
+              id="comment_email"
+              placeholder="Email@mail.com"
+              required
+              class="w-full text-gray-700 border py-3 px-4 mb-3 focus:outline-none">
+          </div>
+        </div>
+        <div class="px-1 md:flex mb-3 w-full">
+          <div class="md:w-full px-3">
+            <label for="comment_content" class="text-gray-700 font-medium uppercase text-xs mb-2">Comment</label>
+            <textarea
+              name="comment[body]"
+              id="comment_content"
+              required
+              placeholder="Enter Your comments"
+              class="w-full text-gray-700 border py-3 px-4 mb-3 focus:outline-none h-20"></textarea>
+          </div>
+        </div>
+        <div class="px-1 md:flex mb-3 w-full">
+          <div class="md:w-full px-3">
+            <input
+              type="submit"
+              value="Post Comment"
+              class="w-full cursor-pointer px-4 py-2 border text-base font-medium text-white bg-gray-700 hover:bg-gray-900">
+          </div>
+        </div>
+      </div>
+    {% endform %}
+  </div>
+
+{% endif %}
+
+
+{% comment %} <div class="flex flex-wrap items-start justify-start">
+                                                                                              {% for article in blog.articles %}
+                                                                                                <div class="flex flex-col items-start max-w-md">
+                                                                                                  <img src="{{ article.image |  img_url: 'master'  }}" alt="{{ article.image.alt }}">
+                                                                                                  <h1 class="font-bold text-xl">{{ article.title }}</h1>
+                                                                                                  {% if section.settings.enable_author %}
+                                                                                                    <small class="font-bold text-base">{{ article.author }}</small>
+                                                                                                  {% endif %}
+                                                                                                  {% if section.settings.enable_published_date %}
+                                                                                                    <time datetime="{{ article.published_at |  date: '%Y-%m-%d' }}" class="font-medium text-base text-gray-500">{{ article.published_at | date: '%Y-%m-%d' }}</time>
+                                                                                                    <p>{{ article.published_at | date: '%Y-%m-%d' }}</p>
+                                                                                                  {% endif %}
+                                                                                                  <div class="">{{ article.content }}</div>
+                                                                                                </div>
+                                                                                              {% endfor %}
+</div> {% endcomment %}
+
+{% schema %}
+  {
+    "name": "template Article",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_author",
+        "default": true,
+        "label": "Display Author Name"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_published_date",
+        "default": true,
+        "label": "Display Published Date"
+      }
+    ]
+  }
+{% endschema %}
