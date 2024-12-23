@@ -981,21 +981,6 @@
         "logo_help": {
           "content": "Bewerk je logo in [thema-instellingen](/editor?context=theme&category=logo)."
         },
-        "sticky_header_type": {
-          "label": "Sticky header",
-          "options__1": {
-            "label": "Geen"
-          },
-          "options__2": {
-            "label": "Bij omhoog scrollen"
-          },
-          "options__3": {
-            "label": "Altijd"
-          },
-          "options__4": {
-            "label": "Altijd; verklein logo"
-          }
-        },
         "header__3": {
           "content": "Kiezer voor land/regio"
         },
