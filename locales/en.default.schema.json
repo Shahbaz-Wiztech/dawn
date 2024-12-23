@@ -1128,21 +1128,6 @@
         "menu_color_scheme": {
           "label": "Menu color scheme"
         },
-        "sticky_header_type": {
-          "label": "Sticky header",
-          "options__1": {
-            "label": "None"
-          },
-          "options__2": {
-            "label": "On scroll up"
-          },
-          "options__3": {
-            "label": "Always"
-          },
-          "options__4": {
-            "label": "Always, reduce logo size"
-          }
-        },
         "header__3": {
           "content": "Country/region selector"
         },
