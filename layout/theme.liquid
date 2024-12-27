@@ -9,8 +9,14 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
     {{ content_for_header }}
     {% comment %} {{ 'tailwind.css' | asset_url | stylesheet_tag }} {% endcomment %}
-    <script src="https://cdn.tailwindcss.com"></script>
-    {{ 'application.js' | asset_url | script_tag }}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    {{ 'application.scss' | asset_url | stylesheet_tag }}
+
+
+    {% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
+    
+    {% comment %} {{ 'application.js' | asset_url | script_tag }} {% endcomment %}
 
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.3/dist/cdn.min.js"></script>
 
@@ -21,10 +27,17 @@
 
     {% section 'header' %}
 
-    <main role="main">
+    <main role="main" class="main">
+      {% comment %} Breadcrum Start {% endcomment %}
+      {% render 'breadcrums' %}
+      {% comment %} Breadcrum End {% endcomment %}
+
       {{ content_for_layout }}
     </main>
 
     {% section 'footer' %}
+    {{ 'application.js' | asset_url | script_tag }}
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>

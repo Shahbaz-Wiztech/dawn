@@ -1,36 +1,103 @@
-<div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-  <a href="{{ product.url }}">
-    {% if product.featured_image %}
-      <img
-        class="rounded-t-lg w-full object-cover"
-        src="{{ product.featured_image | img_url:'master' }}"
-        alt="{{ product.featured_image.alt }}" />
-    {% else %}
-      {{ 'product-1' | placeholder_svg_tag: 'rounded-t-lg w-full object-cover' }}
-    {% endif %}
-  </a>
-  <div class="p-5">
+{% assign unique_string = product.title | append: now | replace: ':', '' | replace: ' ', '-' %}
+<div class="product-card">
+  <div class="card-img-container">
+    <i class="bi bi-heart"></i>
+    <div id="{{ unique_string }}" class="carousel slide product-img-slider">
+      <div class="carousel-inner">
+        {% if product.images.size > 0 %}
+          {% for image in product.images %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <a href="{{ product.url }}" class="img-wrapper">
+                <img
+                  class="d-block w-100"
+                  height="auto"
+                  width="auto"
+                  src="{{ image | img_url: 'master' }}"
+                  alt="{{ image.alt | escape }}"
+                >
+              </a>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="carousel-item active">
+            <a href="{{ product.url }}" class="img-wrapper">
+              {{ 'product-1' | placeholder_svg_tag: 'w-100 h-100 object-cover' }}
+            </a>
+          </div>
+        {% endif %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#{{ unique_string }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#{{ unique_string }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+    <a
+      href="javascript:void(0);"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#{{ unique_string }}-offcanvasScrolling"
+      aria-controls="offcanvasScrolling"
+      class="quick-view"
+      ><span>Quick View</span></a
+    >
+  </div>
+  <div class="product-card-content">
     <a href="{{ product.url }}">
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Title: {{ product.title }}</h5>
+      {% assign title_words = product.title | split: ' ' %}
+      <h3 title="{{ product.title }}">
+        {{ title_words | slice: 0, 6 | join: ' ' }}
+        {% if title_words.size > 6 %}...{% endif %}
+      </h3>
     </a>
-    <h6 class="mb-1 text-lg font-samibold text-gray-900 dark:text-white">Vendor: {{ product.vendor }}</h6>
-    <p>Price: {{ product.price | money }}</p>
-    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Content: {{ product.content }}</p>
-    <a href="{{ product.url }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-      Read more
-      <svg
-        class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-        aria-hidden="true"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 14 10">
-        <path
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M1 5h12m0 0L9 1m4 4L9 9" />
-      </svg>
-    </a>
+    <div class="product-rating">
+      <i class="bi bi-star-fill text-primary"></i>
+      <i class="bi bi-star-fill text-primary"></i>
+      <i class="bi bi-star-fill text-primary"></i>
+      <i class="bi bi-star-fill text-primary"></i>
+      <i class="bi bi-star-fill text-primary"></i>
+    </div>
+    <p class="price">{{ product.price | money }}</p>
   </div>
 </div>
+{% render 'quick-view-sidebar', product: product %}
+
+{% comment %}
+  <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <a href="{{ product.url }}">
+      {% if product.featured_image %}
+        <img
+          class="rounded-t-lg w-full object-cover"
+          src="{{ product.featured_image | img_url:'master' }}"
+          alt="{{ product.featured_image.alt }}" />
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'rounded-t-lg w-full object-cover' }}
+      {% endif %}
+    </a>
+    <div class="p-5">
+      <a href="{{ product.url }}">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Title: {{ product.title }}</h5>
+      </a>
+      <h6 class="mb-1 text-lg font-samibold text-gray-900 dark:text-white">Vendor: {{ product.vendor }}</h6>
+      <p>Price: {{ product.price | money }}</p>
+      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Content: {{ product.content }}</p>
+      <a href="{{ product.url }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Read more
+        <svg
+          class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 10">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 5h12m0 0L9 1m4 4L9 9" />
+        </svg>
+      </a>
+    </div>
+  </div>
+{% endcomment %}

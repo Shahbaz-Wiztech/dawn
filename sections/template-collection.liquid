@@ -1,19 +1,338 @@
-<h1 class="my-8 text-6xl font-bold tracking-tight text-center text-gray-900 dark:text-white">{{ collection.title }}</h1>
-<div class="grid grid-cols-4 gap-5">
-  {% paginate collection.products by 4 %}
-    {% for product in collection.products %}
+<section class="shop-holder">
+  <div class="container">
+    <div class="shop-sec">
+      <div class="shop-left">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <!-- Active filters -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne"
+                aria-expanded="false"
+                aria-controls="flush-collapseOne"
+              >
+                Active filters
+              </button>
+            </h2>
+            <div id="flush-collapseOne" class="accordion-collapse collapse">
+              <div class="active-filters">
+                <ul>
+                  <li class="clear-all">
+                    <a href="#">Clear All<span class="count">1</span></a>
+                  </li>
+                  <li>
+                    <a href="#">Brand2<i class="bi bi-x text-muted"></i></a>
+                  </li>
+                  <li>
+                    <a href="#">Brand3<i class="bi bi-x text-muted"></i></a>
+                  </li>
+                  <li>
+                    <a href="#">Brand4<i class="bi bi-x text-muted"></i></a>
+                  </li>
+                  <li>
+                    <a href="#">Brand5<i class="bi bi-x text-muted"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Filter by brand -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseTow"
+                aria-expanded="false"
+                aria-controls="flush-collapseTow"
+              >
+                Filter by brand
+              </button>
+            </h2>
+            <div id="flush-collapseTow" class="accordion-collapse collapse">
+              <div class="filter-brand">
+                <ul>
+                  <li>
+                    <a href="#">Brand<span class="count">1</span></a>
+                  </li>
+                  <li>
+                    <a href="#">Brand<span class="count">2</span></a>
+                  </li>
+                  <li>
+                    <a href="#">Brand<span class="count">3</span></a>
+                  </li>
+                  <li>
+                    <a href="#">Brand<span class="count">4</span></a>
+                  </li>
+                  <li>
+                    <a href="#">Brand<span class="count">5</span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Average rating -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapsethree"
+                aria-expanded="false"
+                aria-controls="flush-collapsethree"
+              >
+                Average rating
+              </button>
+            </h2>
+            <div id="flush-collapsethree" class="accordion-collapse collapse">
+              <div class="average-rating">
+                <ul>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                      </div>
+                      <span class="count">1</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                      </div>
+                      <span class="count">2</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                      </div>
+                      <span class="count">3</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                      </div>
+                      <span class="count">4</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                      </div>
+                      <span class="count">5</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- price rang -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseRang"
+                aria-expanded="false"
+                aria-controls="flush-collapseRang"
+              >
+                Price Rang
+              </button>
+            </h2>
+            <div id="flush-collapseRang" class="accordion-collapse collapse">
+              <div class="price-range-container">
+                <div class="slider-track">
+                  <div class="slider-range" id="slider-range"></div>
+                  <div class="slider-thumb" id="thumb-min"></div>
+                  <div class="slider-thumb" id="thumb-max"></div>
+                </div>
+                <div class="price-range-sets">
+                  <span>Price: $<span id="price-min">263</span> — $<span id="price-max">960</span></span>
+                  <button class="" id="reset-btn">RESET</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Product Categories -->
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapsefour"
+                aria-expanded="false"
+                aria-controls="flush-collapsefour"
+              >
+                Product Categories
+              </button>
+            </h2>
+            <div id="flush-collapsefour" class="accordion-collapse collapse">
+              <div class="product-categories">
+                <ul>
+                  {% for collection in collections %}
+                    <li>
+                      <a href="{{ collection.url }}">{{ collection.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+                <ul>
+                  {% comment %}
+                    <ul>
+                      {% for collection in collections %}
+                        <li>
+                          <a href="{{ collection.url }}">{{ collection.title }}</a>
+                          {% if collection.handle == 'some-handle' %}
+                            <ul>
+                              <li><a href="/collections/subcategory-1">Subcategory 1</a></li>
+                              <li><a href="/collections/subcategory-2">Subcategory 2</a></li>
+                            </ul>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul> 
+                  {% endcomment %}
+                  {% comment %} <li>
+                    <div class="inner-accordion-item">
+                      <h2 class="accordion-header">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#flush-collapseinner"
+                          aria-expanded="false"
+                          aria-controls="flush-collapseinner"
+                        >
+                          inner Product Categories
+                        </button>
+                      </h2>
+                      <div id="flush-collapseinner" class="accordion-collapse collapse">
+                        <div class="product-categories-inner">
+                          <ul>
+                            <li><a href="#">inner Accessories</a></li>
+                            <li><a href="#">inner All</a></li>
+                          </ul> 
+                        </div>
+                      </div>
+                    </div>
+                  </li> {% endcomment %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="shop-right">
+        <div class="product-container">
+          <div class="product-header">
+            <div class="sorting-selector">
+              <select class="sorting-dropdown">
+                <option value="default">Default sorting</option>
+                <option value="popularity">Sort by popularity</option>
+                <option value="rating">Sort by average rating</option>
+                <option value="latest">Sort by latest</option>
+                <option value="low-to-high">Sort by price: low to high</option>
+                <option value="high-to-low">Sort by price: high to low</option>
+              </select>
+              <div class="view-options">
+                <button class="grid-list-view active" onclick="gridListToggle(event)">
+                  <i class="bi bi-grid-3x3-gap"></i>
+                </button>
+                <button class="grid-list-view" onclick="gridListToggle(event)"><i class="bi bi-list-ul"></i></button>
+              </div>
+            </div>
+            <div class="showing-result">
+              <p>Show</p>
+              <select class="sorting-dropdown">
+                <option>9</option>
+                <option>12</option>
+                <option>24</option>
+                <option>36</option>
+                <option>All</option>
+              </select>
+            </div>
+          </div>
+          {% if collection.products.size > 12 %}
+            {% paginate collection.products by 12 %}
+              <div class="product-grid" id="product-cards-container">
+                {% for product in collection.products %}
+                  {% render 'product-card', product: product %}
+                {% else %}
+                  <p>No Product Available</p>
+                {% endfor %}
+              </div>
+              {% render 'pagination', pagination: paginate %}
+            {% endpaginate %}
+          {% else %}
+            <div class="product-grid" id="product-cards-container">
+              {% for product in collection.products %}
+                {% render 'product-card', product: product %}
+              {% else %}
+                <p>No products available</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      {% render 'product-card'
-        , product: product %}
 
-    {% else %}
-      <p>No Product Available</p>
-    {% endfor %}
 
-    {% render 'pagination'
-      , pagination: paginate %}
-  {% endpaginate %}
-</div>
-<div class="my-8 text-center">
-  <a href="{{ routes.collections_url }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Go Back To Collections</a>
-</div>
+
+
+
+
+{% comment %} <h1 class="my-8 text-6xl font-bold tracking-tight text-center text-gray-900 dark:text-white">{{ collection.title }}</h1> {% endcomment %}
+{% comment %}
+  <div class="grid grid-cols-4 gap-5">
+    {% paginate collection.products by 4 %}
+      {% for product in collection.products %}
+
+        {% render 'product-card'
+          , product: product %}
+
+      {% else %}
+        <p>No Product Available</p>
+      {% endfor %}
+
+      {% render 'pagination'
+        , pagination: paginate %}
+    {% endpaginate %}
+  </div>
+  <div class="my-8 text-center">
+    <a href="{{ routes.collections_url }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Go Back To Collections</a>
+  </div>
+{% endcomment %}

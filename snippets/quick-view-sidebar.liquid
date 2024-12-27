@@ -1,0 +1,212 @@
+{% assign unique_string = product.title | append: now | replace: ':', '' | replace: ' ', '-' %}
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="{{ unique_string }}-offcanvasScrolling"
+  aria-labelledby="{{ unique_string }}-offcanvasScrollingLabel"
+>
+  <div>
+    <button
+      type="button"
+      class="btn-close sidebar-quick-veiw"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="quick-veiw-sidebar-body">
+    <div id="{{ unique_string }}" class="carousel slide product-img-slider">
+      <div class="carousel-inner">
+        {% if product.images.size > 0 %}
+          {% for image in product.images %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <img
+                class="d-block w-100 modal-trigger"
+                height="auto"
+                width="auto"
+                src="{{ image | img_url: 'master' }}"
+                alt="{{ image.alt | escape }}"
+              >
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="carousel-item active">
+            {{ 'product-1' | placeholder_svg_tag: 'w-100 h-100 object-cover' }}
+          </div>
+        {% endif %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#{{ unique_string }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#{{ unique_string }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+    <!-- Image Modal -->
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <div id="carouselModal" class="carousel slide modal-sldier">
+        <div class="carousel-inner">
+          {% if product.images.size > 0 %}
+            {% for image in product.images %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <img
+                  class="d-block modal-content"
+                  height="auto"
+                  width="auto"
+                  src="{{ image | img_url: 'master' }}"
+                  alt="{{ image.alt | escape }}"
+                >
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="carousel-item active">
+              {{ 'product-1' | placeholder_svg_tag: 'w-100 h-100 object-cover' }}
+            </div>
+          {% endif %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselModal" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselModal" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Image modal end -->
+    <div class="sidebar-product-details mt-3">
+      <h2>
+        <a href="{{ product.url }}">{{ product.title }}</a>
+      </h2>
+      <p>{{ product.price | money }}</p>
+      <div class="d-flex align-items-center justify-content-start gap-2 mb-3">
+        <div class="product-rating">
+          <i class="bi bi-star-fill text-primary"></i>
+          <i class="bi bi-star-fill text-primary"></i>
+          <i class="bi bi-star-fill text-primary"></i>
+          <i class="bi bi-star-fill text-primary"></i>
+          <i class="bi bi-star-fill text-primary"></i>
+        </div>
+        <span class="text-black text-base">(1 customer review)</span>
+      </div>
+      {% if product.description != blank %}
+        <div class="description">{{ product.description }}</div>
+      {% endif %}
+
+      <div class="d-flex align-items-center gap-4">
+        <div class="quantity-container">
+          <button class="quantity-btn">
+            <svg
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="10px"
+              height="10px"
+              viewBox="0 0 208.000000 148.000000"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <g transform="translate(0.000000,148.000000) scale(0.100000,-0.100000)"
+              fill="#000000" stroke="none">
+              <path d="M147 792 c-22 -25 -21 -75 1 -95 17 -16 93 -17 894 -17 835 0 876 1
+              891 18 22 25 21 75 -1 95 -17 16 -93 17 -894 17 -835 0 -876 -1 -891 -18z"/>
+              </g>
+            </svg>
+          </button>
+          <input type="text" class="quantity-input" value="1" min="1">
+          <button class="quantity-btn">
+            <svg
+              version="1.0"
+              xmlns="http://www.w3.org/2000/svg"
+              width="10px"
+              height="10px"
+              viewBox="0 0 173.000000 148.000000"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <g transform="translate(0.000000,148.000000) scale(0.100000,-0.100000)"
+              fill="#000000" stroke="none">
+              <path d="M817 1474 c-4 -4 -7 -157 -7 -341 l0 -333 -328 0 c-362 0 -372 -2
+              -372 -60 0 -58 10 -60 372 -60 l328 0 2 -338 3 -337 50 0 50 0 3 337 2 338
+              328 0 c362 0 372 2 372 60 0 58 -10 60 -372 60 l-328 0 -2 338 -3 337 -45 3
+              c-25 2 -49 0 -53 -4z"/>
+              </g>
+            </svg>
+          </button>
+        </div>
+        <button class="add-to-cart-btn"><i class="bi bi-bag"></i>Add to Cart</button>
+      </div>
+      <div class="wishlist-categories">
+        <a href="#" class="mt-3 d-flex align-items-center gap-2 justify-content-start"><i class="bi bi-heart"></i>Add wishlist</a>
+        <p>
+          Categories:
+          {% if product.category.size > 0 %}
+            {% for category in product.category %}
+              <a href="{{ category.url }}">{{ category.title }}</a>
+              {%- unless forloop.last %}, {% endunless %}
+            {% endfor %}
+          {% else %}
+            {{ product.category }}
+          {% endif %}
+        </p>
+        <p>
+          Tags:
+              <a href="#">Add tags values</a>
+        </p>
+      </div>
+      <div class="share-icons">
+        <span>Share:</span>
+        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Share on Twitter"
+          ><i
+            class="bi bi-twitter"
+          ></i
+        ></a>
+        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Share on Facebook"
+          ><i
+            class="bi bi-facebook"
+          ></i
+        ></a>
+        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Share on WhatsApp"
+          ><i
+            class="bi bi-whatsapp"
+          ></i
+        ></a>
+        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Share on LinkedIn"
+          ><i
+            class="bi bi-linkedin"
+          ></i
+        ></a>
+        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Share on Skype"
+          ><i
+            class="bi bi-skype"
+          ></i
+        ></a>
+      </div>
+      {% if product.description != blank %}
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#moreDetails"
+                aria-expanded="true"
+                aria-controls="moreDetails"
+              >
+                More Details
+              </button>
+            </h2>
+            <div id="moreDetails" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <p>{{ product.description }}</p>
+                <a href="{{ product.url }}">Show full details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <a href="{{ product.url }}">View details</a>
+      {% endif %}
+    </div>
+  </div>
+</div>

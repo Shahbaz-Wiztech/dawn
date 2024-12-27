@@ -1,5 +1,403 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "current": "Default",
+  "current": {
+    "logo_width": 90,
+    "type_header_font": "assistant_n4",
+    "heading_scale": 100,
+    "type_body_font": "assistant_n4",
+    "body_scale": 100,
+    "page_width": 1200,
+    "spacing_sections": 0,
+    "spacing_grid_horizontal": 8,
+    "spacing_grid_vertical": 8,
+    "buttons_border_thickness": 1,
+    "buttons_border_opacity": 100,
+    "buttons_radius": 0,
+    "buttons_shadow_opacity": 0,
+    "buttons_shadow_horizontal_offset": 0,
+    "buttons_shadow_vertical_offset": 4,
+    "buttons_shadow_blur": 5,
+    "variant_pills_border_thickness": 1,
+    "variant_pills_border_opacity": 55,
+    "variant_pills_radius": 40,
+    "variant_pills_shadow_opacity": 0,
+    "variant_pills_shadow_horizontal_offset": 0,
+    "variant_pills_shadow_vertical_offset": 4,
+    "variant_pills_shadow_blur": 5,
+    "inputs_border_thickness": 1,
+    "inputs_border_opacity": 55,
+    "inputs_radius": 0,
+    "inputs_shadow_opacity": 0,
+    "inputs_shadow_horizontal_offset": 0,
+    "inputs_shadow_vertical_offset": 4,
+    "inputs_shadow_blur": 5,
+    "card_style": "standard",
+    "card_image_padding": 0,
+    "card_text_alignment": "left",
+    "card_color_scheme": "scheme-2",
+    "card_border_thickness": 0,
+    "card_border_opacity": 10,
+    "card_corner_radius": 0,
+    "card_shadow_opacity": 0,
+    "card_shadow_horizontal_offset": 0,
+    "card_shadow_vertical_offset": 4,
+    "card_shadow_blur": 5,
+    "collection_card_style": "standard",
+    "collection_card_image_padding": 0,
+    "collection_card_text_alignment": "left",
+    "collection_card_color_scheme": "scheme-2",
+    "collection_card_border_thickness": 0,
+    "collection_card_border_opacity": 10,
+    "collection_card_corner_radius": 0,
+    "collection_card_shadow_opacity": 0,
+    "collection_card_shadow_horizontal_offset": 0,
+    "collection_card_shadow_vertical_offset": 4,
+    "collection_card_shadow_blur": 5,
+    "blog_card_style": "standard",
+    "blog_card_image_padding": 0,
+    "blog_card_text_alignment": "left",
+    "blog_card_color_scheme": "scheme-2",
+    "blog_card_border_thickness": 0,
+    "blog_card_border_opacity": 10,
+    "blog_card_corner_radius": 0,
+    "blog_card_shadow_opacity": 0,
+    "blog_card_shadow_horizontal_offset": 0,
+    "blog_card_shadow_vertical_offset": 4,
+    "blog_card_shadow_blur": 5,
+    "text_boxes_border_thickness": 0,
+    "text_boxes_border_opacity": 10,
+    "text_boxes_radius": 0,
+    "text_boxes_shadow_opacity": 0,
+    "text_boxes_shadow_horizontal_offset": 0,
+    "text_boxes_shadow_vertical_offset": 4,
+    "text_boxes_shadow_blur": 5,
+    "media_border_thickness": 1,
+    "media_border_opacity": 5,
+    "media_radius": 0,
+    "media_shadow_opacity": 0,
+    "media_shadow_horizontal_offset": 0,
+    "media_shadow_vertical_offset": 4,
+    "media_shadow_blur": 5,
+    "popup_border_thickness": 1,
+    "popup_border_opacity": 10,
+    "popup_corner_radius": 0,
+    "popup_shadow_opacity": 5,
+    "popup_shadow_horizontal_offset": 0,
+    "popup_shadow_vertical_offset": 4,
+    "popup_shadow_blur": 5,
+    "drawer_border_thickness": 1,
+    "drawer_border_opacity": 10,
+    "drawer_shadow_opacity": 0,
+    "drawer_shadow_horizontal_offset": 0,
+    "drawer_shadow_vertical_offset": 4,
+    "drawer_shadow_blur": 5,
+    "badge_position": "bottom left",
+    "badge_corner_radius": 40,
+    "sale_badge_color_scheme": "scheme-5",
+    "sold_out_badge_color_scheme": "scheme-3",
+    "social_facebook_link": "",
+    "social_instagram_link": "",
+    "social_youtube_link": "",
+    "social_tiktok_link": "",
+    "social_twitter_link": "",
+    "social_snapchat_link": "",
+    "social_pinterest_link": "",
+    "social_tumblr_link": "",
+    "social_vimeo_link": "",
+    "predictive_search_enabled": true,
+    "predictive_search_show_vendor": false,
+    "predictive_search_show_price": false,
+    "currency_code_enabled": true,
+    "cart_type": "notification",
+    "show_vendor": false,
+    "show_cart_note": false,
+    "cart_drawer_collection": "",
+    "sections": {
+      "header": {
+        "type": "header",
+        "blocks": {
+          "social_icons_RbAicC": {
+            "type": "social_icons",
+            "settings": {
+              "icon_image": "shopify://shop_images/fb.svg",
+              "icon_image_alt": "facebook",
+              "icon_url": "#"
+            }
+          },
+          "social_icons_VXhypp": {
+            "type": "social_icons",
+            "settings": {
+              "icon_image": "shopify://shop_images/x.svg",
+              "icon_image_alt": "x",
+              "icon_url": "#"
+            }
+          },
+          "social_icons_F7E4JK": {
+            "type": "social_icons",
+            "settings": {
+              "icon_image": "shopify://shop_images/instagram.svg",
+              "icon_image_alt": "instagram",
+              "icon_url": "#"
+            }
+          },
+          "social_icons_r4FX48": {
+            "type": "social_icons",
+            "settings": {
+              "icon_image": "shopify://shop_images/pinterest.svg",
+              "icon_image_alt": "pinterest",
+              "icon_url": "#"
+            }
+          }
+        },
+        "block_order": [
+          "social_icons_RbAicC",
+          "social_icons_VXhypp",
+          "social_icons_F7E4JK",
+          "social_icons_r4FX48"
+        ],
+        "settings": {
+          "logo": "shopify://shop_images/logo_2.svg",
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "city_name_Vi8n4t": {
+            "type": "cityName",
+            "settings": {
+              "name": "London",
+              "url": "#"
+            }
+          },
+          "city_name_jTehEN": {
+            "type": "cityName",
+            "settings": {
+              "name": "San Fransisco",
+              "url": "#"
+            }
+          },
+          "city_name_CBWjMi": {
+            "type": "cityName",
+            "settings": {
+              "name": "New Orlean",
+              "url": "#"
+            }
+          },
+          "city_name_tTMGyk": {
+            "type": "cityName",
+            "settings": {
+              "name": "Seatle",
+              "url": "#"
+            }
+          },
+          "city_name_bMYcyE": {
+            "type": "cityName",
+            "settings": {
+              "name": "Portland",
+              "url": "#"
+            }
+          },
+          "city_name_ybnpVH": {
+            "type": "cityName",
+            "settings": {
+              "name": "Stockholm",
+              "url": "#"
+            }
+          },
+          "city_name_ACW6eA": {
+            "type": "cityName",
+            "settings": {
+              "name": "Hoffenheim",
+              "url": "#"
+            }
+          },
+          "latest_news_HmWwRr": {
+            "type": "latest_news",
+            "settings": {
+              "image": "shopify://shop_images/1-1.jpg",
+              "text": "Consectetur aliquet",
+              "date": "February 17, 2016",
+              "count": "0"
+            }
+          },
+          "latest_news_qmRDFf": {
+            "type": "latest_news",
+            "settings": {
+              "image": "shopify://shop_images/14.jpg",
+              "text": "Dapibus etiam tellus",
+              "date": "January 30, 2016",
+              "count": "0"
+            }
+          },
+          "latest_news_rq3LCX": {
+            "type": "latest_news",
+            "settings": {
+              "image": "shopify://shop_images/7.jpg",
+              "text": "Adipiscing duis",
+              "date": "January 12, 2016",
+              "count": "0"
+            }
+          },
+          "tags_cloud_9dUtYT": {
+            "type": "tags_cloud",
+            "settings": {
+              "url": "#",
+              "text": "Acetate"
+            }
+          },
+          "tags_cloud_GxEKhF": {
+            "type": "tags_cloud",
+            "settings": {
+              "url": "#",
+              "text": "black"
+            }
+          },
+          "tags_cloud_FQrHfP": {
+            "type": "tags_cloud",
+            "settings": {
+              "url": "#",
+              "text": "eyes"
+            }
+          },
+          "tags_cloud_ADkghm": {
+            "type": "tags_cloud",
+            "settings": {
+              "url": "#",
+              "text": "fashion"
+            }
+          },
+          "tags_cloud_CPgUkc": {
+            "type": "tags_cloud",
+            "settings": {
+              "url": "#",
+              "text": "Full-Rim Plastic"
+            }
+          },
+          "tags_cloud_zg3fDL": {
+            "type": "tags_cloud",
+            "settings": {
+              "url": "#",
+              "text": "Galsses"
+            }
+          },
+          "tags_cloud_TghkVm": {
+            "type": "tags_cloud",
+            "settings": {
+              "url": "#",
+              "text": "glasses"
+            }
+          },
+          "tags_cloud_xBtyRn": {
+            "type": "tags_cloud",
+            "settings": {
+              "url": "#",
+              "text": "new"
+            }
+          },
+          "tags_cloud_7x3Qq9": {
+            "type": "tags_cloud",
+            "settings": {
+              "url": "#",
+              "text": "sale"
+            }
+          }
+        },
+        "block_order": [
+          "city_name_Vi8n4t",
+          "city_name_jTehEN",
+          "city_name_CBWjMi",
+          "city_name_tTMGyk",
+          "city_name_bMYcyE",
+          "city_name_ybnpVH",
+          "city_name_ACW6eA",
+          "latest_news_HmWwRr",
+          "latest_news_qmRDFf",
+          "latest_news_rq3LCX",
+          "tags_cloud_9dUtYT",
+          "tags_cloud_GxEKhF",
+          "tags_cloud_FQrHfP",
+          "tags_cloud_ADkghm",
+          "tags_cloud_CPgUkc",
+          "tags_cloud_zg3fDL",
+          "tags_cloud_TghkVm",
+          "tags_cloud_xBtyRn",
+          "tags_cloud_7x3Qq9"
+        ],
+        "settings": {
+          "logo": "shopify://shop_images/logo-white.svg",
+          "footerText": "This is easy to update text from the footer widget area. Add here information about your store.",
+          "menu": "footer"
+        }
+      }
+    },
+    "content_for_index": [],
+    "color_schemes": {
+      "scheme-1": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text": "#121212",
+          "button": "#121212",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#121212",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-2": {
+        "settings": {
+          "background": "#f3f3f3",
+          "background_gradient": "",
+          "text": "#121212",
+          "button": "#121212",
+          "button_label": "#f3f3f3",
+          "secondary_button_label": "#121212",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-3": {
+        "settings": {
+          "background": "#242833",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#000000",
+          "secondary_button_label": "#ffffff",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-4": {
+        "settings": {
+          "background": "#121212",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#121212",
+          "secondary_button_label": "#ffffff",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-5": {
+        "settings": {
+          "background": "#334fb4",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "button": "#ffffff",
+          "button_label": "#334fb4",
+          "secondary_button_label": "#ffffff",
+          "shadow": "#121212"
+        }
+      }
+    }
+  },
   "presets": {
     "Default": {
       "logo_width": 90,
@@ -169,21 +567,7 @@
       "cart_type": "notification",
       "show_vendor": false,
       "show_cart_note": false,
-      "cart_drawer_collection": "",
-      "sections": {
-        "main-password-header": {
-          "type": "main-password-header",
-          "settings": {
-            "color_scheme": "scheme-1"
-          }
-        },
-        "main-password-footer": {
-          "type": "main-password-footer",
-          "settings": {
-            "color_scheme": "scheme-1"
-          }
-        }
-      }
+      "cart_drawer_collection": ""
     }
   }
 }

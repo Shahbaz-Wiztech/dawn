@@ -1,12 +1,258 @@
-<div class="relative bg-white">
-  <div class="mx-auto px-4 sm:px-6">
-    <div class="flex justify-center items-center py-6 md:justify-start md:space-x-10">
-      {% comment %} Store Name {% endcomment %}
-      <div class="flex justify-start lg:flex-1 truncate">
-        <h1 class="text-xl font-bold truncate">{{ shop.name }}</h1>
+<div class="bg-primary text-white d-flex align-items-center justify-content-center">
+  <div class="container">
+    <div class="announcementbar py-2">
+      <div class="row">
+        <div class="d-none d-lg-flex col-md-3">
+          <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 gap-md-3">
+            <a href="#" class="text-white">English</a>
+            <strong class="text-center m-0">|</strong>
+            <strong class="text-center m-0">USD ($)</strong>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-2 mt-md-0">
+          <div id="carouselExampleControls" class="carousel slide text-center" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              {% comment %} {% for block in section.blocks %}
+                {% case block.type %}
+                    {% when 'announcementbar' %}
+                          <div class="carousel-item active">
+                            <div class="d-flex align-items-center justify-content-center gap-1 w-100">
+                            <img src="{{ block.settings.image |  img_url: 'master' }}" alt="{{ block.settings.image_alt }}" height="13px" width="13px">
+                             <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M23.5 9.5c0.276 0 0.5-0.224 0.5-0.5v-4c0-0.276-0.224-0.5-0.5-0.5h-23c-0.276 0-0.5 0.224-0.5 0.5v4c0 0.276 0.224 0.5 0.5 0.5 1.379 0 2.5 1.122 2.5 2.5s-1.121 2.5-2.5 2.5c-0.276 0-0.5 0.224-0.5 0.5v4c0 0.276 0.224 0.5 0.5 0.5h23c0.276 0 0.5-0.224 0.5-0.5v-4c0-0.276-0.224-0.5-0.5-0.5-1.379 0-2.5-1.122-2.5-2.5s1.121-2.5 2.5-2.5zM20 12c0 1.76 1.306 3.221 3 3.464v3.036h-22v-3.036c1.694-0.243 3-1.704 3-3.464s-1.306-3.221-3-3.464v-3.036h22v3.036c-1.694 0.243-3 1.704-3 3.464zM6.5 10.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c-0-0.276-0.224-0.5-0.5-0.5zM6.5 6.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c-0-0.276-0.224-0.5-0.5-0.5zM6.5 14.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c-0-0.276-0.224-0.5-0.5-0.5zM17.5 10.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5zM17.5 6.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5zM17.5 14.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5z"></path></svg> 
+                            <strong class="text-center px-2 m-0">{{ block.settings.title }}</strong>
+                            <a href="{{ block.settings.url }}" class="text-white">{{ block.settings.button }}</a>
+                          </div>
+                        </div>
+                {% endcase %}
+              {% endfor %} {% endcomment %}
+              <div class="carousel-item active">
+                <div class="d-flex align-items-center justify-content-center gap-1 w-100 text-nowrap">
+                  <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M23.5 9.5c0.276 0 0.5-0.224 0.5-0.5v-4c0-0.276-0.224-0.5-0.5-0.5h-23c-0.276 0-0.5 0.224-0.5 0.5v4c0 0.276 0.224 0.5 0.5 0.5 1.379 0 2.5 1.122 2.5 2.5s-1.121 2.5-2.5 2.5c-0.276 0-0.5 0.224-0.5 0.5v4c0 0.276 0.224 0.5 0.5 0.5h23c0.276 0 0.5-0.224 0.5-0.5v-4c0-0.276-0.224-0.5-0.5-0.5-1.379 0-2.5-1.122-2.5-2.5s1.121-2.5 2.5-2.5zM20 12c0 1.76 1.306 3.221 3 3.464v3.036h-22v-3.036c1.694-0.243 3-1.704 3-3.464s-1.306-3.221-3-3.464v-3.036h22v3.036c-1.694 0.243-3 1.704-3 3.464zM6.5 10.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c-0-0.276-0.224-0.5-0.5-0.5zM6.5 6.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c-0-0.276-0.224-0.5-0.5-0.5zM6.5 14.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c-0-0.276-0.224-0.5-0.5-0.5zM17.5 10.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5zM17.5 6.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5zM17.5 14.5c-0.276 0-0.5 0.224-0.5 0.5v2c0 0.276 0.224 0.5 0.5 0.5s0.5-0.224 0.5-0.5v-2c0-0.276-0.224-0.5-0.5-0.5z"></path></svg>
+                  <strong class="text-center px-2 m-0">Free 2-days standard shipping on orders $255+</strong>
+                  <a href="#" class="text-white">Custom Link</a>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="d-flex align-items-center justify-content-center gap-1 w-100 text-nowrap">
+                  <svg fill="#ffffff" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M23.448 7.248h-3.24v-1.032c0-0.528-0.432-0.96-0.96-0.96h-11.784c-0.528 0-0.96 0.432-0.96 0.96v2.304h-3.048c0 0 0 0 0 0-0.192 0-0.384 0.096-0.48 0.264l-1.56 2.736h-0.864c-0.312 0-0.552 0.24-0.552 0.552v4.416c0 0.288 0.24 0.552 0.552 0.552h1.032c0.264 1.032 1.176 1.728 2.208 1.728 0.144 0 0.288-0.024 0.432-0.048 0.888-0.168 1.584-0.816 1.8-1.68h1.032c0.048 0 0.12-0.024 0.168-0.024 0.072 0.024 0.168 0.024 0.24 0.024h5.040c0.288 1.176 1.44 1.92 2.64 1.68 0.888-0.168 1.584-0.816 1.8-1.68h2.328c0.528 0 0.96-0.432 0.96-0.96v-3.48h2.4c0.312 0 0.552-0.24 0.552-0.552s-0.24-0.552-0.552-0.552h-2.4v-1.032h0.288c0.312 0 0.552-0.24 0.552-0.552s-0.24-0.552-0.552-0.552h-0.288v-1.032h3.24c0.312 0 0.552-0.24 0.552-0.552-0.024-0.288-0.264-0.528-0.576-0.528zM16.848 7.8c0 0.312 0.24 0.552 0.552 0.552h1.728v1.032h-4.68c-0.312 0-0.552 0.24-0.552 0.552s0.24 0.552 0.552 0.552h4.656v1.032h-2.568c-0.144 0-0.288 0.048-0.384 0.168-0.096 0.096-0.168 0.24-0.168 0.384 0 0.312 0.24 0.552 0.552 0.552h2.544v3.312h-2.16c-0.144-0.552-0.456-1.008-0.936-1.344-0.504-0.336-1.104-0.48-1.704-0.36-0.888 0.168-1.584 0.816-1.8 1.68l-4.92-0.024 0.024-9.552 11.496 0.024v0.888h-1.728c-0.264 0-0.504 0.24-0.504 0.552zM14.712 15.288c0.648 0 1.2 0.528 1.2 1.2 0 0.648-0.528 1.2-1.2 1.2-0.648 0-1.2-0.528-1.2-1.2 0.024-0.672 0.552-1.2 1.2-1.2zM3.792 15.288c0.648 0 1.2 0.528 1.2 1.2 0 0.648-0.528 1.2-1.2 1.2s-1.2-0.528-1.2-1.2c0.024-0.672 0.552-1.2 1.2-1.2zM6.48 12.6v3.312h-0.48c-0.144-0.552-0.456-1.008-0.936-1.344-0.504-0.336-1.104-0.48-1.704-0.36-0.888 0.168-1.584 0.816-1.8 1.68h-0.48v-3.288h5.4zM6.48 9.624v1.896h-3.792l1.080-1.872h2.712z"></path></svg>
+                  <strong class="text-center px-2 m-0">Take 30% off when you spend $120</strong>
+                  <a href="#" class="text-white">Go Shop</a>
+                </div>
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev btn-sm"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="d-none d-lg-flex col-md-3">
+          <div class="d-flex align-items-center justify-content-center gap-3">
+            <span class="d-flex align-items-center justify-content-center gap-3">
+              <svg fill="#ffffff" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><path d="M23.928 5.424c-0.024-0.648-0.552-1.152-1.176-1.152h-21.504c-0.648 0-1.176 0.528-1.176 1.176v13.128c0 0.648 0.528 1.176 1.176 1.176h21.504c0.648 0 1.176-0.528 1.176-1.176v-13.152zM22.512 5.4l-10.512 6.576-10.512-6.576h21.024zM1.248 16.992v-10.416l7.344 4.584-7.344 5.832zM1.224 18.456l8.352-6.624 2.064 1.32c0.192 0.12 0.432 0.12 0.624 0l2.064-1.32 8.4 6.648 0.024 0.096c0 0 0 0.024-0.024 0.024h-21.48c-0.024 0-0.024 0-0.024-0.024v-0.12zM22.752 6.648v10.344l-7.344-5.808 7.344-4.536z"></path></svg>
+              Newsletter
+            </span>
+            <strong>|</strong>
+            <div class="d-flex align-items-center justify-content-center gap-3">
+              {% for block in section.blocks %}
+                {% case block.type %}
+                    {% when 'social_icons' %}
+                        <a href="{{ block.settings.icon_url }}">
+                          <img src="{{ block.settings.icon_image |  img_url: 'master' }}" alt="{{ block.settings.icon_image_alt }}" height="13px" width="13px">
+                        </a>
+                {% endcase %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+</div>
+<div class="main-header bg-white py-3 py-md-4 border-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="d-block d-md-none col-2">
+        <a href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#responsiveModal">
+          {%- render 'icon-hamburger' -%}
+          </a>
+        {% comment %} <div class="hamburger-menu" x-data="{open:false}">
+              <span x-on:click="open = !open">
+                {%- render 'icon-hamburger' -%}
+              </span>
+              <div
+                x-show="open"
+                @click.away="open=false"
+                class="custom-menu p-2"
+              >
+                <div class="w-100 d-flex flex-column align-items-center justify-content-start">
+                  {% for link in section.settings.menu.links %}
+                    <a href="{{ link.url }}" class="text-start w-100 text-decoration-none text-uppercase">{{ link.title }}</a>  
+                  {% endfor %}
+                </div>
+              </div>
+          </div> {% endcomment %}
+      </div>
+      <div class="col-8 col-md-3">
+        <a href="/" class="flex justify-start lg:flex-1 truncate">
+          {% if section.settings.logo %}
+            <img src="{{ section.settings.logo |  img_url: 'master' }}" alt="{{ shop.name }}" width="auto" height="auto">
+          {% else %}
+            <h1 class="">{{ shop.name }}</h1>
+          {% endif %}
+        </a>
+      </div>
+      <div class="d-none d-md-flex col-md-6">
+        <div class="d-flex gap-4 align-items-center justify-content-center h-100 menu-list w-100">
+          {% for link in section.settings.menu.links %}
+            {% if link.links != blank %}
+              <div class="relative" x-data="{open:false}">
+                <button x-on:click="open = !open" class="inline-flex items-center">
+                  {{ link.title }}
+                  {% render 'icon-dropdown' %}
+                </button>
+                <div
+                  x-transition:enter="transition ease-out duration-300"
+                  x-transition:enter-start="opacity-0 translate-y-3"
+                  x-transition:enter-end="opacity-100 translate-y-0"
+                  x-transition:leave="transition ease-out duration-300"
+                  x-transition:leave-start="opacity-100 translate-y-0"
+                  x-transition:leave-end="opacity-0 translate-y-3"
+                  x-show="open"
+                  @click.away="open=false"
+                  class="absolute z-10 -ml-5 transform max-w-md sm:px-0 lg:left-1/2"
+                >
+                  <div class="shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg">
+                    <div class="relative grid gap-6 bg-white px-5 sm:p-8">
+                      {% for childlink in link.links %}
+                        <a href="{{ childlink.url }}" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100">
+                          <div class="ml-4">
+                            <p class="text-gray-900 text-base font-medium">
+                              {{ childlink.title }}
+                            </p>
+                          </div>
+                        </a>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              <a href="{{ link.url }}" >{{ link.title }}</a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-2 col-md-3">
+        <div class="d-flex align-items-center justify-content-center gap-0 gap-md-4 h-100">
+          <a href="javascript:void(0);" class="d-none d-md-block" data-bs-toggle="modal" data-bs-target="#searchModal">
+            {%- render 'icon-search' -%}
+          </a>
+          <a href="javascript:void(0);" class="position-relative d-none d-md-block">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+              77
+            </span>
+            {%- render 'icon-favorite' -%}
+          </a>
+          <a href="{{ routes.cart_url }}" class="position-relative">
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
+              77
+            </span>
+            {%- render 'icon-shopping-bag' -%}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} Modal {% endcomment %}
+<div class="modal w-screen-modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="w-100 d-flex flex-column align-items-center justify-content-center">
+          <div class="w-50 d-flex align-items-center justify-content-center gap-2 position-relative">
+            <input type="text" class="form-control border-0 border-bottom pb-2" placeholder="Type here...">
+            <a href="javascript:void(0);" class="position-absolute end-0">
+              {%- render 'icon-search' -%}
+            </a>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer border-top-0">
+        <a href="{{ routes.collections_url }}" type="button" class="btn black m-auto">View all categories</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% comment %} Responsive {% endcomment %}
+<div class="modal w-screen-modal fade" id="responsiveModal" tabindex="-1" aria-labelledby="responsiveModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex flex-column align-items-center justify-content-center">
+        <form class="w-100">
+          {% comment %} <div class="w-100 d-flex align-items-center justify-content-center position-relative"> {% endcomment %}
+            <input type="text" class="form-control pb-2" placeholder="Type here...">
+            {% comment %} <a href="javascript:void(0);" class="position-absolute end-0">
+              {%- render 'icon-search' -%}
+            </a>
+          </div> {% endcomment %}
+        </form>
+        <div class="custom-tabs">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="menu-tab" data-bs-toggle="tab" data-bs-target="#menu" type="button" role="tab" aria-controls="menu" aria-selected="true">menu</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="categories-tab" data-bs-toggle="tab" data-bs-target="#categories" type="button" role="tab" aria-controls="categories" aria-selected="false">categories</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="menu" role="tabpanel" aria-labelledby="menu-tab">
+              <div class="d-flex flex-column align-items-center justify-content-center gap-2 mt-2">
+                {% for link in section.settings.menu.links %}
+                  <a href="{{ link.url }}" class="text-start w-100 text-decoration-none text-uppercase">{{ link.title }}</a>  
+                {% endfor %}
+                </div>
+            </div>
+            <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% comment %} <div class="relative bg-white">
+  <div class="mx-auto px-4 sm:px-6">
+    <div class="flex justify-center items-center py-6 md:justify-start md:space-x-10"> {% endcomment %}
+      {% comment %} Store Name {% endcomment %}
+      {% comment %} <div class="flex justify-start lg:flex-1 truncate">
+        <h1 class="text-xl font-bold truncate">{{ shop.name }}</h1>
+      </div> {% endcomment %}
       {% comment %} Navigation Menu {% endcomment %}
-      <div class="hidden md:flex space-x-10">
+      {% comment %} <div class="hidden md:flex space-x-10">
         {% for link in section.settings.menu.links %}
           {% if link.links != blank %}
             <div class="relative" x-data="{open:false}">
@@ -23,7 +269,8 @@
                 x-transition:leave-end="opacity-0 translate-y-3"
                 x-show="open"
                 @click.away="open=false"
-                class="absolute z-10 -ml-5 transform max-w-md sm:px-0 lg:left-1/2">
+                class="absolute z-10 -ml-5 transform max-w-md sm:px-0 lg:left-1/2"
+              >
                 <div class="shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg">
                   <div class="relative grid gap-6 bg-white px-5 sm:p-8">
                     {% for childlink in link.links %}
@@ -43,35 +290,109 @@
             <a href="{{ link.url }}" class="text-base text-gray-500 hover:text-gray-700">{{ link.title }}</a>
           {% endif %}
         {% endfor %}
-      </div>
+      </div> {% endcomment %}
       {% comment %} cart button / account links if enabled {% endcomment %}
-      <div class="hidden md:flex items-center justify-end md:flex-1 space-x-1">
-        <a href="{{ routes.cart_url }}" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-500">{% render 'icon-shopping-bag' %}</a>
-      </div>
-      {% if shop.customer_accounts_enabled %}
+      {% comment %} <div class="hidden md:flex items-center justify-end md:flex-1 space-x-1">
+        <a href="{{ routes.cart_url }}" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-500">
+          {%- render 'icon-shopping-bag' -%}
+        </a>
+      </div> {% endcomment %}
+      {% comment %} {% if shop.customer_accounts_enabled %}
         {% if customer %}
           <a href="{{ routes.account_url }}" class="text-base text-gray-500 hover:text-gray-700">accounts</a>
-          {{ 'logout' | customer_logout_link | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-700"' }}
+          {{
+            'logout'
+            | customer_logout_link
+            | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-700"'
+          }}
         {% else %}
           {{ 'login' | customer_login_link | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-700"' }}
-          {{ 'Register' | customer_register_link | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-700"' }}
-          {% comment %} <a href="/login" class="text-base text-gray-500 hover:text-gray-700">login</a> {% endcomment %}
+          {{
+            'Register'
+            | customer_register_link
+            | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-700"'
+          }}
         {% endif %}
-      {% endif %}
-    </div>
+      {% endif %} {% endcomment %}
+    {% comment %} </div>
   </div>
-</div>
+</div> {% endcomment %}
 
 {% schema %}
-  {
-    "name": "header",
-    "settings": [
-      {
-        "type": "link_list",
-        "id": "menu",
-        "default": "main-menu",
-        "label": "Heading Navigation Menu"
-      }
-    ]
-  }
+{
+  "name": "header",
+  "tag": "header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Upload Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Heading Navigation Menu"
+    }
+  ],
+  "blocks":[
+    {
+      "type": "announcementbar",
+      "name": "Announcement block",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alternative Text"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "button",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Button URL"
+        }
+      ]
+    },
+    {
+      "type": "social_icons",
+      "name": "Social Icons",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "icon_image_alt",
+          "label": "Icon Alternative Text"
+        },
+        {
+          "type": "url",
+          "id": "icon_url",
+          "label": "Icon Url"
+        }
+      ]
+    },
+  ],
+  "presets": [
+        {
+          "name": "Social Icons"
+        }
+      ]
+}
 {% endschema %}

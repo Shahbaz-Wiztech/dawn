@@ -1,18 +1,43 @@
+{% comment %} {{ pagination | default_pagination }} {% endcomment %}
 {% if pagination.pages > 0 %}
-  {{ pagination | default_pagination }}
-  <nav role="navigation" class="flex justify-center my-8">
-    {% if pagination.previous %}
-      <a href="{{ pagination.previous.url }}" class="border bordergray-600 text-gray-600 hover:text-gray-300">{{ pagination.previous.title }}</a>
-    {% endif %}
-    {% for part in pagination.parts %}
-      {% if part.is_link %}
-        <a href="{{ part.url }}" class="border bordergray-600 text-gray-600 hover:text-gray-300">{{ part.title }}</a>
-      {% else %}
-        <span class="border bordergray-600 text-gray-600 hover:text-gray-300">{{ part.title }}</span>
+  <nav role="navigation" class="products-pagination">
+    <div class="pagination">
+      {% if pagination.previous %}
+        <a href="{{ pagination.previous.url }}" class="page-item">
+          ❮
+          {% comment %} {{ pagination.previous.title }} {% endcomment %}
+        </a>
       {% endif %}
-    {% endfor %}
-    {% if pagination.next %}
-      <a href="{{ pagination.next.url }}" class="border bordergray-600 text-gray-600 hover:text-gray-300">{{ pagination.next.title }}</a>
-    {% endif %}
+      {% for part in pagination.parts %}
+        {% if part.is_link %}
+          <a class="page-item" href="{{ part.url }}">{{ part.title }}</a>
+        {% else %}
+          <a class="page-item active-page" href="javascript:void(0);">{{ part.title }}</a>
+        {% endif %}
+      {% endfor %}
+      {% if pagination.next %}
+        <a href="{{ pagination.next.url }}" class="page-item">
+          {% comment %} {{ pagination.next.title }}  {% endcomment %}
+          ❯
+        </a>
+      {% endif %}
+    </div>
   </nav>
+  {% comment %}
+    <nav role="navigation" class="flex justify-center my-8">
+      {% if pagination.previous %}
+        <a href="{{ pagination.previous.url }}" class="border bordergray-600 text-gray-600 hover:text-gray-300">{{ pagination.previous.title }}</a>
+      {% endif %}
+      {% for part in pagination.parts %}
+        {% if part.is_link %}
+          <a href="{{ part.url }}" class="border bordergray-600 text-gray-600 hover:text-gray-300">{{ part.title }}</a>
+        {% else %}
+          <span class="border bordergray-600 text-gray-600 hover:text-gray-300">{{ part.title }}</span>
+        {% endif %}
+      {% endfor %}
+      {% if pagination.next %}
+        <a href="{{ pagination.next.url }}" class="border bordergray-600 text-gray-600 hover:text-gray-300">{{ pagination.next.title }}</a>
+      {% endif %}
+    </nav>
+  {% endcomment %}
 {% endif %}
