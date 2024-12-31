@@ -4,7 +4,7 @@
       <div class="shop-left">
         <div class="accordion accordion-flush" id="accordionFlushExample">
           <!-- Active filters -->
-          <div class="accordion-item">
+          {% comment %} <div class="accordion-item">
             <h2 class="accordion-header">
               <button
                 class="accordion-button collapsed"
@@ -38,40 +38,49 @@
                 </ul>
               </div>
             </div>
-          </div>
+          </div> {% endcomment %}
           <!-- Filter by brand -->
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button
-                class="accordion-button collapsed"
+                class="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseTow"
-                aria-expanded="false"
+                aria-expanded="true"
                 aria-controls="flush-collapseTow"
               >
                 Filter by brand
               </button>
             </h2>
-            <div id="flush-collapseTow" class="accordion-collapse collapse">
+            <div id="flush-collapseTow" class="accordion-collapse collapse show">
               <div class="filter-brand">
                 <ul>
-                  <li>
-                    <a href="#">Brand<span class="count">1</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Brand<span class="count">2</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Brand<span class="count">3</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Brand<span class="count">4</span></a>
-                  </li>
-                  <li>
-                    <a href="#">Brand<span class="count">5</span></a>
-                  </li>
+                  {% comment %} {% assign selected_vendor = request.params.vendor | default: '' %} {% endcomment %}
+                  {% assign brands = collections.all.products | map: 'vendor' | uniq %}
+                  {% if brands.size > 0 %}
+                    {% for brand in brands %}
+                      <li>
+                        <a 
+                          href="/collections/all?vendor={{ brand | handleize }}" 
+                          class="active">
+                        {% comment %} class="{% if brand | handleize == selected_vendor %}active{% endif %}" {% endcomment %}
+                          {{ brand }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  {% else %}
+                    <li>No brands found.</li>
+                  {% endif %}
                 </ul>
+                {% comment %} <ul>
+                  {% assign brands = collections.all.products | map: 'vendor' | uniq %}
+                  {% for brand in brands %}
+                    <li>
+                      <a href="/collections/all?vendor={{ brand | handleize }}" class="active">{{ brand }}</a>
+                    </li>
+                  {% endfor %}
+                </ul> {% endcomment %}
               </div>
             </div>
           </div>
@@ -79,17 +88,17 @@
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button
-                class="accordion-button collapsed"
+                class="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapsethree"
-                aria-expanded="false"
+                aria-expanded="true"
                 aria-controls="flush-collapsethree"
               >
                 Average rating
               </button>
             </h2>
-            <div id="flush-collapsethree" class="accordion-collapse collapse">
+            <div id="flush-collapsethree" class="accordion-collapse collapse show">
               <div class="average-rating">
                 <ul>
                   <li>
@@ -160,17 +169,17 @@
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button
-                class="accordion-button collapsed"
+                class="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapseRang"
-                aria-expanded="false"
+                aria-expanded="true"
                 aria-controls="flush-collapseRang"
               >
                 Price Rang
               </button>
             </h2>
-            <div id="flush-collapseRang" class="accordion-collapse collapse">
+            <div id="flush-collapseRang" class="accordion-collapse collapse show">
               <div class="price-range-container">
                 <div class="slider-track">
                   <div class="slider-range" id="slider-range"></div>
@@ -188,17 +197,17 @@
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button
-                class="accordion-button collapsed"
+                class="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#flush-collapsefour"
-                aria-expanded="false"
+                aria-expanded="true"
                 aria-controls="flush-collapsefour"
               >
                 Product Categories
               </button>
             </h2>
-            <div id="flush-collapsefour" class="accordion-collapse collapse">
+            <div id="flush-collapsefour" class="accordion-collapse collapse show">
               <div class="product-categories">
                 <ul>
                   {% for collection in collections %}
@@ -206,6 +215,9 @@
                       <a href="{{ collection.url }}">{{ collection.title }}</a>
                     </li>
                   {% endfor %}
+                  {% comment %} <li>
+                    <a href="{{ routes.collections_url }}">collection list</a>
+                  </li> {% endcomment %}
                 </ul>
                 <ul>
                   {% comment %}

@@ -19,12 +19,14 @@
         {% if product.images.size > 0 %}
           {% for image in product.images %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            {% comment %} class="d-block w-100 modal-trigger" {% endcomment %}
               <img
-                class="d-block w-100 modal-trigger"
+                class="d-block w-100"
                 height="auto"
                 width="auto"
                 src="{{ image | img_url: 'master' }}"
                 alt="{{ image.alt | escape }}"
+                data-bs-toggle="modal" data-bs-target="#{{ unique_string }}-exampleModal"
               >
             </div>
           {% endfor %}
@@ -42,36 +44,45 @@
       </button>
     </div>
     <!-- Image Modal -->
-    <div id="myModal" class="modal">
-      <span class="close">&times;</span>
-      <div id="carouselModal" class="carousel slide modal-sldier">
-        <div class="carousel-inner">
-          {% if product.images.size > 0 %}
-            {% for image in product.images %}
-              <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img
-                  class="d-block modal-content"
-                  height="auto"
-                  width="auto"
-                  src="{{ image | img_url: 'master' }}"
-                  alt="{{ image.alt | escape }}"
-                >
+    <div class="modal fullScreenImageSlider fade" id="{{ unique_string }}-exampleModal" tabindex="-1" aria-labelledby="{{ unique_string }}-exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <span class="close" data-bs-dismiss="modal" aria-label="Close">&times;</span>
+          </div>
+          <div class="modal-body">
+            <div id="{{ unique_string }}-carouselModal" class="carousel slide modal-sldier">
+              <div class="carousel-inner">
+                {% if product.images.size > 0 %}
+                  {% for image in product.images %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                      <div class="img-wrapper">
+                        <img
+                        height="auto"
+                        width="auto"
+                        src="{{ image | img_url: 'master' }}"
+                        alt="{{ image.alt | escape }}"
+                        >
+                        </div>
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  <div class="carousel-item active">
+                    {{ 'product-1' | placeholder_svg_tag: 'w-100 h-100 object-cover' }}
+                  </div>
+                {% endif %}
               </div>
-            {% endfor %}
-          {% else %}
-            <div class="carousel-item active">
-              {{ 'product-1' | placeholder_svg_tag: 'w-100 h-100 object-cover' }}
+              <button class="carousel-control-prev" type="button" data-bs-target="#{{ unique_string }}-carouselModal" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#{{ unique_string }}-carouselModal" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
-          {% endif %}
+          </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselModal" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselModal" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
       </div>
     </div>
 
@@ -94,64 +105,67 @@
       {% if product.description != blank %}
         <div class="description">{{ product.description }}</div>
       {% endif %}
-
-      <div class="d-flex align-items-center gap-4">
-        <div class="quantity-container">
-          <button class="quantity-btn">
-            <svg
-              version="1.0"
-              xmlns="http://www.w3.org/2000/svg"
-              width="10px"
-              height="10px"
-              viewBox="0 0 208.000000 148.000000"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <g transform="translate(0.000000,148.000000) scale(0.100000,-0.100000)"
-              fill="#000000" stroke="none">
-              <path d="M147 792 c-22 -25 -21 -75 1 -95 17 -16 93 -17 894 -17 835 0 876 1
-              891 18 22 25 21 75 -1 95 -17 16 -93 17 -894 17 -835 0 -876 -1 -891 -18z"/>
-              </g>
-            </svg>
-          </button>
-          <input type="text" class="quantity-input" value="1" min="1">
-          <button class="quantity-btn">
-            <svg
-              version="1.0"
-              xmlns="http://www.w3.org/2000/svg"
-              width="10px"
-              height="10px"
-              viewBox="0 0 173.000000 148.000000"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <g transform="translate(0.000000,148.000000) scale(0.100000,-0.100000)"
-              fill="#000000" stroke="none">
-              <path d="M817 1474 c-4 -4 -7 -157 -7 -341 l0 -333 -328 0 c-362 0 -372 -2
-              -372 -60 0 -58 10 -60 372 -60 l328 0 2 -338 3 -337 50 0 50 0 3 337 2 338
-              328 0 c362 0 372 2 372 60 0 58 -10 60 -372 60 l-328 0 -2 338 -3 337 -45 3
-              c-25 2 -49 0 -53 -4z"/>
-              </g>
-            </svg>
-          </button>
+      <form method="post" action="/cart/add">
+        <div class="d-flex align-items-center gap-4">
+          <div class="quantity-container">
+            <span class="quantity-btn" onclick="decrementQuantity(event)">
+              <svg
+                version="1.0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="10px"
+                height="10px"
+                viewBox="0 0 208.000000 148.000000"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <g transform="translate(0.000000,148.000000) scale(0.100000,-0.100000)"
+                fill="#000000" stroke="none">
+                <path d="M147 792 c-22 -25 -21 -75 1 -95 17 -16 93 -17 894 -17 835 0 876 1
+                891 18 22 25 21 75 -1 95 -17 16 -93 17 -894 17 -835 0 -876 -1 -891 -18z"/>
+                </g>
+              </svg>
+            </span>
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+            <input min="1" type="number" class="quantity quantity-input" id="quantity" name="quantity" value="1"/>
+            <span class="quantity-btn" onclick="incrementQuantity(event)">
+              <svg
+                version="1.0"
+                xmlns="http://www.w3.org/2000/svg"
+                width="10px"
+                height="10px"
+                viewBox="0 0 173.000000 148.000000"
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <g transform="translate(0.000000,148.000000) scale(0.100000,-0.100000)"
+                fill="#000000" stroke="none">
+                <path d="M817 1474 c-4 -4 -7 -157 -7 -341 l0 -333 -328 0 c-362 0 -372 -2
+                -372 -60 0 -58 10 -60 372 -60 l328 0 2 -338 3 -337 50 0 50 0 3 337 2 338
+                328 0 c362 0 372 2 372 60 0 58 -10 60 -372 60 l-328 0 -2 338 -3 337 -45 3
+                c-25 2 -49 0 -53 -4z"/>
+                </g>
+              </svg>
+            </span>
+          </div>
+          <button class="add-to-cart-btn" type="submit"><i class="bi bi-bag"></i>Add to Cart</button>
         </div>
-        <button class="add-to-cart-btn"><i class="bi bi-bag"></i>Add to Cart</button>
-      </div>
+      </form>
       <div class="wishlist-categories">
-        <a href="#" class="mt-3 d-flex align-items-center gap-2 justify-content-start"><i class="bi bi-heart"></i>Add wishlist</a>
-        <p>
-          Categories:
-          {% if product.category.size > 0 %}
-            {% for category in product.category %}
-              <a href="{{ category.url }}">{{ category.title }}</a>
-              {%- unless forloop.last %}, {% endunless %}
+        <button href="#" class="my-3 d-flex align-items-center gap-1 justify-content-start text-black">
+          <i class="bi bi-heart"></i>Add wishlist
+        </button>
+        <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
+          <p class="mb-0">Categories:</p>
+          {% for Category in collections.all.products %}
+            <a href="{{ Category.url }}" class="mb-0">{{ Category.category }}</a>,
+          {% endfor %}
+        </div>
+        <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
+          <p class="mb-0">Tags:</p>
+          {% for product in collections.all.products %}
+            {% for tag in product.tags %}
+              <a href="/collections/{{ tag | handleize }}">{{ tag }}</a>
             {% endfor %}
-          {% else %}
-            {{ product.category }}
-          {% endif %}
-        </p>
-        <p>
-          Tags:
-              <a href="#">Add tags values</a>
-        </p>
+          {% endfor %}
+        </div>
       </div>
       <div class="share-icons">
         <span>Share:</span>
