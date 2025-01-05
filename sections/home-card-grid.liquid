@@ -1,0 +1,55 @@
+<section class="products-grid-section">
+  <div class="container small">
+    <div class="heading-sec">
+      {% if section.settings.heading %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+      {% if section.settings.description %}
+        {{ section.settings.description }}
+      {% endif %}
+    </div>
+    <div class="products-items">
+      <div class="row gy-lg-0 gy-3">
+        {% if section.settings.collection != blank %}
+          <div class="col-lg-4 col-md-6">
+            {% render 'home-product-card', product: section.settings.collection.products[0] %}
+          </div>
+          <div class="col-lg-4 col-md-6">
+            {% render 'home-product-card', product: section.settings.collection.products[1] %}
+          </div>
+          <div class="col-lg-4 col-md-6">
+            {% render 'home-product-card', product: section.settings.collection.products[2] %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "home card grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Main Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Add Description Text"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Card Grid"
+    }
+  ]
+}
+{% endschema %}

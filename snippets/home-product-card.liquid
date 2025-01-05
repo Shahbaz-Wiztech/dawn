@@ -1,0 +1,46 @@
+{% assign unique_string = product.title | append: now | replace: ':', '' | replace: ' ', '-' %}
+<div class="product-card-item {% if product.compare_at_price != blank %}on-sale{% endif %}">
+  <div class="product-card-head">
+    <div class="on-sale-badge">Sale</div>
+    <div class="add-to-favourite active"><i class="bi bi-heart"></i></div>
+    <a href="{{ product.url }}" class="normal-img">
+      <img src="{{ product.images[0] | img_url: 'master' }}" height="auto" width="auto" alt="product-img">
+    </a>
+    <a href="{{ product.url }}" class="hover-img">
+      <img src="{{ product.images[1] | img_url: 'master' }}" height="auto" width="auto" alt="product-img">
+    </a>
+    <a
+      href="javascript:void(0);"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#{{ unique_string }}-offcanvasScrolling"
+      aria-controls="offcanvasScrolling"
+      class="btn btn-light"
+      >Quick View</a>
+  </div>
+  <div class="product-card-body">
+    <div class="product-category">
+        <a href="{{ product.url }}">
+            {{ product.category }}
+        </a>
+    </div>
+    <a href="{{ product.url }}" class="product-name">{{ product.title }}</a>
+    <div class="product-brand">
+      {% for brand in product.vendor %}
+        <a href="/collections/all?vendor={{ brand | handleize }}">{{ brand }}</a>
+      {% endfor %}
+    </div>
+    <div class="product-price {% if product.compare_at_price != blank %}compare{% endif %}">
+        <s>{{ product.compare_at_price |  money }}</s> 
+        {{ product.price |  money }} 
+    </div>
+    {% if product.metafields.custom.usage %}
+        <div class="product-description">Usage: {{ product.metafields.custom.usage }}</div>
+    {% endif %}
+    <form method="post" action="/cart/add">
+        <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+        <button type="submit" class="btn btn-secondary">Add to Cart</button>
+    </form>
+  </div>
+</div>
+{% render 'quick-view-sidebar', product: product , unique_string:unique_string %}

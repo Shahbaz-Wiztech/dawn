@@ -91,20 +91,23 @@
                 </div>
               </div>
             </div>
+            {% if product.category != blank %}
             <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
               <p class="mb-0">Categories:</p>
-              {% for product in collections.all.products %}
+              <a href="{{ product.url }}" class="mb-0">{{ product.category }}</a>,
+              {% comment %} {% for product in collections.all.products %}
                 <a href="{{ product.url }}" class="mb-0">{{ product.category }}</a>,
-              {% endfor %}
+              {% endfor %} {% endcomment %}
             </div>
-            <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
-              <p class="mb-0">Tags:</p>
-              {% for product in collections.all.products %}
+            {% endif %}
+            {% if product.tags != blank %}
+              <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
+                <p class="mb-0">Tags:</p>
                 {% for tag in product.tags %}
                   <a href="/collections/{{ tag | handleize }}">{{ tag }}</a>
                 {% endfor %}
-              {% endfor %}
-            </div>
+              </div>
+              {% endif %}
           </div>
         </div>
       </div>

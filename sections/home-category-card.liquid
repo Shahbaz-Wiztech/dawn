@@ -1,0 +1,127 @@
+<section class="category-cards-section">
+  <div class="container small">
+    <div class="row gy-md-0 gy-4">
+        {% for block in section.blocks %}
+            {% if block.type == 'category_card' %}
+                <div class="col-md-6 d-flex align-self-stretch">
+                    <div class="category-card-item">
+                    <div class="background-shape" style="background-color: {% if block.settings.color %}{{ block.settings.color }} {% else %} var(--primary-light){% endif %} ;"></div>
+                    <div class="model-img">
+                        {% if block.settings.modal_image %}
+                            <img src="{{ block.settings.modal_image |  img_url:'master' }}" height="auto" width="auto" alt="model-img">
+                        {% else %}
+                            <img src="{{ 'category-card-model-1.webp' |  asset_url }}" height="auto" width="auto" alt="model-img">
+                        {% endif %}
+                    </div>
+                    <div class="content">
+                        <div class="category-name">
+                            {% if block.settings.category %}
+                                <a href="{{ block.settings.btn_url }}">{{ block.settings.category }}</a>
+                            {% endif %}
+                        </div>
+                        {% if block.settings.collection_name %}
+                            <div class="product-name"><a href="{{ block.settings.btn_url }}" class="text-nowrap">{{ block.settings.collection_name }}</a></div>
+                        {% endif %}
+                        <div class="product-description">
+                            {% if block.settings.description_text %}
+                                {{ block.settings.description_text }}
+                            {% endif %}
+                        </div>
+                        <a href="{{ block.settings.btn_url }}" class="btn btn-dark">{{ block.settings.btn }}</a>
+                    </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "home category card ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "category",
+      "label": "Category Name"
+    },
+    {
+      "type": "text",
+      "id": "collection_name",
+      "label": "Collection Name"
+    },
+    {
+      "type": "richtext",
+      "id": "description_text",
+      "label": "Description Text"
+    },
+    {
+      "type": "text",
+      "id": "btn",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "modal_image",
+      "label": "Modal Image"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Background Color"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category_card",
+      "name": "Category Card",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "category",
+          "label": "Category Name"
+        },
+        {
+          "type": "text",
+          "id": "collection_name",
+          "label": "Collection Name"
+        },
+        {
+          "type": "richtext",
+          "id": "description_text",
+          "label": "Description Text"
+        },
+        {
+          "type": "text",
+          "id": "btn",
+          "default":"View All",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button URL"
+        },
+        {
+          "type": "image_picker",
+          "id": "modal_image",
+          "label": "Modal Image"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Background Color"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Home Category Card Section" }, { "name": "Category Card" }]
+}
+{% endschema %}

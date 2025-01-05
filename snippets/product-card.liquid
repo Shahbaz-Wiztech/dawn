@@ -21,7 +21,7 @@
         {% else %}
           <div class="carousel-item active">
             <a href="{{ product.url }}" class="img-wrapper">
-              {{ 'product-1' | placeholder_svg_tag: 'w-100 h-100 object-cover' }}
+              <div class="img-fluid">{{ 'product-1' | placeholder_svg_tag: '' }}</div>
             </a>
           </div>
         {% endif %}
@@ -61,7 +61,7 @@
     <p class="price">{{ product.price | money }}</p>
   </div>
 </div>
-{% render 'quick-view-sidebar', product: product %}
+{% render 'quick-view-sidebar', product: product , unique_string:unique_string %}
 
 {% comment %}
   <div class="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">

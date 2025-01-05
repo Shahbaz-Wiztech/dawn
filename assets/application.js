@@ -1,4 +1,15 @@
     console.log('first')
+    function changeQuantity(amount) {
+      let quantityInput = document.getElementById('quantity');
+      let currentValue = parseInt(quantityInput.value);
+      let newValue = currentValue + amount;
+
+      if (newValue >= 0) {
+        quantityInput.value = newValue;
+      }
+    }
+
+
     // product details page image zoom effect
     function zoom(e) {
       var zoomer = e.currentTarget;

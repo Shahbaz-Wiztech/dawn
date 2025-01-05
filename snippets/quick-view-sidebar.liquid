@@ -1,4 +1,4 @@
-{% assign unique_string = product.title | append: now | replace: ':', '' | replace: ' ', '-' %}
+{% comment %} {% assign unique_string = product.title | append: now | replace: ':', '' | replace: ' ', '-' %} {% endcomment %}
 <div
   class="offcanvas offcanvas-end"
   tabindex="-1"
@@ -32,7 +32,7 @@
           {% endfor %}
         {% else %}
           <div class="carousel-item active">
-            {{ 'product-1' | placeholder_svg_tag: 'w-100 h-100 object-cover' }}
+            <div class="img-fluid">{{ 'product-1' | placeholder_svg_tag: 'w-100 h-100' }}</div>
           </div>
         {% endif %}
       </div>
@@ -68,7 +68,7 @@
                   {% endfor %}
                 {% else %}
                   <div class="carousel-item active">
-                    {{ 'product-1' | placeholder_svg_tag: 'w-100 h-100 object-cover' }}
+                    <div class="img-fluid">{{ 'product-1' | placeholder_svg_tag: 'w-100 h-100' }}</div>
                   </div>
                 {% endif %}
               </div>
@@ -152,20 +152,21 @@
         <button href="#" class="my-3 d-flex align-items-center gap-1 justify-content-start text-black">
           <i class="bi bi-heart"></i>Add wishlist
         </button>
+        
         <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
           <p class="mb-0">Categories:</p>
-          {% for Category in collections.all.products %}
-            <a href="{{ Category.url }}" class="mb-0">{{ Category.category }}</a>,
-          {% endfor %}
+          {% comment %} {% for Category in collections.all.products %} {% endcomment %}
+            <a href="{{ product.url }}" class="mb-0">{{ product.category }}</a>,
+          {% comment %} {% endfor %} {% endcomment %}
         </div>
-        <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
-          <p class="mb-0">Tags:</p>
-          {% for product in collections.all.products %}
-            {% for tag in product.tags %}
-              <a href="/collections/{{ tag | handleize }}">{{ tag }}</a>
-            {% endfor %}
-          {% endfor %}
-        </div>
+        {% if product.tags != blank %}
+          <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
+            <p class="mb-0">Tags:</p>
+              {% for tag in product.tags %}
+                <a href="/collections/{{ tag | handleize }}">{{ tag }}</a>
+              {% endfor %}
+          </div>
+        {% endif %}
       </div>
       <div class="share-icons">
         <span>Share:</span>

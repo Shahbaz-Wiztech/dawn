@@ -1,0 +1,151 @@
+<section class="banner-section">
+  <div id="bannerSlider" class="carousel slide carousel-fade" data-bs-ride="true">
+    <div class="carousel-indicators">
+      {% for block in section.blocks %}
+        {% if block.type == 'banner_block' %}
+          <button
+            type="button"
+            data-bs-target="#bannerSlider"
+            data-bs-slide-to="{{ forloop.index0 }}"
+            class="{% if forloop.first %}active{% endif %}"
+            aria-current="{% if forloop.first %}true{% endif %}"
+            aria-label="Slide {{ forloop.index }}"
+          ></button>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="carousel-inner">
+      {% for block in section.blocks %}
+        {% if block.type == 'banner_block' %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div
+              class="background-shape"
+              style="background-color:{% if block.settings.background_color %}{{ block.settings.background_color }}{% else %}var(--primary){% endif %};"
+            ></div>
+            <div class="banner-slider-inner">
+              <div class="container small">
+                <div class="row align-items-end">
+                  <div
+                    class="col-lg-5 h-100 d-flex flex-column align-items-center justify-content-center"
+                  >
+                    <div class="glasses-img">
+                      {% if block.settings.glasses_image %}
+                        <img
+                          src="{{ block.settings.glasses_image |  img_url: 'medium' }}"
+                          height="auto"
+                          width="auto"
+                          alt="glasses-img"
+                        >
+                      {% else %}
+                        <img
+                          src="{{ 'first-slide-glasses.webp' |  asset_url }}"
+                          height="auto"
+                          width="auto"
+                          alt="glasses-img"
+                        >
+                      {% endif %}
+                    </div>
+                    <div class="content">
+                      <p>
+                        <uppercase>{{ block.settings.arrival_text }}</uppercase>
+                      </p>
+                      {% if block.settings.brand_name %}
+                        <h1>{{ block.settings.brand_name }}</h1>
+                      {% endif %}
+                      {% if block.settings.description %}
+                        {{ block.settings.description }}
+                      {% endif %}
+                      {% comment %} <p>Each frame features tinted lenses to protect your eyes from harmful UV rays.</p> {% endcomment %}
+                      <a
+                        href="{% if block.settings.btn_url %}{{ block.settings.btn_url }}{% else %}{{ collection.url }}{% endif %}"
+                        class="btn btn-dark"
+                      >
+                        {% if block.settings.btn_text %}
+                          {{ block.settings.btn_text }}
+                        {% else %}
+                          Go to shop
+                        {% endif %}
+                      </a>
+                    </div>
+                  </div>
+                  <div class="col-lg-7 h-100 d-flex align-items-end justify-content-end">
+                    <div class="model-img">
+                      {% if block.settings.modal_image %}
+                        <img
+                          src="{{ block.settings.modal_image |  img_url:'master' }}"
+                          height="auto"
+                          width="auto"
+                          alt="model-img"
+                        >
+                      {% else %}
+                        <img src="{{ 'model-1.webp' |  asset_url }}" height="auto" width="auto" alt="model-img">
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Banner Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "banner_block",
+      "name": "banner blocks",
+      "settings": [
+        {
+          "type": "text",
+          "id": "arrival_text",
+          "label": "Arrival Text",
+          "default": "Brand New colection"
+        },
+        {
+          "type": "text",
+          "id": "brand_name",
+          "label": "Brand Name"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Add Description"
+        },
+        {
+          "type": "text",
+          "id": "btn_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "url",
+          "id": "btn_url",
+          "label": "Button Url"
+        },
+        {
+          "type": "image_picker",
+          "id": "glasses_image",
+          "label": "Glasses Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "modal_image",
+          "label": "Modal Image"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color"
+        }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Banner Section" }]
+}
+{% endschema %}

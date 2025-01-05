@@ -263,7 +263,13 @@
             </span>
             {%- render 'icon-favorite' -%}
           </a>
-          <a href="{{ routes.cart_url }}" class="position-relative">
+          {% comment %} <a href="{{ routes.cart_url }}" class="position-relative"> {% endcomment %}
+          <a class="position-relative"
+          href="javascript:void(0);"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasScrolling"
+          aria-controls="offcanvasScrolling">
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary">
               {{ cart.item_count }}
             </span>
@@ -274,6 +280,8 @@
     </div>
   </div>
 </div>
+{% comment %} shopping cart sidebar {% endcomment %}
+ {% render 'shopping-cart-sidebar' %}
 
 {% comment %} Modal {% endcomment %}
 <div class="modal w-screen-modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">

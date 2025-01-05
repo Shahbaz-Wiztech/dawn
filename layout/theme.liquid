@@ -28,10 +28,14 @@
     {% section 'header' %}
 
     <main role="main" class="main">
-      {% comment %} Breadcrum Start {% endcomment %}
+      
+    {% if template == 'cart' or template contains 'checkout' %}
+      {% render 'cart-checkout-navigation' %}
+    {% else %}
       {% render 'breadcrums' %}
-      {% comment %} Breadcrum End {% endcomment %}
-
+    {% endif %}
+    
+      
       {{ content_for_layout }}
     </main>
 
