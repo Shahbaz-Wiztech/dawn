@@ -1,0 +1,67 @@
+<section class="aboutUsBannerHolder" style="background-image: url({{ 'aboutus.webp' |  asset_url }})">
+  <div class="container">
+    <div class="bannerSec">
+      <div class="content">
+        <h4>{{ section.settings.subText }}</h4>
+        <h2>{{ section.settings.page_title }}</h2>
+        {% if section.settings.description %}
+          {{ section.settings.description }}
+          {% else %}
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do labore et dolore magna aliqua.</p>
+        {% endif %}
+        <div class="social-icon d-flex align-items-center gap-4">
+          <a href="{% if section.settings.facebook_URL != blank %}{{ section.settings.facebook_URL }}{% else %}#{% endif %}"><i class="bi bi-facebook"></i></a>
+          <a href="{% if section.settings.twitter_URL != blank %}{{ section.settings.twitter_URL }}{% else %}#{% endif %}"><i class="bi bi-twitter"></i></a>
+          <a href="{% if section.settings.instagram_URL != blank %}{{ section.settings.instagram_URL }}{% else %}#{% endif %}"><i class="bi bi-instagram"></i></a>
+          <a href="{% if section.settings.pinterest_URL != blank %}{{ section.settings.pinterest_URL }}{% else %}#{% endif %}"><i class="bi bi-pinterest"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subText",
+      "label": "Add Text",
+      "default": "Easy to edit text"
+    },
+    {
+      "type": "text",
+      "id": "page_title",
+      "label": "Page Title",
+      "default": "ABOUT US"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "url",
+      "id": "facebook_URL",
+      "label": "Facebook URL"
+    },
+    {
+      "type": "url",
+      "id": "twitter_URL",
+      "label": "Twitter URL"
+    },
+    {
+      "type": "url",
+      "id": "instagram_URL",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_URL",
+      "label": "Pinterest URL"
+    }
+  ],
+  "presets": [{ "name": "About Banner" }]
+}
+{% endschema %}

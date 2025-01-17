@@ -33,15 +33,11 @@
             <p class="text-secondary">
               Brand: <span class="text-dark">{{ product.vendor }}</span>
             </p>
-            {% comment %} <p class="text-secondary">{{ product.description }}</p> {% endcomment %}
-            {% assign description_words = product.description | split: ' ' %}
-            <p class="text-secondary">
-              {% if description_words.size > 23 %}
-                {{ description_words | slice: 0, 23 | join: ' ' }}...
-              {% else %}
-                {{ product.description }}
-              {% endif %}
-            </p>
+            {% if product.metafields.custom.short_description != blank %}
+              <div class="description mb-2">
+                {{ product.metafields.custom.short_description }}
+              </div>
+            {% endif %}
           </div>
           <div class="features">
             <ul class="d-flex flex-column gap-1">

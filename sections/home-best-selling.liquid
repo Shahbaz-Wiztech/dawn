@@ -1,0 +1,93 @@
+<section class="best-cellings-features-products-section">
+  <div class="container small">
+    <div class="row">
+        {% if section.settings.primaryCollection %}        
+            <div class="col-md-6">
+                <div class="products-list-section">
+                <h6>{{ section.settings.primaryCollection.title }}</h6>
+                <div class="products-list">
+                {% for product in section.settings.primaryCollection.products %}
+                    <div class="product-list-item {% if product.compare_at_price != blank %}on-sale{% endif %}">
+                        <div class="product-image">
+                            {% if product.images %}
+                                <img src="{{ product.images.first |  img_url:'master' }}" width="auto" height="auto" alt="product-image">
+                            {% else %}
+                                <img src="{{ 'product-placeholder-image.webp' |  asset_url }}" width="auto" height="auto" alt="product-image">
+                        {% endif %}
+                        </div>
+                        <div class="product-details">
+                            <div class="title">
+                                <a href="{{ product.url }}">{{ product.title }}</a>
+                            </div>
+                            <div class="rating">
+                                <span style="width: 50%;"></span>
+                            </div>
+                            <div class="price">
+                                {% if product.compare_at_price != blank %}
+                                    <s>{{ product.compare_at_price |  money }}</s>
+                                {% endif %} 
+                                {{ product.price |  money }} 
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if section.settings.secondaryCollection %}        
+            <div class="col-md-6">
+                <div class="products-list-section">
+                <h6>{{ section.settings.secondaryCollection.title }}</h6>
+                <div class="products-list">
+                {% for product in section.settings.secondaryCollection.products %}
+                    <div class="product-list-item {% if product.compare_at_price != blank %}on-sale{% endif %}">
+                        <div class="product-image">
+                            {% if product.images %}
+                                <img src="{{ product.images.first |  img_url:'master' }}" width="auto" height="auto" alt="product-image">
+                            {% else %}
+                                <img src="{{ 'product-placeholder-image.webp' |  asset_url }}" width="auto" height="auto" alt="product-image">
+                        {% endif %}
+                        </div>
+                        <div class="product-details">
+                            <div class="title">
+                                <a href="{{ product.url }}">{{ product.title }}</a>
+                            </div>
+                            <div class="rating">
+                                <span style="width: 50%;"></span>
+                            </div>
+                            <div class="price">
+                                {% if product.compare_at_price != blank %}
+                                    <s>{{ product.compare_at_price |  money }}</s>
+                                {% endif %} 
+                                {{ product.price |  money }} 
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Best Sellings Section",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "primaryCollection",
+      "label": "Primary Collection"
+    },
+    {
+      "type": "collection",
+      "id": "secondaryCollection",
+      "label": "Secondary Collection"
+    }
+  ],
+  "presets": [{ "name": "Best Sellings" }]
+}
+{% endschema %}

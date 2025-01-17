@@ -1,0 +1,92 @@
+<section class="testimoniolHolder">
+  <div class="container text-center">
+    <div class="testimoniolSec">
+      <h5 class="mb-4 fw-bold text-uppercase">More Than Just Glasses</h5>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner py-4 px-5">
+          {% for block in section.blocks %}
+            {% if block.type == 'testimonials_card' %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                {% render 'testimonials-card', block: block %}
+              </div>
+            {% endif %}
+          {% endfor %}
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#testimonialCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#testimonialCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+        <div class="carousel-indicators position-relative mt-3">
+          {% for block in section.blocks %}
+            {% if block.type == 'testimonials_card' %}
+              <button
+                type="button"
+                data-bs-target="#testimonialCarousel"
+                data-bs-slide-to="{{ forloop.index0 }}"
+                class="{% if forloop.first %}active{% endif %}"
+              ></button>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonials_card",
+      "name": "Testimonials Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "designation",
+          "label": "Designation"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "URL"
+        },
+        {
+          "type": "richtext",
+          "id": "Description",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Section"
+    }
+  ]
+}
+{% endschema %}

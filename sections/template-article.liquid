@@ -2,7 +2,7 @@
   <a href="{{ blog.url }}">
     <h1 class="text-6xl text-center w-full font-bold">{{ blog.title }}</h1>
   </a>
-  <img src="{{ article.image |  img_url: 'master'  }}" alt="{{ article.image.alt }}" style="width: 100%;height:500px;">
+  <img src="{{ article.image |  img_url: 'master'  }}" height="auto" width="auto" alt="{{ article.image.alt }}" style="width: 100%;height:500px;">
   <h1 class="text-6xl font-bold capitalize">{{ article.title }}</h1>
   <div class="flex items-center justify-between max-w-md">
     {% if section.settings.enable_author %}

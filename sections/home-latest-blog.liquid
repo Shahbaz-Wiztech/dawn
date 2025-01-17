@@ -1,0 +1,54 @@
+ <section class="blogs-cards-section">
+  <div class="container small">
+    <div class="blogs-cards-inner">
+      <div class="heading-sec">
+        <h2>{{ section.settings.heading }}</h2>
+        {% if section.settings.paragraph %}
+            {{ section.settings.paragraph }}
+        {% endif %}
+      </div>
+        <div class="blogs-cards-items">
+            <div class="swiper blog-carousel">
+                <div class="swiper-wrapper">
+                    {% assign blog = section.settings.blog %}
+                    {% for article in blog.articles %}
+                        <div class="swiper-slide">
+                            {% render 'home-blog-card', article: article %}
+                            </div>
+                      {% endfor %}
+                </div>
+            </div>
+        </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section> 
+{% schema %}
+{
+  "name": "Home Latest Blogs",
+  "settings": [
+    {
+        "type": "text",
+        "id":"heading",
+        "label":"Main Heading",
+        "default":"LATEST FROM OUR BLOG"
+    },
+    {
+        "type": "richtext",
+        "id":"paragraph",
+        "label":"Add Paragraph"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blogs",
+      "info": "Choose blogs to display in this section"
+    }
+  ],
+  "presets": [{ "name": "Home Latest Blogs" }]
+}
+{% endschema %}
+
+

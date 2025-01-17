@@ -1,0 +1,66 @@
+<section class="introHolder">
+  <div class="container">
+    <div class="introSec">
+      <div class="introImg">
+        {% if section.settings.modal_image %}
+          <img
+            src="{{ section.settings.modal_image |  img_url:'master' }}"
+            height="auto"
+            width="auto"
+            alt="{{ section.settings.modal_image.alt }}"
+          >
+        {% else %}
+          <img src="{{ 'about-us1.webp' |  asset_url }}" height="auto" width="auto" alt="">
+        {% endif %}
+      </div>
+      <div class="introContent">
+        <h4>{{ section.settings.subtext }}</h4>
+        <h2>{{ section.settings.title }}</h2>
+        {% if section.settings.description %}
+          {{ section.settings.description }}
+        {% else %}
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.
+          </p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Section Introduction",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "modal_image",
+      "label": "Modal Image"
+    },
+    {
+      "type": "text",
+      "id": "subtext",
+      "label": "Text",
+      "default": "Easy to edit text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "INTRODUCTION"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Section Introduction"
+    }
+  ]
+}
+{% endschema %}

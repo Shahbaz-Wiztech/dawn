@@ -1,0 +1,387 @@
+<div class="shop-left">
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <form>
+            {% comment %} <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#Active-filters-collapseOne"
+                  aria-expanded="false"
+                  aria-controls="Active-filters-collapseOne"
+                >
+                  Active filters
+                </button>
+              </h2>
+              <div id="Active-filters-collapseOne" class="accordion-collapse collapse show">
+                <div class="active-filters">
+                  <ul>
+                    {%- for filter in collection.filters -%}
+                      {%- if filter.type == 'price_range' -%}
+                        {%- if filter.min_value.value != null or filter.max_value.value != null -%}
+                          <p>
+                            <a href="{{ filter.url_to_remove }}">
+                              {%- assign min_value = filter.min_value.value | default: 0 -%}
+                              {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                              {{ min_value | money }} - {{ max_value | money }} X
+                            </a>
+                          </p>
+                        {%- endif -%}
+                      {%- else -%}
+                        {%- for filter_value in filter.active_values -%}
+                          <li>
+                            <a href="{{ filter_value.url_to_remove }}">
+                              {{ filter.label }}: {{ filter_value.label }} X
+                            </a>
+                          </li>
+                        {%- endfor -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                    <li class="clear-all">
+                      <a href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> {% endcomment %}
+            {%- for filter in collection.filters -%}
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button
+                    class="accordion-button"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#{{ filter }}-collapsefour-{{ forloop.index }}"
+                    aria-expanded="true"
+                    aria-controls="{{ filter }}-collapsefour-{{ forloop.index }}"
+                  >
+                    <div class="d-flex w-100 align-items-center justify-content-between">
+                      <span>{{ filter.label }}</span>
+
+                      {% comment %} {%- if filter.active_values.size > 0 -%}
+                        <div class="px-2 d-flex gap-2 align-items-center">
+                          <span class="text-secondary">({{ filter.active_values.size }})</span>
+                          <a class="fs-6 text-capitalize underline" href="{{ filter.url_to_remove }}">Reset</a>
+                        </div>
+                      {%- endif -%} {% endcomment %}
+                    </div>
+                  </button>
+                </h2>
+
+                <div id="{{ filter }}-collapsefour-{{ forloop.index }}" class="accordion-collapse collapse show">
+                  {%- case filter.type -%}
+                    {%- when 'boolean' -%}
+                      <ul>
+                        <li>
+                          <label for="Filter-{{ filter.param_name }}-{{ filter.true_value.value }}">
+                            <input
+                              type="checkbox"
+                              name="{{ filter.param_name }}"
+                              value="{{ filter.true_value.value }}"
+                              id="Filter-{{ filter.param_name }}"
+                              {% if filter.true_value.active -%}
+                                checked
+                              {%- endif %}
+                              {% if filter.true_value.count == 0 and filter.true_value.active == false -%}
+                                disabled
+                              {%- endif -%}
+                            >
+                            {{- filter.true_value.label -}}
+                          </label>
+                        </li>
+                        <li>
+                          <label for="Filter-{{ filter.param_name }}-{{ filter.false_value.value }}">
+                            <input
+                              type="checkbox"
+                              name="{{ filter.param_name }}"
+                              value="{{ filter.false_value.value }}"
+                              id="Filter-{{ filter.param_name }}"
+                              {% if filter.false_value.active -%}
+                                checked
+                              {%- endif %}
+                              {% if filter.false_value.count == 0 and filter.false_value.active == false -%}
+                                disabled
+                              {%- endif %}
+                            >
+                            {{- filter.false_value.label -}}
+                          </label>
+                        </li>
+                      </ul>
+
+                      <div>
+                        <input type="submit" value="Apply">
+                      </div>
+                    {%- when 'list' -%}
+                      <ul class="pt-2">
+                        {%- for filter_value in filter.values -%}
+                          {% assign unique_string = filter_value.label
+                            | append: now
+                            | replace: ':', ''
+                            | replace: ' ', '-'
+                          %}
+                          <li>
+                            <label
+                              for="Filter-{{ unique_string }}-{{ forloop.index }}"
+                              class="d-flex align-items-center gap-2 justify-content-start mb-3"
+                            >
+                              <input
+                                type="checkbox"
+                                name="{{ filter_value.param_name }}"
+                                value="{{ filter_value.value }}"
+                                id="Filter-{{ unique_string }}-{{ forloop.index }}"
+                                {% if filter_value.active -%}
+                                  checked
+                                {%- endif %}
+                                {% if filter_value.count == 0 and filter_value.active == false -%}
+                                  disabled
+                                {%- endif %}
+                              >
+                              <span>
+                                {%- case filter_value.display.type -%}
+                                  {%- when 'colors' -%}
+                                    {% liquid
+                                      assign size_limit = filter_value.display.value.size | at_most: 4
+                                      assign rotation = '0deg'
+                                      if size_limit == 2
+                                        assign rotation = '45deg'
+                                      endif
+
+                                      assign angle_increment = 360 | divided_by: size_limit
+                                      assign angle = 0
+                                    %}
+                                    {%- capture conic_gradient -%}
+                                      {%- for color in filter_value.display.value limit: size_limit -%}
+                                        {{ color }} {{ angle }}deg{%- assign angle = angle | plus: angle_increment %} {{ angle }}deg{%- unless forloop.last %}, {%- endunless -%}
+                                      {%- endfor -%}
+                                    {%- endcapture -%}
+                                    <span
+                                      style="
+                                        width: 25px;
+                                        height: 25px;
+                                        border-radius: 50%;
+                                        display: flex;
+                                        justify-content: center;
+                                        align-items: center;
+                                        background: conic-gradient({{ conic_gradient }}); transform: rotateZ({{ rotation }});
+                                      "
+                                    ></span>
+                                  {%- when 'image' -%}
+                                    {{
+                                      filter_value.display.value
+                                      | image_url: width: 25
+                                      | image_tag: alt: filter_value.display.value.alt
+                                    }}
+                                  {%- else -%}
+                                    <span class="visual-display__child"></span>
+                                {%- endcase -%}
+                              </span>
+                              {{ filter_value.label }}
+                            </label>
+                          </li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- when 'price_range' -%}
+                      <div class="price-range-container">
+                        <div class="slider-track">
+                          <div class="slider-range" id="slider-range"></div>
+                          <div class="slider-thumb" id="thumb-min"></div>
+                          <div class="slider-thumb" id="thumb-max"></div>
+                        </div>
+                        <div class="price-range-sets">
+                          <span
+                            >Price:
+                            {{ cart.currency.symbol }}
+                            <span>
+                              <input
+                                name="{{ filter.min_value.param_name }}"
+                                id="price-min"
+                                {% if filter.min_value.value -%}
+                                  value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                                {%- endif %}
+                                type="number"
+                                placeholder="0"
+                                min="0"
+                                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                              >
+                            </span>
+                            — {{ cart.currency.symbol }}
+                            <span>
+                              <input
+                                name="{{ filter.max_value.param_name }}"
+                                id="price-max"
+                                {% if filter.max_value.value -%}
+                                  value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                                {%- endif %}
+                                type="number"
+                                placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                                min="0"
+                                max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                              >
+                            </span>
+                          </span>
+                          <button id="reset-btn">RESET</button>
+                        </div>
+                      </div>
+                  {%- endcase -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </form>
+          {% comment %} <!-- Average rating --> {% endcomment %}
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapsethree"
+                aria-expanded="true"
+                aria-controls="flush-collapsethree"
+              >
+                Average rating
+              </button>
+            </h2>
+            <div id="flush-collapsethree" class="accordion-collapse collapse show">
+              <div class="average-rating">
+                <ul>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                      </div>
+                      <span class="count">1</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                      </div>
+                      <span class="count">2</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                      </div>
+                      <span class="count">3</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                      </div>
+                      <span class="count">4</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <div>
+                        <i class="bi bi-star-fill text-primary"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                        <i class="bi bi-star-fill text-muted"></i>
+                      </div>
+                      <span class="count">5</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          {% comment %} <!-- all collections --> {% endcomment %}
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#allcollections-collapsefour"
+                aria-expanded="true"
+                aria-controls="allcollections-collapsefour"
+              >
+                All Collections
+              </button>
+            </h2>
+            <div id="allcollections-collapsefour" class="accordion-collapse collapse show">
+              <div class="product-categories">
+                <ul>
+                  {% for collection in collections %}
+                    <li>
+                      <a href="{{ collection.url }}">{{ collection.title }}</a>
+                    </li>
+                  {% endfor %}
+                  {% comment %}
+                    <li>
+                      <a href="{{ routes.collections_url }}">collection list</a>
+                    </li>
+                  {% endcomment %}
+                </ul>
+                <ul>
+                  {% comment %}
+                    <ul>
+                      {% for collection in collections %}
+                        <li>
+                          <a href="{{ collection.url }}">{{ collection.title }}</a>
+                          {% if collection.handle == 'some-handle' %}
+                            <ul>
+                              <li><a href="/collections/subcategory-1">Subcategory 1</a></li>
+                              <li><a href="/collections/subcategory-2">Subcategory 2</a></li>
+                            </ul>
+                          {% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endcomment %}
+                  {% comment %}
+                    <li>
+                      <div class="inner-accordion-item">
+                        <h2 class="accordion-header">
+                          <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapseinner"
+                            aria-expanded="false"
+                            aria-controls="flush-collapseinner"
+                          >
+                            inner Product Categories
+                          </button>
+                        </h2>
+                        <div id="flush-collapseinner" class="accordion-collapse collapse">
+                          <div class="product-categories-inner">
+                            <ul>
+                              <li><a href="#">inner Accessories</a></li>
+                              <li><a href="#">inner All</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  {% endcomment %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>

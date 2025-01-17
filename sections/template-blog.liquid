@@ -1,31 +1,13 @@
-<h1 class="text-6xl text-center w-full font-bold">{{ blog.title }}</h1>
-{% paginate blog.articles by section.settings.number_of_blog_post %}
-  <div class="flex items-start justify-start gap-5 my-8">
+<section class="blog-listing">
+  <div class="container small">
     {% for article in blog.articles %}
-      {% render 'blog-card'
-        , article: article %}
+      {% render 'blog-card', article: article %}
     {% endfor %}
   </div>
-  <div class="max-w-6xl mx-auto">
-    {% render 'pagination' 
-      , pagination: paginate %}
-  </div>
-{% endpaginate %}
-
-
+</section>
 {% schema %}
-  {
-    "name": "blog",
-    "settings": [
-      {
-        "type": "range",
-        "id": "number_of_blog_post",
-        "step": 1,
-        "min": 1,
-        "max": 8,
-        "label": "Blog Posts Per Page",
-        "default": 3
-      }
-    ]
-  }
+{
+  "name": "blog",
+  "settings": []
+}
 {% endschema %}

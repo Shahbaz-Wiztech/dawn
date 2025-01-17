@@ -1,0 +1,6 @@
+<div class="description">
+  <h6 class="fw-normal">{{ block.settings.name }}</h6>
+  <h6 class="fw-normal">{{ block.settings.designation }}</h6>
+  <a href="{{ block.settings.url }}" class="mb-3" >{{ block.settings.url }}</a>
+  {{ block.settings.Description |  truncatewords: 1000 }}
+</div>

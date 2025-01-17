@@ -1,92 +1,160 @@
-<div class="flex flex-col items center my-8">
-  {% if section.settings.title != blank %}
-    <h1 class="text-3xl font-medium my-8 md:my-16 text-center">{{ section.settings.title }}</h1>
-  {% endif %}
-  {% form 'contact' %}
-    {% if form.errors %}
-      <div class="border max-w-6xl mx-auto p-5">
-        <div class="flex flex-row items-center w-full my-3">
-          <div class="text-red-500">
-            {% render 'icon-failed' %}
-          </div>
-          <div class="text-sm font-medium ml-3">
-            oh no! your Form was not posted
-          </div>
-        </div>
-        <ul class="px-4 mb-3 ml-7 list-decimal">
-          {% for error in form.errors %}
-            <li>
-              <span>{{ form.errors.messages[error] }}</span>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    {% elsif form.posted_successfully? %}
-      <div class="border max-w-6xl mx-auto p-5">
-        <div class="flex flex-row items-center w-full my-3">
-          <div class="text-green-500">
-            {% render 'icon-success' %}
-          </div>
-          <div class="text-sm font-medium ml-3">
-            your Form posted successfully
-          </div>
-        </div>
-      </div>
-    {% endif %}
-    <div class="max-w-6xl mx-auto flex flex-col">
-      <div class="flex px-1 mb-3">
-        <div class="px-3 md:w-1/2">
-          <label class="uppercase text-xs text-gray-600 font-medium hover:text-gray-900" for="contact_name">Name</label>
-          <input
-            type="text"
-            name="contact[name]"
-            id="contact_name"
-            class="border py-3 px-4 mb-3 text-gray-700 w-full">
-        </div>
-        <div class="px-3 md:w-1/2">
-          <label class="uppercase text-xs text-gray-600 font-medium hover:text-gray-900" for="contact_email">Email</label>
-          <input
-            type="email"
-            name="contact[email]"
-            id="contact_email"
-            class="border py-3 px-4 mb-3 text-gray-700 w-full">
-        </div>
-      </div>
-      <div class="flex px-1 mb-3">
-        <div class="w-full px-3">
-          <label class="uppercase text-xs text-gray-600 font-medium hover:text-gray-900" for="contact_message">Message</label>
-          <textarea
-            name="contact[body]"
-            id="contact_message"
-            class="border py-3 px-4 mb-3 text-gray-700 w-full"></textarea>
-        </div>
-      </div>
-      <div class="flex px-1 mb-3">
-        <div class="w-full px-3">
-          <input
-            type="submit"
-            value="Submit Message"
-            class="border text-base cursor-pointer font-medium text-white py-3 px-4 mb-3 bg-gray-700 w-full">
-        </div>
+<section class="contactUs">
+  <div class="container">
+    <div class="mapsection">
+      <div class="mapswrapper">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50470.02982612612!2d-122.4787994810021!3d37.75776068866605!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA%2C%20USA!5e0!3m2!1sen!2s!4v1737112042342!5m2!1sen!2s"
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+        {% comment %}
+          <iframe
+            width="600"
+            height="450"
+            loading="lazy"
+            allowfullscreen
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=New%20York&zoom=10&maptype=roadmap"
+          ></iframe>
+        {% endcomment %}
+        <a
+          href="https://fnfmods.net"
+          >fnf mod</a
+        >
       </div>
     </div>
-  {% endform %}
-</div>
+    {% form 'contact' %}
+      {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+          {% render 'icon-failed' %}
+          Your form was not posted!
+          <ul>
+            {% for error in form.errors %}
+              <li>
+                <span>{{ form.errors.messages[error] }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% elsif form.posted_successfully? %}
+        <div class="alert alert-success" role="alert">
+          {% render 'icon-success' %}
+          Your Form Posted Successfully!
+        </div>
+      {% endif %}
+      <div class="contactUsSec mt-4">
+        <div class="contact-form-left">
+          <div class="d-flex gap-4 w-100">
+            <div class="form-group w-100">
+              <label for="contact_name">Your Name (required)</label>
+              <input    type="text"
+              name="contact[name]"
+              id="contact_name" class="form-control" required>
+            </div>
+            <div class="form-group w-100">
+              <label for="contact_username">Your Surname (required)</label>
+              <input type="text" name="contact[username]" id="contact_username" class="form-control" required>
+            </div>
+          </div>
+          <div class="d-flex gap-4 w-100 mt-3">
+            <div class="form-group w-100">
+              <label for="contact_email">Your Email (required)</label>
+              <input type="email" name="contact[email]" id="contact_email" class="form-control" required>
+            </div>
+            <div class="form-group w-100">
+              <label for="contact_website">Website</label>
+              <input type="link" name="contact[website]" id="contact_website" class="form-control">
+            </div>
+          </div>
+          <div class="d-flex gap-4 w-100 mt-3">
+            <div class="form-group">
+              <label for="contact_message">Your Message</label>
+              <textarea name="contact[body]" id="contact_message" cols="40" rows="10" maxlength="2000" class="form-control" rows="8"></textarea>
+            </div>
+          </div>
+          <div class="d-flex gap-4 w-100 mt-3">
+            <button type="submit">Send Message</button>
+          </div>
+        </div>
+        <div class="contact-form-right">
+          <div class="discription">
+            {% if section.settings.title != blank %}
+              <h2>{{ section.settings.title }}</h2>
+            {% else %}
+              <h2>Lorem ipsum dolor sit amet, conse ctetuer adipiscing elit.</h2>
+            {% endif %}
+            {% if section.settings.description != blank %}
+              {{ section.settings.description }}
+            {% else %}
+              <p>
+                Etiam nulla nunc, aliquet vel metus nec, scelerisque tempus enim. Sed eget blandit lectus. Donec
+                facilisis ornare turpis id pretium. Maecenas scelerisque interdum dolor in vestibulum proin euismod dui
+                purus.
+              </p>
+            {% endif %}
+          </div>
+          <div class="details border-top border-bottom">
+            {% if section.settings.address != blank %}
+              <p>{{ section.settings.address }}</p>
+            {% else %}
+              <p>30 Dummy Avenue San Lorem Ipsum</p>
+            {% endif %}
+            <p>
+              Phone: {% if section.settings.phone %}{{ section.settings.phone }}{% else %}+01 123 456 789{% endif %}
+            </p>
+            <p>
+              Email:
+              {%- if section.settings.email != blank -%}
+                <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+              {%- else -%}
+                <a href="mailto:"> Support@eyesightclear.com</a>
+              {%- endif %}
+            </p>
+            <a href="#">www.eyesightclear.com</a>
+          </div>
+        </div>
+      </div>
+    {% endform %}
+  </div>
+</section>
 
 {% schema %}
-  {
-    "name": "contact form",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Add Title"
-      }
-    ],
-    "presets": [
-      {
-        "name": "Contact Form"
-      }
-    ]
-  }
+{
+  "name": "contact form",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Add Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Add Description"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Add Address"
+    },
+    {
+      "type": "number",
+      "id": "phone",
+      "label": "Add Phone"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Add Email"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Form"
+    }
+  ]
+}
 {% endschema %}

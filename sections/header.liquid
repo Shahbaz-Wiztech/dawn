@@ -120,6 +120,16 @@
         <div class="d-flex gap-4 align-items-center justify-content-center h-100 menu-list w-100">
           {% for link in section.settings.menu.links %}
             {% if link.links != blank %}
+              <div class="dropdown">
+          <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ link.title }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for childlink in link.links %}
+              <li><a class="dropdown-item" href="{{ childlink.url }}">{{ childlink.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
               {% comment %} <div class="relative mega-dropdown" x-data="{open:false}">
                 <a href="{{ link.url }}" x-on:click="open = !open" class="inline-flex items-center"> {% endcomment %}
               <div class="relative mega-dropdown">
@@ -347,80 +357,6 @@
   </div>
 </div>
 
-{% comment %} <div class="relative bg-white">
-  <div class="mx-auto px-4 sm:px-6">
-    <div class="flex justify-center items-center py-6 md:justify-start md:space-x-10"> {% endcomment %}
-      {% comment %} Store Name {% endcomment %}
-      {% comment %} <div class="flex justify-start lg:flex-1 truncate">
-        <h1 class="text-xl font-bold truncate">{{ shop.name }}</h1>
-      </div> {% endcomment %}
-      {% comment %} Navigation Menu {% endcomment %}
-      {% comment %} <div class="hidden md:flex space-x-10">
-        {% for link in section.settings.menu.links %}
-          {% if link.links != blank %}
-            <div class="relative" x-data="{open:false}">
-              <button x-on:click="open = !open" class="inline-flex items-center">
-                {{ link.title }}
-                {% render 'icon-dropdown' %}
-              </button>
-              <div
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0 translate-y-3"
-                x-transition:enter-end="opacity-100 translate-y-0"
-                x-transition:leave="transition ease-out duration-300"
-                x-transition:leave-start="opacity-100 translate-y-0"
-                x-transition:leave-end="opacity-0 translate-y-3"
-                x-show="open"
-                @click.away="open=false"
-                class="absolute z-10 -ml-5 transform max-w-md sm:px-0 lg:left-1/2"
-              >
-                <div class="shadow-lg border ring-black ring-opacity-5 overflow-hidden rounded-lg">
-                  <div class="relative grid gap-6 bg-white px-5 sm:p-8">
-                    {% for childlink in link.links %}
-                      <a href="{{ childlink.url }}" class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-100">
-                        <div class="ml-4">
-                          <p class="text-gray-900 text-base font-medium">
-                            {{ childlink.title }}
-                          </p>
-                        </div>
-                      </a>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            </div>
-          {% else %}
-            <a href="{{ link.url }}" class="text-base text-gray-500 hover:text-gray-700">{{ link.title }}</a>
-          {% endif %}
-        {% endfor %}
-      </div> {% endcomment %}
-      {% comment %} cart button / account links if enabled {% endcomment %}
-      {% comment %} <div class="hidden md:flex items-center justify-end md:flex-1 space-x-1">
-        <a href="{{ routes.cart_url }}" class="whitespace-nowrap text-base text-gray-500 hover:text-gray-500">
-          {%- render 'icon-shopping-bag' -%}
-        </a>
-      </div> {% endcomment %}
-      {% comment %} {% if shop.customer_accounts_enabled %}
-        {% if customer %}
-          <a href="{{ routes.account_url }}" class="text-base text-gray-500 hover:text-gray-700">accounts</a>
-          {{
-            'logout'
-            | customer_logout_link
-            | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-700"'
-          }}
-        {% else %}
-          {{ 'login' | customer_login_link | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-700"' }}
-          {{
-            'Register'
-            | customer_register_link
-            | replace: '<a', '<a class="text-base text-gray-500 hover:text-gray-700"'
-          }}
-        {% endif %}
-      {% endif %} {% endcomment %}
-    {% comment %} </div>
-  </div>
-</div> {% endcomment %}
-
 {% schema %}
 {
   "name": "header",
@@ -490,7 +426,7 @@
           "label": "Icon Url"
         }
       ]
-    },
+    }
   ],
   "presets": [
         {

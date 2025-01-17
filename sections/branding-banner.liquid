@@ -1,0 +1,77 @@
+<section class="brand-promotion-section">
+  <div class="bg-img">
+    <img src="{{ section.settings.background_image |  img_url:'master' }}" height="auto" width="auto" alt="banner">
+  </div>
+  <div class="container-lg container-fluid small">
+    <div class="row">
+      <div class="offset-md-6 col-md-6">
+        <div class="content">
+          <p>{{ section.settings.collection_name }}</p>
+          {% if section.settings.product_name %}
+            <h2>{{ section.settings.product_name }}</h2>
+          {% endif %}
+          {% if section.settings.product_description %}
+            {{ section.settings.product_description }}
+          {% endif %}
+          {% if section.settings.discount %}
+            <h4>
+              <mark>{{ section.settings.discount }}</mark>
+            </h4>
+          {% endif %}
+
+          <a
+            href="{% if section.settings.btn_url %}{{ section.settings.btn_url }}{% else %}{{ collection.url }}{% endif %}"
+            class="btn btn-dark"
+          >
+            {{- section.settings.btn -}}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Branding Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "collection_name",
+      "label": "Product Brand Category Name",
+      "default": "Brand For Man"
+    },
+    {
+      "type": "text",
+      "id": "product_name",
+      "label": "Product Name"
+    },
+    {
+      "type": "richtext",
+      "id": "product_description",
+      "label": "Product Description"
+    },
+    {
+      "type": "text",
+      "id": "discount",
+      "label": "Add Discount"
+    },
+    {
+      "type": "text",
+      "id": "btn",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Add Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background Image"
+    }
+  ],
+  "presets": [{ "name": "Branding Banner" }]
+}
+{% endschema %}

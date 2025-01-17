@@ -2,16 +2,15 @@
   <div class="blog-card-head">
     <a href="{{ article.url }}" class="thumbnail-img">
       {% if article.image %}
-        <img src="{{ article.image |  img_url: 'master' }}" alt="{{ article.image.alt }}" height="auto" width="auto">
-      {% else %}
         <img
-          src="{{ 'product-placeholder-image.webp' |  asset_url }}"
-          height="auto"
           width="auto"
-          alt="bloglisting-thumb"
+          height="auto"
+          src="{{ article.image |  img_url: 'master' }}"
+          alt="{{ article.image.alt }}"
         >
+      {% else %}
+        <img src="{{ 'product-placeholder-image.webp' |  asset_url }}" width="auto" height="auto" alt="thumbnail-img">
       {% endif %}
-      <a href="{{ article.url }}" class="read-more-btn">Read More</a>
     </a>
     <div class="category-name">
       <a href="{{ article.url }}">{{ article.tags }}</a>
@@ -23,19 +22,21 @@
     </a>
     <div class="post-date">
       <p>
-        <img src="{{ 'calendar.png' |  asset_url }}" width="auto" alt="calendar-icon" height="16">
+        <img
+          src="{{ 'calendar.png' |  asset_url }}"
+          width="15"
+          height="15"
+          alt="calendar-icon"
+          height="16"
+        >
         {{ article.published_at | date: '%B %d, %Y' }}
       </p>
-      /
-      <p>
-        <img src="{{ 'eye-icon.png' |  asset_url }}" width="auto" alt="eye-icon" height="12">
-        2218
-      </p>
-      /
+
       <a href="{{ article.url }}"
         ><img
           src="{{ 'chat.png' |  asset_url }}"
-          width="auto"
+          width="15"
+          height="15"
           alt="calendar-icon"
           height="16"
         >
@@ -43,11 +44,7 @@
       </a>
     </div>
     <div class="blog-description">
-      {% if article.excerpt.size > 0 %}
-        {{ article.excerpt }}
-      {% else %}
-        <p>{{ article.content | strip_html | truncatewords: 100 }}</p>
-      {% endif %}
+      {{ article.content | strip_html | truncatewords: 100 }}
     </div>
     <a href="{{ article.url }}">
       <span>Continue Reading</span>

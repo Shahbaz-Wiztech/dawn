@@ -7,19 +7,42 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
-    "featured-collection": {
-      "type": "featured-collection",
-      "disabled": true,
-      "settings": {
-        "title": "Featured Collection",
-        "featured_collection": "all",
-        "number_of_products_to_show": 4
-      }
+    "bannerSection": {
+      "type": "bannerSection"
+    },
+    "home-card-grid-1": {
+      "type": "home-card-grid"
+    },
+    "home-card-grid-2": {
+      "type": "home-card-grid"
+    },
+    "home-card-grid-3": {
+      "type": "home-card-grid"
+    },
+    "home-category-card":{
+      "type": "home-category-card"
+    },
+    "home-latest-blog":{
+      "type": "home-latest-blog"
+    },
+    "branding-banner":{
+      "type": "branding-banner"
+    },
+    "home-best-selling":{
+      "type": "home-best-selling"
     }
   },
   "order": [
-    "featured-collection"
+    "bannerSection",
+    "home-card-grid-1",
+    "home-card-grid-2",
+    "home-card-grid-3",
+    "home-category-card",
+    "home-latest-blog",
+    "branding-banner",
+    "home-best-selling"
+    
   ]
 }

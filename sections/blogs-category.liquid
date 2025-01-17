@@ -1,0 +1,38 @@
+<h1>category blogs sections</h1>
+<div class="blog-category">
+  <h2>Boys</h2>
+  <ul>
+    {% for article in blogs.boys.articles %}
+      <li>
+        <a href="{{ article.url }}">{{ article.title }}</a>
+        <p>{{ article.excerpt | strip_html | truncate: 100 }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+  <h2>Fashion</h2>
+  <ul>
+    {% for article in blogs.fashion.articles %}
+      <li>
+        <a href="{{ article.url }}">{{ article.title }}</a>
+        <p>{{ article.excerpt | strip_html | truncate: 100 }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+  <h2>news</h2>
+  <ul>
+    {% for article in blogs.news.articles %}
+      <li>
+        <a href="{{ article.url }}">{{ article.title }}</a>
+        <p>{{ article.excerpt | strip_html | truncate: 100 }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% schema %}
+{
+  "name": "Blogs Category",
+  "settings": [],
+  "presets": [{ "name": "Blogs Category" }]
+}
+{% endschema %}

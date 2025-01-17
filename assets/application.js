@@ -1,13 +1,157 @@
-    console.log('first')
-    function changeQuantity(amount) {
-      let quantityInput = document.getElementById('quantity');
-      let currentValue = parseInt(quantityInput.value);
-      let newValue = currentValue + amount;
+// Swipper Carousel
+var swiper = new Swiper(".blog-carousel", {
+  slidesPerView: 4,
+  spaceBetween: 35,
+  loop: true,
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  
+    breakpoints: {
+      0: {
+        slidesPerView: 1,
+        spaceBetween: 0,
+      },
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 20,
+      },
+      992: {
+        slidesPerView: 3,
+        spaceBetween: 35,
+      },
+    },
+  });
+  console.log('first');
 
-      if (newValue >= 0) {
-        quantityInput.value = newValue;
-      }
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const track = document.querySelector('.slider-track');
+      const range = document.getElementById('slider-range');
+      const thumbMin = document.getElementById('thumb-min');
+      const thumbMax = document.getElementById('thumb-max');
+      const inputMin = document.getElementById('price-min');
+      const inputMax = document.getElementById('price-max');
+      const resetBtn = document.getElementById('reset-btn');
+    
+      const rangeMax = parseInt('{{ filter.range_max | money_without_currency | replace: ",", "" }}', 10) || 1000;
+      let min = parseInt(inputMin.value, 10) || 0;
+      let max = parseInt(inputMax.value, 10) || rangeMax;
+    
+      const updateSlider = () => {
+        const minPercent = (min / rangeMax) * 100;
+        const maxPercent = (max / rangeMax) * 100;
+    
+        thumbMin.style.left = `${minPercent}%`;
+        thumbMax.style.left = `${maxPercent}%`;
+        range.style.left = `${minPercent}%`;
+        range.style.width = `${maxPercent - minPercent}%`;
+      };
+    
+      const updateInputs = () => {
+        inputMin.value = min;
+        inputMax.value = max;
+      };
+    
+      const onThumbMove = (e, isMin) => {
+        const rect = track.getBoundingClientRect();
+        const offset = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
+        const value = Math.round((offset / rect.width) * rangeMax);
+    
+        if (isMin) {
+          min = Math.min(value, max - 1);
+        } else {
+          max = Math.max(value, min + 1);
+        }
+    
+        updateSlider();
+        updateInputs();
+        const form = range.closest('form');
+        if (form) {
+          form.submit();
+        }
+      };
+    
+      const addThumbListeners = (thumb, isMin) => {
+        const onMouseUp = () => {
+          document.removeEventListener('mousemove', onMouseMoveHandler);
+          document.removeEventListener('mouseup', onMouseUp);
+        };
+    
+        const onMouseMoveHandler = (e) => onThumbMove(e, isMin);
+    
+        thumb.addEventListener('mousedown', () => {
+          document.addEventListener('mousemove', onMouseMoveHandler);
+          document.addEventListener('mouseup', onMouseUp);
+        });
+      };
+    
+      const onInputChange = (isMin) => {
+        const value = parseInt(isMin ? inputMin.value : inputMax.value, 10) || 0;
+    
+        if (isMin) {
+          min = Math.min(value, max - 1);
+        } else {
+          max = Math.max(value, min + 1);
+        }
+    
+        updateSlider();
+      };
+    
+      const resetValues = () => {
+        min = 0;
+        max = parseInt('{{ filter.range_max | money_without_currency | replace: ",", "" }}', 10);
+        updateSlider();
+        updateInputs();
+        const form = range.closest('form');
+        if (form) {
+          form.submit();
+        }
+      };
+    
+      // Event Listeners
+      addThumbListeners(thumbMin, true);
+      addThumbListeners(thumbMax, false);
+      inputMin.addEventListener('input', () => onInputChange(true));
+      inputMax.addEventListener('input', () => onInputChange(false));
+      resetBtn.addEventListener('click', resetValues);
+    
+      // Initialize slider and inputs
+      updateSlider();
+      updateInputs();
+    });
+    
+
+
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          // Find the form containing the checkbox
+          const form = checkbox.closest('form');
+          if (form) {
+            form.submit();
+          }
+        });
+      });
+    });
+    
+    // function changeQuantity(amount) {
+    //   let quantityInput = document.getElementById('quantity');
+    //   let currentValue = parseInt(quantityInput.value);
+    //   let newValue = currentValue + amount;
+
+    //   if (newValue >= 0) {
+    //     quantityInput.value = newValue;
+    //   }
+    // }
 
 
     // product details page image zoom effect
@@ -28,67 +172,67 @@
       });
 
 
-//     // price range slider
-//     const track = document.querySelector('.slider-track');
-//     const range = document.getElementById('slider-range');
-//     const thumbMin = document.getElementById('thumb-min');
-//     const thumbMax = document.getElementById('thumb-max');
-//     const priceMin = document.getElementById('price-min');
-//     const priceMax = document.getElementById('price-max');
-//     const resetBtn = document.getElementById('reset-btn');
+    // // price range slider
+    // const track = document.querySelector('.slider-track');
+    // const range = document.getElementById('slider-range');
+    // const thumbMin = document.getElementById('thumb-min');
+    // const thumbMax = document.getElementById('thumb-max');
+    // const priceMin = document.getElementById('price-min');
+    // const priceMax = document.getElementById('price-max');
+    // const resetBtn = document.getElementById('reset-btn');
 
-//     let min = 263;
-//     let max = 960;
-//     const step = 10;
-//     const trackWidth = track.offsetWidth;
+    // let min = 263;
+    // let max = 960;
+    // const step = 10;
+    // const trackWidth = track.offsetWidth;
 
-//     const updateRange = () => {
-//       const minPercent = ((min - 0) / 1000) * 100;
-//       const maxPercent = ((max - 0) / 1000) * 100;
-//       thumbMin.style.left = `${minPercent}%`;
-//       thumbMax.style.left = `${maxPercent}%`;
-//       range.style.left = `${minPercent}%`;
-//       range.style.width = `${maxPercent - minPercent}%`;
-//       priceMin.textContent = min;
-//       priceMax.textContent = max;
-//     };
+    // const updateRange = () => {
+    //   const minPercent = ((min - 0) / 1000) * 100;
+    //   const maxPercent = ((max - 0) / 1000) * 100;
+    //   thumbMin.style.left = `${minPercent}%`;
+    //   thumbMax.style.left = `${maxPercent}%`;
+    //   range.style.left = `${minPercent}%`;
+    //   range.style.width = `${maxPercent - minPercent}%`;
+    //   priceMin.textContent = min;
+    //   priceMax.textContent = max;
+    // };
 
-//     const onMouseMove = (e, isMin) => {
-//       const rect = track.getBoundingClientRect();
-//       const offset = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
-//       const value = Math.round((offset / rect.width) * 1000 / step) * step;
+    // const onMouseMove = (e, isMin) => {
+    //   const rect = track.getBoundingClientRect();
+    //   const offset = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
+    //   const value = Math.round((offset / rect.width) * 1000 / step) * step;
 
-//       if (isMin) {
-//         min = Math.min(value, max - step);
-//       } else {
-//         max = Math.max(value, min + step);
-//       }
-//       updateRange();
-//     };
+    //   if (isMin) {
+    //     min = Math.min(value, max - step);
+    //   } else {
+    //     max = Math.max(value, min + step);
+    //   }
+    //   updateRange();
+    // };
 
-//     const addMouseListeners = (thumb, isMin) => {
-//       const onMouseUp = () => {
-//         document.removeEventListener('mousemove', onMouseMoveHandler);
-//         document.removeEventListener('mouseup', onMouseUp);
-//       };
-//       const onMouseMoveHandler = (e) => onMouseMove(e, isMin);
+    // const addMouseListeners = (thumb, isMin) => {
+    //   const onMouseUp = () => {
+    //     document.removeEventListener('mousemove', onMouseMoveHandler);
+    //     document.removeEventListener('mouseup', onMouseUp);
+    //   };
+    //   const onMouseMoveHandler = (e) => onMouseMove(e, isMin);
 
-//       thumb.addEventListener('mousedown', () => {
-//         document.addEventListener('mousemove', onMouseMoveHandler);
-//         document.addEventListener('mouseup', onMouseUp);
-//       });
-//     };
+    //   thumb.addEventListener('mousedown', () => {
+    //     document.addEventListener('mousemove', onMouseMoveHandler);
+    //     document.addEventListener('mouseup', onMouseUp);
+    //   });
+    // };
 
-//     addMouseListeners(thumbMin, true);
-//     addMouseListeners(thumbMax, false);
+    // addMouseListeners(thumbMin, true);
+    // addMouseListeners(thumbMax, false);
 
-//     resetBtn.addEventListener('click', () => {
-//       min = 263;
-//       max = 960;
-//       updateRange();
-//     });
+    // resetBtn.addEventListener('click', () => {
+    //   min = 263;
+    //   max = 960;
+    //   updateRange();
+    // });
 
-//     updateRange();
+    // updateRange();
 // // price range slider end
 
 //     // filter selectors

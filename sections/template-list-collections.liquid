@@ -1,60 +1,49 @@
-<h1 class="text-6xl font-bold w-full text-center">{{ section.settings.title }}</h1>
-<div class="max-w-6xl mx-auto my-3">
-  <div class="grid gap-5 grid-cols-1 md:grid-cols-3">
-    {% for collection in collections %}
-      {% if collection.all_products_count > 0 %}
-
-
-        <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="{{ collection.url }}">
-            {% if collection.featured_image != blank %}
-              {% assign collection_image = collection.featured_image %}
-            {% else %}
-              {% assign collection_image = collection.products.first.image %}
-            {% endif %}
-            <img
-              class="rounded-t-lg w-full object-cover"
-              src="{{ collection_image | img_url: 'medium' }}"
-              alt="{{ collection.title |  escape }}">
-          </a>
-          <div class="p-5">
-            <a href="{{ collection.url }}">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ collection.title }}</h5>
-            </a>
-            <a href="{{ collection.url }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              See Collection
-              <svg
-                class="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 14 10">
-                <path
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M1 5h12m0 0L9 1m4 4L9 9" />
-              </svg>
-            </a>
+<section class="shop-holder">
+  <div class="container">
+    <div class="shop-sec">
+      {% comment %} shop left filterations {% endcomment %}
+      {% render 'shop-left-filteration' %}
+      <div class="shop-right">
+        <div class="product-container">
+          <div class="product-header">
+            <div class="sorting-selector">
+              <select class="sorting-dropdown">
+                <option value="default">Default sorting</option>
+                <option value="popularity">Sort by popularity</option>
+                <option value="rating">Sort by average rating</option>
+                <option value="latest">Sort by latest</option>
+                <option value="low-to-high">Sort by price: low to high</option>
+                <option value="high-to-low">Sort by price: high to low</option>
+              </select>
+              <div class="view-options">
+                <button class="grid-list-view active" onclick="gridListToggle(event)">
+                  <i class="bi bi-grid-3x3-gap"></i>
+                </button>
+                <button class="grid-list-view" onclick="gridListToggle(event)"><i class="bi bi-list-ul"></i></button>
+              </div>
+            </div>
+            <div class="showing-result">
+              <p>Show</p>
+              <select class="sorting-dropdown">
+                <option>9</option>
+                <option>12</option>
+                <option>24</option>
+                <option>36</option>
+                <option>All</option>
+              </select>
+            </div>
+          </div>
+          <div class="product-grid" id="product-cards-container">
+            {% for collection in collections %}
+              {% if collection.all_products_count > 0 %}
+                {% render 'collection-card', collection: collection %}
+              {% else %}
+                <p>No Collections Available</p>
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
-      {% endif %}
-    {% endfor %}
+      </div>
+    </div>
   </div>
-</div>
-
-
-{% schema %}
-  {
-    "name": "Template List Collections",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "default": "Collections",
-        "label": "Add Collections"
-      }
-    ]
-  }
-{% endschema %}
+</section>
