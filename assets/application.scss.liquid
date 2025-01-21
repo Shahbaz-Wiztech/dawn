@@ -708,11 +708,6 @@ body{
 
                                         &:hover {
                                             a {
-                                                span {
-                                                    background-color: var(--black);
-                                                    color: var(--white);
-                                                    transition: all ease 0.3s;
-                                                }
 
                                                 &:before {
                                                     display: block;
@@ -725,9 +720,16 @@ body{
                                             justify-content: space-between;
                                             width: 100%;
 
+                                            .jdgm-widget{
+                                                width:100%;
+                                                .jdgm-prev-badge{
+                                                    display:flex !important;
+                                                    align-items:center;
+                                                    justify-content:space-between;
+                                                }
+                                            }
+
                                             span {
-                                                width: 20px;
-                                                height: 18px;
                                                 font-size: 12px;
                                                 text-align: center;
                                                 background-color: var(--tertiary-bg);
@@ -1085,6 +1087,14 @@ body{
                                     justify-content: center;
                                     gap: 5px;
                                     margin-top: auto;
+
+                                    .jdgm-widget{
+                                        .jdgm-prev-badge{
+                                            .jdgm-prev-badge__text{
+                                                display:none !important;
+                                            }
+                                        }
+                                    }
                                 }
 
                                 .price {
@@ -1476,6 +1486,10 @@ body{
 
 .product-page-holder {
     padding-bottom: 3rem;
+
+    h2{
+        color:var(--black);
+    }
 
     .container {
         max-width: 1440px;

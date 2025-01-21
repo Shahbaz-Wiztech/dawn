@@ -109,13 +109,12 @@
       <p>{{ product.price | money }}</p>
       <div class="d-flex align-items-center justify-content-start gap-2 mb-3">
         <div class="product-rating">
-          <i class="bi bi-star-fill text-primary"></i>
-          <i class="bi bi-star-fill text-primary"></i>
-          <i class="bi bi-star-fill text-primary"></i>
-          <i class="bi bi-star-fill text-primary"></i>
-          <i class="bi bi-star-fill text-primary"></i>
+          <!-- Start of Judge.me code -->
+          <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
+            {{ product.metafields.judgeme.badge }}
+          </div>
+          <!-- End of Judge.me code -->
         </div>
-        <span class="text-black text-base">(1 customer review)</span>
       </div>
       {% if product.metafields.custom.short_description != blank %}
         <div class="description">

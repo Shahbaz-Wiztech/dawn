@@ -7,31 +7,39 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "bannerSection": {
-      "type": "bannerSection"
+      "type": "bannerSection",
+      "settings": {}
     },
     "home-card-grid-1": {
-      "type": "home-card-grid"
+      "type": "home-card-grid",
+      "settings": {}
     },
     "home-card-grid-2": {
-      "type": "home-card-grid"
+      "type": "home-card-grid",
+      "settings": {}
     },
     "home-card-grid-3": {
-      "type": "home-card-grid"
+      "type": "home-card-grid",
+      "settings": {}
     },
-    "home-category-card":{
-      "type": "home-category-card"
+    "home-category-card": {
+      "type": "home-category-card",
+      "settings": {}
     },
-    "home-latest-blog":{
-      "type": "home-latest-blog"
+    "home-latest-blog": {
+      "type": "home-latest-blog",
+      "settings": {}
     },
-    "branding-banner":{
-      "type": "branding-banner"
+    "branding-banner": {
+      "type": "branding-banner",
+      "settings": {}
     },
-    "home-best-selling":{
-      "type": "home-best-selling"
+    "home-best-selling": {
+      "type": "home-best-selling",
+      "settings": {}
     }
   },
   "order": [
@@ -43,6 +51,5 @@
     "home-latest-blog",
     "branding-banner",
     "home-best-selling"
-    
   ]
 }

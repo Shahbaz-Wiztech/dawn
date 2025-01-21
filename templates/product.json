@@ -12,9 +12,14 @@
     "template": {
       "type": "template-products",
       "settings": {}
+    },
+    "1737458999d4393d6c": {
+      "type": "apps",
+      "settings": {}
     }
   },
   "order": [
-    "template"
+    "template",
+    "1737458999d4393d6c"
   ]
 }

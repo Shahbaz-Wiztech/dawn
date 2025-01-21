@@ -39,6 +39,13 @@
               </div>
             {% endif %}
           </div>
+          <div class="mb-2">
+            <!-- Start of Judge.me code -->
+            <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
+              {{ product.metafields.judgeme.badge }}
+            </div>
+            <!-- End of Judge.me code -->
+          </div>
           {% if product.metafields.custom.shipping_fee
             or product.metafields.custom.return_police
             or product.metafields.custom.standard_delivery_details
@@ -98,11 +105,6 @@
               <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
                 <p class="mb-0">Categories:</p>
                 <a href="{{ product.url }}" class="mb-0">{{ product.category }}</a>,
-                {% comment %}
-                  {% for product in collections.all.products %}
-                    <a href="{{ product.url }}" class="mb-0">{{ product.category }}</a>,
-                  {% endfor %}
-                {% endcomment %}
               </div>
             {% endif %}
             {% if product.tags != blank %}
@@ -160,11 +162,21 @@
             <tbody>
               <tr>
                 <th>Weight</th>
-                <td>5 kg</td>
+                <td>5 kg {{ product.variants.first.weight | weight_with_unit }}</td>
               </tr>
               <tr>
                 <th>Dimensions</th>
-                <td>60 × 40 × 60 cm</td>
+                <td>
+                  {% if product.metafields.custom.length and product.metafields.custom.width and product.metafields.custom.height %}
+                      Dimensions: 
+                      {{ product.metafields.custom.length.value }} x 
+                      {{ product.metafields.custom.width.value }} x 
+                      {{ product.metafields.custom.height.value }} 
+                      {{ product.metafields.custom.length.unit }}
+                  {% else %}
+                    <p>Dimensions are not available for this product.</p>
+                  {% endif %}
+                </td>
               </tr>
               <tr>
                 <th>other-info</th>
@@ -178,121 +190,112 @@
     <!-- product-description section end -->
 
     <!-- reviews section start -->
-    <div class="add-review">
-      <div class="left">
-        <h2>1 review for Armani Exchange AX</h2>
-        <div class="d-flex justify-content-between user-review">
-          <div class="d-flex gap-4">
+    {% comment %}
+      <div class="add-review">
+        <div class="left">
+          <h2>1 review for Armani Exchange AX</h2>
+          <div class="d-flex justify-content-between user-review">
+            <div class="d-flex gap-4">
+              <div>
+              </div>
+              <div class="d-flex flex-column">
+                <p class="mb-1">progatix_store</p>
+                <span class="mb-3 text-secondary">December 11, 2023</span>
+                <small class="text-secondary">best product</small>
+              </div>
+            </div>
             <div>
-              {% comment %} <img width="80px" height="auto" src="./theme/images/none.png" alt=""> {% endcomment %}
-            </div>
-            <div class="d-flex flex-column">
-              <p class="mb-1">progatix_store</p>
-              <span class="mb-3 text-secondary">December 11, 2023</span>
-              <small class="text-secondary">best product</small>
+              <ul>
+                <li>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                  <i class="bi bi-star-fill text-warning"></i>
+                </li>
+              </ul>
             </div>
           </div>
+        </div>
+        <div class="right">
+          <h2>Add a review</h2>
+          <p class="text-secondary">Your email address will not be published. Required fields are marked</p>
           <div>
-            <ul>
-              <li>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-                <i class="bi bi-star-fill text-warning"></i>
-              </li>
-            </ul>
+            <label class="m-0 text-secondary">Your rating<span class="text-danger">*</span></label>
+            <div class="d-flex gap-4">
+              <ul class="star-group">
+                <li>
+                  <i class="bi bi-star-fill"></i>
+                </li>
+              </ul>
+              <ul class="star-group">
+                <li>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </li>
+              </ul>
+              <ul class="star-group">
+                <li>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </li>
+              </ul>
+              <ul class="star-group">
+                <li>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </li>
+              </ul>
+              <ul class="star-group">
+                <li>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                  <i class="bi bi-star-fill"></i>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-3">
+              <label class="m-0 text-secondary">Your Review<span class="text-danger">*</span></label>
+              <textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
+            </div>
+            <div class="mt-3 d-flex flex-column input-field">
+              <label class="m-0 text-secondary">Name<span class="text-danger">*</span></label>
+              <input type="name">
+            </div>
+            <div class="mt-3 d-flex flex-column input-field">
+              <label class="m-0 text-secondary">Mail<span class="text-danger">*</span></label>
+              <input type="mail" height="100px" width="100%">
+            </div>
+            <div class="mt-3">
+              <input type="checkbox">
+              <label for="text" class="text-secondary"
+                >Save my name, email, and website in this browser for the next time I comment.</label
+              >
+            </div>
+            <div class="submit-btn mt-3">
+              <button>Submit</button>
+            </div>
           </div>
         </div>
       </div>
-      <div class="right">
-        <h2>Add a review</h2>
-        <p class="text-secondary">Your email address will not be published. Required fields are marked</p>
-        <div>
-          <label class="m-0 text-secondary">Your rating<span class="text-danger">*</span></label>
-          <div class="d-flex gap-4">
-            <ul class="star-group">
-              <li>
-                <i class="bi bi-star-fill"></i>
-              </li>
-            </ul>
-            <ul class="star-group">
-              <li>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </li>
-            </ul>
-            <ul class="star-group">
-              <li>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </li>
-            </ul>
-            <ul class="star-group">
-              <li>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </li>
-            </ul>
-            <ul class="star-group">
-              <li>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-3">
-            <label class="m-0 text-secondary">Your Review<span class="text-danger">*</span></label>
-            <textarea id="comment" name="comment" cols="45" rows="8" required=""></textarea>
-          </div>
-          <div class="mt-3 d-flex flex-column input-field">
-            <label class="m-0 text-secondary">Name<span class="text-danger">*</span></label>
-            <input type="name">
-          </div>
-          <div class="mt-3 d-flex flex-column input-field">
-            <label class="m-0 text-secondary">Mail<span class="text-danger">*</span></label>
-            <input type="mail" height="100px" width="100%">
-          </div>
-          <div class="mt-3">
-            <input type="checkbox">
-            <label for="text" class="text-secondary"
-              >Save my name, email, and website in this browser for the next time I comment.</label
-            >
-          </div>
-          <div class="submit-btn mt-3">
-            <button>Submit</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    {% endcomment %}
     <!-- reviews section end -->
+    <!-- Start of Judge.me code -->
+    <div style="clear:both"></div>
+    <div
+      id="judgeme_product_reviews"
+      class="jdgm-widget jdgm-review-widget"
+      data-product-title="{{ product.title | escape }}"
+      data-id="{{ product.id }}"
+      data-auto-install="false"
+    >
+      {{ product.metafields.judgeme.widget }}
+    </div>
+    <!-- End of Judge.me code -->
   </div>
 </section>
-{% comment %}
-  <div class="max-w-6xl mx-auto my-8">
-    <div class="grid grid-cols-1 md:grid-cols-2">
-      <div class="product--medias">
-        {{ product.title }}
-        <div class="hidden md:block">
-          {% for media in product.media %}
-            <div class="h-100 overflow-hidden p-2">
-              {% render 'product-media'
-                , media: media %}
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-{% endcomment %}
-
-{% comment %}
-  {% render 'product-card'
-  , product: product %}
-{% endcomment %}
