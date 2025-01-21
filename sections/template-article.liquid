@@ -1,22 +1,464 @@
-<article class="flex flex-col items-center justify-center gap-2">
+<section class="blog-detail-page blog-listing">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="blog-details-container">
+          <div class="blog-card-item">
+            <div class="blog-card-head">
+              <span class="thumbnail-img">
+                {% if article.image %}
+                  <img
+                    src="{{ article.image |  img_url: 'master' }}"
+                    height="auto"
+                    width="auto"
+                    alt="{{ article.image.alt }}"
+                  >
+                {% else %}
+                  <img
+                    src="{{ 'bloglisting-thumb.webp' |  asset_url }}"
+                    width="auto"
+                    height="auto"
+                    alt="article image"
+                  >
+                {% endif %}
+              </span>
+              <div class="category-name">
+                <a href="{{ blog.url }}">{{ article.tags }}</a>
+              </div>
+            </div>
+            <div class="blog-card-body">
+              <a href="javascript:void(0);" class="title">
+                <h2>{{ article.title }}</h2>
+              </a>
+              <div class="post-date">
+                {% if section.settings.enable_published_date %}
+                  <p>
+                    <img src="{{ 'calendar.png' |  asset_url }}" width="auto" alt="calendar-icon" height="16">
+                    {{ article.published_at | date: '%B %d, %Y' }} /
+                  </p>
+                {% endif %}
+                {% if section.settings.enable_author %}
+                  <p>
+                    Posted by <a href="javascript:void(0);" class="mx-1">{{ article.author }}</a> /
+                  </p>
+                {% endif %}
+                {% if section.settings.enable_views_count %}
+                  <p>
+                    <img src="{{ 'eye-icon.png' | asset_url }}" width="auto" alt="eye-icon" height="10">
+                    2218 /
+                  </p>
+                {% endif %}
+                {% if section.settings.enable_comment_count %}
+                  <a href="javascript:void(0);">
+                    <i class="bi bi-chat-left"></i>
+                    {{ article.comments_count -}}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="content-article">
+            {{ article.excerpt_or_content }}
+            <section class="secondary-details-artical">
+              <div class="social-icon">
+                <ul>
+                  <li>
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Twitter"
+                    >
+                      <svg
+                        width="18px"
+                        height="18px"
+                        viewBox="0 -2 20 20"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                            fill-rule="evenodd">
+                            <g id="Dribbble-Light-Preview"
+                                transform="translate(-60.000000, -7521.000000)"
+                                fill="#000000">
+                                <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M10.29,7377 C17.837,7377 21.965,7370.84365 21.965,7365.50546 C21.965,7365.33021 21.965,7365.15595 21.953,7364.98267 C22.756,7364.41163 23.449,7363.70276 24,7362.8915 C23.252,7363.21837 22.457,7363.433 21.644,7363.52751 C22.5,7363.02244 23.141,7362.2289 23.448,7361.2926 C22.642,7361.76321 21.761,7362.095 20.842,7362.27321 C19.288,7360.64674 16.689,7360.56798 15.036,7362.09796 C13.971,7363.08447 13.518,7364.55538 13.849,7365.95835 C10.55,7365.79492 7.476,7364.261 5.392,7361.73762 C4.303,7363.58363 4.86,7365.94457 6.663,7367.12996 C6.01,7367.11125 5.371,7366.93797 4.8,7366.62489 L4.8,7366.67608 C4.801,7368.5989 6.178,7370.2549 8.092,7370.63591 C7.488,7370.79836 6.854,7370.82199 6.24,7370.70483 C6.777,7372.35099 8.318,7373.47829 10.073,7373.51078 C8.62,7374.63513 6.825,7375.24554 4.977,7375.24358 C4.651,7375.24259 4.325,7375.22388 4,7375.18549 C5.877,7376.37088 8.06,7377 10.29,7376.99705"
+                                        id="twitter-[#154]"></path>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Facebook"
+                    >
+                      <svg
+                        width="16px"
+                        height="16px"
+                        viewBox="-5 0 20 20"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                            fill-rule="evenodd">
+                            <g id="Dribbble-Light-Preview"
+                                transform="translate(-385.000000, -7399.000000)"
+                                fill="#000000">
+                                <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M335.821282,7259 L335.821282,7250 L338.553693,7250 L339,7246 L335.821282,7246 L335.821282,7244.052 C335.821282,7243.022 335.847593,7242 337.286884,7242 L338.744689,7242 L338.744689,7239.14 C338.744689,7239.097 337.492497,7239 336.225687,7239 C333.580004,7239 331.923407,7240.657 331.923407,7243.7 L331.923407,7246 L329,7246 L329,7250 L331.923407,7250 L331.923407,7259 L335.821282,7259 Z"
+                                        id="facebook-[#176]"></path>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="VK">
+                      <svg
+                        fill="#000000"
+                        width="16px"
+                        height="16px"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                            d="M17.802 12.298s1.617 1.597 2.017 2.336a.127.127 0 0 1 .018.035c.163.273.203.487.123.645-.135.261-.592.392-.747.403h-2.858c-.199 0-.613-.052-1.117-.4-.385-.269-.768-.712-1.139-1.145-.554-.643-1.033-1.201-1.518-1.201a.548.548 0 0 0-.18.03c-.367.116-.833.639-.833 2.032 0 .436-.344.684-.585.684H9.674c-.446 0-2.768-.156-4.827-2.327C2.324 10.732.058 5.4.036 5.353c-.141-.345.155-.533.475-.533h2.886c.387 0 .513.234.601.444.102.241.48 1.205 1.1 2.288 1.004 1.762 1.621 2.479 2.114 2.479a.527.527 0 0 0 .264-.07c.644-.354.524-2.654.494-3.128 0-.092-.001-1.027-.331-1.479-.236-.324-.638-.45-.881-.496.065-.094.203-.238.38-.323.441-.22 1.238-.252 2.029-.252h.439c.858.012 1.08.067 1.392.146.628.15.64.557.585 1.943-.016.396-.033.842-.033 1.367 0 .112-.005.237-.005.364-.019.711-.044 1.512.458 1.841a.41.41 0 0 0 .217.062c.174 0 .695 0 2.108-2.425.62-1.071 1.1-2.334 1.133-2.429.028-.053.112-.202.214-.262a.479.479 0 0 1 .236-.056h3.395c.37 0 .621.056.67.196.082.227-.016.92-1.566 3.016-.261.349-.49.651-.691.915-1.405 1.844-1.405 1.937.083 3.337z" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Printerest"
+                    >
+                      <svg
+                        fill="#000000"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="15px"
+                        height="15px"
+                        viewBox="0 0 512 512"
+                        xml:space="preserve"
+                      >
+                        <g id="7935ec95c421cee6d86eb22ecd12951c">
+                            <path style="display: inline;"
+                                d="M220.646,338.475C207.223,408.825,190.842,476.269,142.3,511.5
+                          c-14.996-106.33,21.994-186.188,39.173-270.971c-29.293-49.292,3.518-148.498,65.285-124.059
+                          c76.001,30.066-65.809,183.279,29.38,202.417c99.405,19.974,139.989-172.476,78.359-235.054
+                          C265.434-6.539,95.253,81.775,116.175,211.161c5.09,31.626,37.765,41.22,13.062,84.884c-57.001-12.65-74.005-57.6-71.822-117.533
+                          c3.53-98.108,88.141-166.787,173.024-176.293c107.34-12.014,208.081,39.398,221.991,140.376
+                          c15.67,113.978-48.442,237.412-163.23,228.529C258.085,368.704,245.023,353.283,220.646,338.475z">
+                            </path>
+                        </g>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Mail to friend"
+                    >
+                      <svg
+                        fill="#000000"
+                        version="1.1"
+                        id="Layer_1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        width="20px"
+                        height="20px"
+                        viewBox="0 0 100 100"
+                        enable-background="new 0 0 100 100"
+                        xml:space="preserve"
+                      >
+                        <g>
+                            <path d="M13.266,81h73.469C89.087,81,91,78.967,91,76.614V26.165c0-0.009,0.003,0.043,0.003,0.034c0-2.348-1.914-4.199-4.267-4.199
+                        h-0.002H13.612h-0.347C10.913,22,9,23.795,9,26.147v50.467C9,78.967,10.913,81,13.266,81z M38.525,49.122L13,74.442V29.89
+                        L38.525,49.122z M87,30.186v42.289L62.914,48.581L87,30.186z M59.723,51.02c0.044,0.053,0.082,0.169,0.132,0.22L85.764,77H16.221
+                        l25.533-25.387l7.481,5.607c0.356,0.268,0.779,0.388,1.203,0.388c0.428,0,0.855-0.144,1.214-0.418L59.723,51.02z M86.047,26
+                        L50.431,53.202L14.326,26H86.047z" />
+                        </g>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="LinkedIn"
+                    >
+                      <svg
+                        width="15px"
+                        height="15px"
+                        viewBox="0 0 20 20"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                            fill-rule="evenodd">
+                            <g id="Dribbble-Light-Preview"
+                                transform="translate(-180.000000, -7479.000000)"
+                                fill="#000000">
+                                <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M144,7339 L140,7339 L140,7332.001 C140,7330.081 139.153,7329.01 137.634,7329.01 C135.981,7329.01 135,7330.126 135,7332.001 L135,7339 L131,7339 L131,7326 L135,7326 L135,7327.462 C135,7327.462 136.255,7325.26 139.083,7325.26 C141.912,7325.26 144,7326.986 144,7330.558 L144,7339 L144,7339 Z M126.442,7323.921 C125.093,7323.921 124,7322.819 124,7321.46 C124,7320.102 125.093,7319 126.442,7319 C127.79,7319 128.883,7320.102 128.883,7321.46 C128.884,7322.819 127.79,7323.921 126.442,7323.921 L126.442,7323.921 Z M124,7339 L129,7339 L129,7326 L124,7326 L124,7339 Z"
+                                        id="linkedin-[#161]">
+
+                                    </path>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Whatsapp"
+                    >
+                      <svg
+                        width="18px"
+                        height="18px"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M3.50002 12C3.50002 7.30558 7.3056 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C10.3278 20.5 8.77127 20.0182 7.45798 19.1861C7.21357 19.0313 6.91408 18.9899 6.63684 19.0726L3.75769 19.9319L4.84173 17.3953C4.96986 17.0955 4.94379 16.7521 4.77187 16.4751C3.9657 15.176 3.50002 13.6439 3.50002 12ZM12 1.5C6.20103 1.5 1.50002 6.20101 1.50002 12C1.50002 13.8381 1.97316 15.5683 2.80465 17.0727L1.08047 21.107C0.928048 21.4637 0.99561 21.8763 1.25382 22.1657C1.51203 22.4552 1.91432 22.5692 2.28599 22.4582L6.78541 21.1155C8.32245 21.9965 10.1037 22.5 12 22.5C17.799 22.5 22.5 17.799 22.5 12C22.5 6.20101 17.799 1.5 12 1.5ZM14.2925 14.1824L12.9783 15.1081C12.3628 14.7575 11.6823 14.2681 10.9997 13.5855C10.2901 12.8759 9.76402 12.1433 9.37612 11.4713L10.2113 10.7624C10.5697 10.4582 10.6678 9.94533 10.447 9.53028L9.38284 7.53028C9.23954 7.26097 8.98116 7.0718 8.68115 7.01654C8.38113 6.96129 8.07231 7.046 7.84247 7.24659L7.52696 7.52195C6.76823 8.18414 6.3195 9.2723 6.69141 10.3741C7.07698 11.5163 7.89983 13.314 9.58552 14.9997C11.3991 16.8133 13.2413 17.5275 14.3186 17.8049C15.1866 18.0283 16.008 17.7288 16.5868 17.2572L17.1783 16.7752C17.4313 16.5691 17.5678 16.2524 17.544 15.9269C17.5201 15.6014 17.3389 15.308 17.0585 15.1409L15.3802 14.1409C15.0412 13.939 14.6152 13.9552 14.2925 14.1824Z"
+                            fill="#000000" />
+                      </svg>
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      title="Skype"
+                    >
+                      <svg
+                        width="16px"
+                        height="16px"
+                        viewBox="0 0 20 20"
+                        version="1.1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                            fill-rule="evenodd">
+                            <g id="Dribbble-Light-Preview"
+                                transform="translate(-220.000000, -7439.000000)"
+                                fill="#000000">
+                                <g id="icons"
+                                    transform="translate(56.000000, 160.000000)">
+                                    <path
+                                        d="M175.89681,7295.36998 C179.825962,7294.55179 180.342823,7290.96907 178.817578,7289.31175 C178.086879,7288.50353 176.992351,7288.05506 174.390821,7287.42722 C173.204069,7287.15116 170.957247,7286.63394 171.78929,7285.40814 C172.062922,7284.95868 172.748016,7284.6896 173.660122,7284.64476 C176.803849,7284.43249 176.146119,7287.84777 178.315919,7286.84322 C179.319236,7286.34991 179.228026,7284.73445 178.132485,7283.79168 C175.732631,7281.84237 168.868523,7281.86529 168.868523,7286.12568 C168.868523,7290.27146 174.829645,7289.35062 176.352863,7291.01691 C177.141329,7291.98459 176.298137,7293.54623 173.796938,7293.4406 C170.95522,7293.23331 171.709228,7290.56845 169.964064,7290.56845 C168.640496,7290.56845 168.184443,7291.64575 168.868523,7293.03698 C170.052234,7295.45369 173.381423,7295.90116 175.942415,7295.36998 L175.89681,7295.36998 L175.89681,7295.36998 Z M177.129167,7298.82513 C175.778236,7298.38365 175.845124,7298.41155 174.618848,7298.46636 C169.787723,7298.69159 166.054167,7295.66497 164.853227,7291.55606 C164.353595,7289.71437 164.918088,7288.08994 164.351568,7286.30506 C162.607418,7281.63408 167.70812,7277.50225 171.834896,7279.5283 C172.200752,7279.70868 172.428778,7279.75253 173.843557,7279.75253 C175.12152,7279.75253 175.623178,7279.79738 176.261653,7279.97776 C179.136815,7280.6953 181.464714,7282.53499 182.696058,7285.09322 C183.472362,7286.66383 183.745993,7288.28029 183.563572,7290.11899 C183.472362,7291.1076 183.472362,7291.19729 183.700388,7291.78029 C185.124288,7295.89418 181.228579,7299.88948 177.173759,7298.82613 L177.129167,7298.82613 L177.129167,7298.82513 Z"
+                                        id="skype-[#170]">
+                                    </path>
+                                </g>
+                            </g>
+                        </g>
+                      </svg>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+            <section class="author-details">
+              <span class="title">
+                <h2>About author</h2>
+              </span>
+              <div class="post">
+                <img src="{{ 'placeholder.png' |  asset_url }}" width="auto" height="auto" alt="">
+                <span class="d-flex flex-column">
+                  <a href="#" class="media-link">{{ article.author }}</a>
+                  <a href="{{ blog.url }}" class="author-link">Other posts by {{ article.author }}</a>
+                </span>
+              </div>
+            </section>
+            <section class="related-posts-container">
+              <span class="title">
+                <h2>Related posts</h2>
+              </span>
+              <div class="slides">
+                <div class="swiper related-post">
+                  <div class="swiper-wrapper">
+                   {% assign blog = section.settings.related_blogs %}
+                    {% for article in blog.articles %}
+                        <div class="swiper-slide">
+                            {% render 'related-blog-card', article: article %}
+                            </div>
+                      {% endfor %} 
+                  </div>
+                  <div class="swiper-button-next"></div>
+                  <div class="swiper-button-prev"></div>
+                </div>
+              </div>
+            </section>
+            {% if section.settings.enable_comments %}
+              <section class="comment-respond">
+                <span class="title">
+                  <h2>Leave a reply</h2>
+                </span>
+                <p>Your email address will not be published. Required fields are marked</p>
+                <div id="comments_form">
+                  {% form 'new_comment', article %}
+                    {% if form.errors %}
+                      <div class="alert alert-danger" role="alert">
+                        {% render 'icon-failed' %}
+                        Your form was not posted!
+                        <ul>
+                          {% for error in form.errors %}
+                            <li>
+                              <span>{{ form.errors.messages[error] }}</span>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    {% elsif form.posted_successfully? %}
+                      <div class="alert alert-success" role="alert" id="success-alert">
+                        {% render 'icon-success' %}
+                        Your Comment Posted Successfully!
+                      </div>
+                      <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                          const successAlert = document.getElementById('success-alert');
+                          if (successAlert) {
+                            setTimeout(() => {
+                              successAlert.style.display = 'none';
+                            }, 2000);
+                          }
+                        });
+                      </script>
+                    {% endif %}
+                    <textarea name="comment[body]" id="comment_content" placeholder="comment" rows="6" cols="45"></textarea>
+                    <div class="author-details">
+                      <input type="text" name="comment[author]" id="comment_author" required placeholder="Your name (required)">
+                      <input type="email" name="comment[email]" id="comment_email" required placeholder="Your email (required)">
+                      <input type="link" name="comment[website]" placeholder="Your website">
+                    </div>
+                    <div class="d-flex align-items-center gap-1 mt-3">
+                      <input type="checkbox" id="checkbox">
+                      <label for="checkbox">Save my name, email, and website in this browser for the next time I comment.</label>
+                    </div>
+                    <button type="submit" class="btn btn-dark">Post Comment</button>
+                {% endform %}
+                </div>
+              </section>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="supplementary-column">
+          <div class="categories">
+            <div class="head">
+              <h4>Categories</h4>
+            </div>
+            <ul>
+              {% assign categories = section.settings.blog_category.links %}
+              {% for category in categories %}
+                <li>
+                  <a href="{{ category.url }}">{{ category.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="product-tags">
+            <div class="head">
+              <h4>Product Tags</h4>
+            </div>
+            <div class="tagcloud-content">
+              {%- for filter in collections.all.filters -%}
+                {%- if filter.type == 'list' and filter.label contains 'Tags' -%}
+                  {%- for filter_value in filter.values -%}
+                    <a href="{{ product.url }}">{{ filter_value.label }}</a>
+                  {%- endfor -%}
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+          </div>
+          <div class="latest-posts">
+            <div class="head">
+              <h4>Latest Posts</h4>
+            </div>
+            <div class="posts-contianer">
+              {% assign blog = section.settings.latest_blogs %}
+              {% for article in blog.articles %}
+                <div class="media">
+                  <a class="pull-left" href="{{ article.url }}">
+                    {% if article.image %}
+                      <img src="{{ article.image |  img_url:'master' }}" width="auto" height="auto" alt="">
+                    {% else %}
+                      <img src="{{ 'product-placeholder-image.webp' |  asset_url }}" width="auto" height="auto" alt="">
+                    {% endif %}
+                  </a>
+                  <div class="media-body">
+                    <h4>
+                      <a href="{{ article.url }}">{{ article.title | truncatewords: 2 }}</a>
+                    </h4>
+                    <span class="post-date">
+                      <i class="bi bi-calendar4-week"></i>
+                      <span>{{ article.published_at | date: '%B %d, %Y' }}</span>
+                    </span>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% comment %} <article class="flex flex-col items-center justify-center gap-2">
   <a href="{{ blog.url }}">
     <h1 class="text-6xl text-center w-full font-bold">{{ blog.title }}</h1>
   </a>
-  <img src="{{ article.image |  img_url: 'master'  }}" height="auto" width="auto" alt="{{ article.image.alt }}" style="width: 100%;height:500px;">
+  <img
+    src="{{ article.image |  img_url: 'master'  }}"
+    height="auto"
+    width="auto"
+    alt="{{ article.image.alt }}"
+    style="width: 100%;height:500px;"
+  >
   <h1 class="text-6xl font-bold capitalize">{{ article.title }}</h1>
   <div class="flex items-center justify-between max-w-md">
     {% if section.settings.enable_author %}
       <small>{{ article.author }}</small>
     {% endif %}
     {% if section.settings.enable_published_date %}
-      <time datetime="{{ article.published_at |  date: '%Y-%m-%d' }}">{{ article.published_at | date: '%Y-%m-%d' }}</time>
+      <time datetime="{{ article.published_at |  date: '%Y-%m-%d' }}">
+        {{- article.published_at | date: '%Y-%m-%d' -}}
+      </time>
     {% endif %}
   </div>
   <div class="">{{ article.content }}</div>
-</article>
+</article> {% endcomment %}
 
-{% if blog.comments_enabled? %}
-  <div id="comments" class="my-8">
+{% comment %} {% if blog.comments_enabled? %} {% endcomment %}
+  {% comment %} <div id="comments" class="my-8">
     {% if article.comments_count > 0 %}
       <div class="flex-1 items-center justify-center mx-auto max-w-4xl px-4">
         <h1 class="text-lg mb-4 font-medium">See What People are Saying</h1>
@@ -29,18 +471,19 @@
             </div>
           {% endfor %}
           <div class="max-w-6xl mx-auto">
-            {% comment %} {% render 'pagination'
-                                                  , pagination: paginate %} {% endcomment %}
+          
+              {% render 'pagination'
+              , pagination: paginate %}
+            
           </div>
         {% endpaginate %}
       </div>
     {% else %}
       there are no comments available in this article
     {% endif %}
-  </div>
-  <div id="comments_form" class="mb-8">
-    {% form 'new_comment'
-      , article %}
+  </div> {% endcomment %}
+  {% comment %} <div id="comments_form" class="mb-8">
+    {% form 'new_comment', article %}
       <div class="flex mx-auto flex-col items-center justify-center max-w-4xl px-4">
         {% if form.errors %}
           <div class="border p-5">
@@ -48,9 +491,7 @@
               <div class="text-red-500">
                 {% render 'icon-failed' %}
               </div>
-              <div class="text-sm font-medium ml-3">
-                oh no! your comment was not posted
-              </div>
+              <div class="text-sm font-medium ml-3">oh no! your comment was not posted</div>
             </div>
             <ul class="px-4 mb-3 ml-7 list-decimal">
               {% for error in form.errors %}
@@ -66,9 +507,7 @@
               <div class="text-green-500">
                 {% render 'icon-success' %}
               </div>
-              <div class="text-sm font-medium ml-3">
-                your comment posted successfully
-              </div>
+              <div class="text-sm font-medium ml-3">your comment posted successfully</div>
             </div>
           </div>
         {% endif %}
@@ -81,7 +520,8 @@
               id="comment_author"
               placeholder="Name"
               required
-              class="w-full text-gray-700 border py-3 px-4 mb-3 focus:outline-none">
+              class="w-full text-gray-700 border py-3 px-4 mb-3 focus:outline-none"
+            >
           </div>
           <div class="px-3 md:w-1/2">
             <label for="comment_email" class="text-gray-700 font-medium uppercase text-xs mb-2">Email</label>
@@ -91,7 +531,8 @@
               id="comment_email"
               placeholder="Email@mail.com"
               required
-              class="w-full text-gray-700 border py-3 px-4 mb-3 focus:outline-none">
+              class="w-full text-gray-700 border py-3 px-4 mb-3 focus:outline-none"
+            >
           </div>
         </div>
         <div class="px-1 md:flex mb-3 w-full">
@@ -102,7 +543,8 @@
               id="comment_content"
               required
               placeholder="Enter Your comments"
-              class="w-full text-gray-700 border py-3 px-4 mb-3 focus:outline-none h-20"></textarea>
+              class="w-full text-gray-700 border py-3 px-4 mb-3 focus:outline-none h-20"
+            ></textarea>
           </div>
         </div>
         <div class="px-1 md:flex mb-3 w-full">
@@ -110,49 +552,136 @@
             <input
               type="submit"
               value="Post Comment"
-              class="w-full cursor-pointer px-4 py-2 border text-base font-medium text-white bg-gray-700 hover:bg-gray-900">
+              class="w-full cursor-pointer px-4 py-2 border text-base font-medium text-white bg-gray-700 hover:bg-gray-900"
+            >
           </div>
         </div>
       </div>
     {% endform %}
+  </div> {% endcomment %}
+{% comment %} {% endif %} {% endcomment %}
+
+{% comment %}
+  <div class="flex flex-wrap items-start justify-start">
+                                                                                                {% for article in blog.articles %}
+                                                                                                  <div class="flex flex-col items-start max-w-md">
+                                                                                                    <img src="{{ article.image |  img_url: 'master'  }}" alt="{{ article.image.alt }}">
+                                                                                                    <h1 class="font-bold text-xl">{{ article.title }}</h1>
+                                                                                                    {% if section.settings.enable_author %}
+                                                                                                      <small class="font-bold text-base">{{ article.author }}</small>
+                                                                                                    {% endif %}
+                                                                                                    {% if section.settings.enable_published_date %}
+                                                                                                      <time datetime="{{ article.published_at |  date: '%Y-%m-%d' }}" class="font-medium text-base text-gray-500">{{ article.published_at | date: '%Y-%m-%d' }}</time>
+                                                                                                      <p>{{ article.published_at | date: '%Y-%m-%d' }}</p>
+                                                                                                    {% endif %}
+                                                                                                    <div class="">{{ article.content }}</div>
+                                                                                                  </div>
+                                                                                                {% endfor %}
   </div>
-
-{% endif %}
-
-
-{% comment %} <div class="flex flex-wrap items-start justify-start">
-                                                                                              {% for article in blog.articles %}
-                                                                                                <div class="flex flex-col items-start max-w-md">
-                                                                                                  <img src="{{ article.image |  img_url: 'master'  }}" alt="{{ article.image.alt }}">
-                                                                                                  <h1 class="font-bold text-xl">{{ article.title }}</h1>
-                                                                                                  {% if section.settings.enable_author %}
-                                                                                                    <small class="font-bold text-base">{{ article.author }}</small>
-                                                                                                  {% endif %}
-                                                                                                  {% if section.settings.enable_published_date %}
-                                                                                                    <time datetime="{{ article.published_at |  date: '%Y-%m-%d' }}" class="font-medium text-base text-gray-500">{{ article.published_at | date: '%Y-%m-%d' }}</time>
-                                                                                                    <p>{{ article.published_at | date: '%Y-%m-%d' }}</p>
-                                                                                                  {% endif %}
-                                                                                                  <div class="">{{ article.content }}</div>
-                                                                                                </div>
-                                                                                              {% endfor %}
-</div> {% endcomment %}
+{% endcomment %}
 
 {% schema %}
-  {
-    "name": "template Article",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "enable_author",
-        "default": true,
-        "label": "Display Author Name"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_published_date",
-        "default": true,
-        "label": "Display Published Date"
-      }
-    ]
-  }
+{
+  "name": "template Article",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_author",
+      "default": true,
+      "label": "Display Author Name"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_published_date",
+      "default": true,
+      "label": "Display Published Date"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_views_count",
+      "default": true,
+      "label": "Display Views Count"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_comment_count",
+      "default": true,
+      "label": "Display Comments Count"
+    },
+    {
+      "type": "link_list",
+      "id": "blog_category",
+      "label": "Add Blogs Categories List"
+    },
+    {
+      "type": "blog",
+      "id": "latest_blogs",
+      "label": "Add Latest Blogs List"
+    },
+    {
+      "type": "blog",
+      "id": "related_blogs",
+      "label": "Add related Blogs List"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_comments",
+      "default": true,
+      "label": "Show Comments"
+    },
+  ]
+  // "blocks":[
+  //   {
+  //     "type":"grid_content_block",
+  //     "name":"Grid Content Block",
+  //     "settings":[
+  //       {
+  //         "type": "richtext",
+  //         "id":"description_top_full",
+  //         "label": "Add top full column content"
+  //       },
+  //       {
+  //         "type": "image_picker",
+  //         "id":"image",
+  //         "label": "Add column Image",
+  //       },
+  //       {
+  //         "type": "richtext",
+  //         "id":"description",
+  //         "label": "Add column Content",
+  //       },
+  //       {
+  //         "type": "richtext",
+  //         "id":"description_bottom_full",
+  //         "label": "Add bottom full column content"
+  //       }
+  //     ]
+  //   },
+  //   {
+  //     "type":"column_content_block",
+  //     "name":"Column Content Block",
+  //     "settings":[
+  //       {
+  //         "type": "richtext",
+  //         "id":"description_top",
+  //         "label": "Add top column content"
+  //       },
+  //       {
+  //         "type": "image_picker",
+  //         "id":"image",
+  //         "label": "Add Image",
+  //       },
+  //       {
+  //         "type": "richtext",
+  //         "id":"description_bottom",
+  //         "label": "Add bottom column content"
+  //       }
+  //     ]
+  //   }
+  // ],
+  // "presets": [
+  //   {"name":"Grid Content Block"},
+  //   {"name":"Column Content Block"}
+  // ]
+}
 {% endschema %}

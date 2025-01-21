@@ -1,0 +1,84 @@
+<section class="processesHolder">
+  <div class="container">
+    <div class="processesSec">
+      <div class="processContent">
+        {{ section.settings.icon_1 }}
+        <h3>{{ section.settings.title_1 }}</h3>
+        {{ section.settings.description_1 }}
+      </div>
+      <div class="processContent">
+        {{ section.settings.icon_2 }}
+        <h3>{{ section.settings.title_2 }}</h3>
+        {{ section.settings.description_2 }}
+      </div>
+      <div class="processContent">
+        {{ section.settings.icon_3 }}
+        <h3>{{ section.settings.title_3 }}</h3>
+        {{ section.settings.description_3 }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Prosses Section",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "icon_1",
+      "label": "Icon 1",
+      "default": "<i class='bi bi-person-fill'></i>"
+    },
+    {
+      "type": "text",
+      "id": "title_1",
+      "label": "Title 1",
+      "default": "24/7 SUPPORT CENTER"
+    },
+    {
+      "type": "richtext",
+      "id": "description_1",
+      "label": "Description 1",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+    },
+    {
+      "type": "liquid",
+      "id": "icon_2",
+      "label": "Icon 2",
+      "default": "<i class='bi bi-megaphone-fill'></i>"
+    },
+    {
+      "type": "text",
+      "id": "title_2",
+      "label": "Title 2",
+      "default": "PAYMENT PROCESS"
+    },
+    {
+      "type": "richtext",
+      "id": "description_2",
+      "label": "Description 2",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+    },
+    {
+      "type": "liquid",
+      "id": "icon_3",
+      "label": "Icon 3",
+      "default": "<i class='bi bi-book-half'></i>"
+    },
+    {
+      "type": "text",
+      "id": "title_3",
+      "label": "Title 3",
+      "default": "FREE SHIPPING"
+    },
+    {
+      "type": "richtext",
+      "id": "description_3",
+      "label": "Description 3",
+      "default": "<p>Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+    }
+  ],
+  "presets": [{ "name": "Prosses Section" }]
+}
+{% endschema %}

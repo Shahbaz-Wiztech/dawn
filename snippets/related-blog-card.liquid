@@ -1,0 +1,47 @@
+<div class="post-card-holder">
+  <div class="post-card-img">
+    {% if article.image %}
+      <img
+        width="auto"
+        height="auto"
+        src="{{ article.image |  img_url: 'master' }}"
+        alt="{{ article.image.alt }}"
+      >
+    {% else %}
+      <img src="{{ 'product-placeholder-image.webp' |  asset_url }}" width="auto" height="auto" alt="thumbnail-img">
+    {% endif %}
+  </div>
+  <div class="post-card-content">
+    <h5>{{ article.title | truncatewords: 3 }}</h5>
+    <div class="meta-post">
+      <time datetime="{{ article.published_at | date: '%B %d, %Y' }}"
+        ><i
+          class="bi bi-calendar3"
+        ></i>
+        {{ article.published_at | date: '%B %d, %Y' -}}
+      </time>
+      <a href="" class="post-comments-count"
+        ><i
+          class="bi bi-chat-left"
+        ></i>
+        {{- article.comments_count -}}
+      </a>
+    </div>
+    {{ article.content | strip_html | truncatewords: 100 }}
+    <br>
+    <a href="{{ article.url }}" class="more-read-btn">
+      <span>Continue Reading</span>
+      <svg
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M9.5 7L14.5 12L9.5 17" stroke="#6AA5CB"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+      </svg>
+    </a>
+  </div>
+</div>

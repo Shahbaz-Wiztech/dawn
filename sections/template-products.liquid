@@ -39,27 +39,34 @@
               </div>
             {% endif %}
           </div>
-          <div class="features">
-            <ul class="d-flex flex-column gap-1">
-              <li><i class="bi bi-truck"></i>120 USD shipping fee</li>
-              <li><i class="bi bi-gift"></i>Free returns</li>
-              <li><i class="bi bi-clock"></i>Standard delivery 1-2 working days (Mon-Fri)</li>
-            </ul>
-          </div>
+          {% if product.metafields.custom.shipping_fee
+            or product.metafields.custom.return_police
+            or product.metafields.custom.standard_delivery_details
+          %}
+            <div class="features">
+              <ul class="d-flex flex-column gap-1">
+                <li><i class="bi bi-truck"></i>{{ product.metafields.custom.shipping_fee }}</li>
+                <li><i class="bi bi-gift"></i>{{ product.metafields.custom.return_police }}</li>
+                <li><i class="bi bi-clock"></i>{{ product.metafields.custom.standard_delivery_details }}</li>
+              </ul>
+            </div>
+          {% endif %}
           <div class="buy-proccess d-flex flex-column mt-3">
-            <span>{{ product.price }}</span>
+            <span>{{ product.price | money }}</span>
             <a class="mt-2">Add Prescription</a>
             <form method="post" action="/cart/add">
-              <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+              <input type="hidden" name="id" value="{{ product.variants.first.id }}">
               <div class="d-flex gap-3 mt-3">
-                <select  min="1" type="number" id="quantity" name="quantity" value="1">
+                <select min="1" type="number" id="quantity" name="quantity" value="1">
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
                   <option>4</option>
                   <option>5</option>
                 </select>
-                <button href="javascript:void(0);" type="submit" class="add-to-cart"><i class="bi bi-cart"></i> Add to Cart</button>
+                <button href="javascript:void(0);" type="submit" class="add-to-cart">
+                  <i class="bi bi-cart"></i> Add to Cart
+                </button>
               </div>
             </form>
             <div class="or mt-3">
@@ -88,13 +95,15 @@
               </div>
             </div>
             {% if product.category != blank %}
-            <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
-              <p class="mb-0">Categories:</p>
-              <a href="{{ product.url }}" class="mb-0">{{ product.category }}</a>,
-              {% comment %} {% for product in collections.all.products %}
+              <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
+                <p class="mb-0">Categories:</p>
                 <a href="{{ product.url }}" class="mb-0">{{ product.category }}</a>,
-              {% endfor %} {% endcomment %}
-            </div>
+                {% comment %}
+                  {% for product in collections.all.products %}
+                    <a href="{{ product.url }}" class="mb-0">{{ product.category }}</a>,
+                  {% endfor %}
+                {% endcomment %}
+              </div>
             {% endif %}
             {% if product.tags != blank %}
               <div class="d-flex align-itms-center flex-wrap justify-content-start gap-1">
@@ -103,7 +112,7 @@
                   <a href="/collections/{{ tag | handleize }}">{{ tag }}</a>
                 {% endfor %}
               </div>
-              {% endif %}
+            {% endif %}
           </div>
         </div>
       </div>

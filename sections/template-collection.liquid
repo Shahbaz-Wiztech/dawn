@@ -3,18 +3,40 @@
     <div class="shop-sec">
       {% comment %} shop left filterations {% endcomment %}
       {% render 'shop-left-filteration' %}
-      <div class="shop-right">
-        <div class="product-container">
+      <div class="shop-right" id="productGridContainer">
+        <div class="product-container" x-data="{
+          sort:'{{ sort_by }}',
+          sorting(){
+            fetch('/collections/{{ collection.handle }}?sort_by=' +this.sort)
+            .then(response => response.text())
+            .then(data=>{
+              let newElement = document.createElement('div'); 
+              newElement.innerHTML = data;
+              let newHTML = newElement.querySelector('#productGridContainer').innerHTML;
+
+              document.querySelector('#productGridContainer').innerHTML = newHTML;
+              history.replaceState(null,null, '?sort_by='+ this.sort)
+            })
+              .catch(error => console.log(error))
+          }
+        }">
           <div class="product-header">
             <div class="sorting-selector">
-              <select class="sorting-dropdown">
+              <select class="sorting-dropdown" x-model="sort" @change="sorting()">
+                {% for option in collection.sort_options %}
+                  <option value="{{ option.value |  escape }}" {% if option.value == sort_by %}
+                    selected
+                  {% endif %}>{{ option.name }}</option>
+                {% endfor %}
+              </select>
+              {% comment %} <select class="sorting-dropdown">
                 <option value="default">Default sorting</option>
                 <option value="popularity">Sort by popularity</option>
                 <option value="rating">Sort by average rating</option>
                 <option value="latest">Sort by latest</option>
                 <option value="low-to-high">Sort by price: low to high</option>
                 <option value="high-to-low">Sort by price: high to low</option>
-              </select>
+              </select> {% endcomment %}
               <div class="view-options">
                 <button class="grid-list-view active" onclick="gridListToggle(event)">
                   <i class="bi bi-grid-3x3-gap"></i>
@@ -33,7 +55,18 @@
                 {% endfor %}
               </select>
             </div> {% endcomment %}
+    
 
+            {% comment %} <variant-selector class="showing-result">
+              <p>Show </p>
+              <select class="sorting-dropdown">
+                <option value="1" selected>1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="all">All</option>
+              </select>
+            </variant-selector> {% endcomment %}
             <div class="showing-result">
               <p>Show</p>
               <select class="sorting-dropdown">
@@ -43,7 +76,7 @@
                 <option>36</option>
                 <option>All</option>
               </select>
-            </div>
+            </div> 
           </div>
           {% if collection.products.size > 12 %}
             {% paginate collection.products by 12 %}
@@ -70,3 +103,50 @@
     </div>
   </div>
 </section>
+
+<script>
+//   class VariantSelector extends HTMLElement {
+//   constructor() {
+//     super();
+//     this.addEventListener('change', this.onVariantChange.bind(this));
+//   }
+
+//   onVariantChange() {
+//     const value = this.getSelectedOption();
+//     console.log("Selected Value:", value);
+//     // Additional logic can be added here, e.g., updating the page based on the selected value.
+//   }
+
+//   getSelectedOption() {
+//     // Get the value of the selected option in the dropdown
+//     const select = this.querySelector(".sorting-dropdown");
+//     const value = select.value;
+
+//     // Convert to number if possible, otherwise return the string
+//     const numericValue = value === "all" ? value : parseInt(value, 10);
+//     console.log('Converted Value:', numericValue);
+//     return numericValue;
+//   }
+// }
+
+// customElements.define("variant-selector", VariantSelector);
+
+
+// class VariantSelector extends HTMLElement {
+//   constructor(){
+//     super();
+//     this.addEventListener('change', this.onVariantChange); 
+//   }
+
+//   onVariantChange(){
+//     this.getSelectedOptions();
+//     console.log("Change Variant Selector")
+//   }
+//   getSelectedOptions(){
+//      this.options = Array.from(this.querySelectorAll("select"), (select)=> select.value);
+//      console.log('get Selected Options', this.options)
+//      console.log('json parse', JSON.parse(this.options))
+//   }
+// }
+//   customElements.define("variant-selector", VariantSelector);
+</script>

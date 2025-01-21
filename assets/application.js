@@ -1,3 +1,29 @@
+    // related post slider
+    var swiper = new Swiper(".related-post", {
+      slidesPerView: 1,
+      pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+      },
+      navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+          992: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+          },
+          768: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+          },
+          576: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+          },
+      },
+  });
 // Swipper Carousel
 var swiper = new Swiper(".blog-carousel", {
   slidesPerView: 4,
@@ -27,7 +53,7 @@ var swiper = new Swiper(".blog-carousel", {
       },
     },
   });
-  console.log('first');
+
 
     document.addEventListener('DOMContentLoaded', () => {
       const track = document.querySelector('.slider-track');

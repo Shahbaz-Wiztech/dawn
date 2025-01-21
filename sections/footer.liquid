@@ -1,181 +1,208 @@
 <div class="main-footer">
   <div class="container">
     <div class="footer-content">
-        <div class="form-group">
-            <div class="d-flex align-items-center flex-column gap-4">
-                {% if section.settings.logo %}
-                    <img
-                    src="{{ section.settings.logo |  img_url: 'master' }}"
-                    alt="{{ shop.name }}"
-                    width="250"
-                    height="auto"
-                    >
-                    {% else %}
-                    <h1 class="">{{ shop.name }}</h1>
-                {% endif %}
-                <p class="mb-0 text-white">{{ section.settings.footerText }}</p>
+      <div class="form-group">
+        <div class="d-flex align-items-center flex-column gap-4">
+          {% if section.settings.logo %}
+            <img
+              src="{{ section.settings.logo |  img_url: 'master' }}"
+              alt="{{ shop.name }}"
+              width="250"
+              height="auto"
+            >
+          {% else %}
+            <h1 class="">{{ shop.name }}</h1>
+          {% endif %}
+          <p class="mb-0 text-white">{{ section.settings.footerText }}</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <span>Userful Links</span>
+        <div class="d-flex align-items-start gap-2">
+          {% if section.settings.menu.links %}
+            <ul>
+              {% for link in section.settings.menu.links %}
+                <li>
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {% if section.settings.city_menu.links %}
+            <ul>
+              {% for link in section.settings.city_menu.links %}
+                <li>
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div> 
+      </div>
+      <div class="form-group">
+        {% if section.settings.article_name != blank %}
+          <span>{{ section.settings.article_name }}</span>
+        {% else %}
+          <span>Latest News</span>
+        {% endif %}
+        <div class="d-flex align-items-start gap-3 LatestNewsList">
+          <div class="img-wrapper">
+            {% if section.settings.article_1.image %}
+              <img
+                src="{{ section.settings.article_1.image |  img_url: 'master' }}"
+                alt="{{ section.settings.article_1.image.alt }}"
+                height="40px"
+                width="45px"
+              >
+            {% else %}
+              <img
+                src="{{ 'product-placeholder-image.webp' |  asset_url }}"
+                alt="blog image"
+                height="40px"
+                width="45px"
+              >
+            {% endif %}
+          </div>
+          <div class="d-flex flex-column align-items-start gap-1">
+            <h6>{{ section.settings.article_1.title }}</h6>
+            <div class="d-flex align-items-center gap-2">
+              {% render 'icon-calendar' %}
+              <p class="date mb-0">{{ section.settings.article_1.created_at | date: '%B %d, %Y' }}</p>
+              {% render 'icon-message' %}
+              <p class="text-white mb-0">{{ section.settings.article_1.comments_count }}</p>
             </div>
+          </div>
         </div>
-        <div class="form-group">
-            <span>Userful Links</span>
-            <div class="d-flex align-items-start gap-2">
-                {% if section.settings.menu.links %}    
-                    <ul>
-                        {% for link in section.settings.menu.links %}
-                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
-                <ul>
-                    {% for block in section.blocks %}
-                        {% case block.type %}
-                            {% when 'cityName' %}
-                                <li><a href="{{ block.settings.url }}">{{ block.settings.name }}</a></li>
-                        {% endcase %}
-                    {% endfor %}
-                </ul>
+        <div class="d-flex align-items-start gap-3 LatestNewsList">
+          <div class="img-wrapper">
+            {% if section.settings.article_2.image %}
+              <img
+                src="{{ section.settings.article_2.image |  img_url: 'master' }}"
+                alt="{{ section.settings.article_2.image.alt }}"
+                height="40px"
+                width="45px"
+              >
+            {% else %}
+              <img
+                src="{{ 'product-placeholder-image.webp' |  asset_url }}"
+                alt="blog image"
+                height="40px"
+                width="45px"
+              >
+            {% endif %}
+          </div>
+          <div class="d-flex flex-column align-items-start gap-1">
+            <h6>{{ section.settings.article_2.title }}</h6>
+            <div class="d-flex align-items-center gap-2">
+              {% render 'icon-calendar' %}
+              <p class="date mb-0">{{ section.settings.article_2.created_at | date: '%B %d, %Y' }}</p>
+              {% render 'icon-message' %}
+              <p class="text-white mb-0">{{ section.settings.article_2.comments_count }}</p>
             </div>
+          </div>
         </div>
-        <div class="form-group">
-            <span>Latest News</span>
-            {% for block in section.blocks %}
-                {% case block.type %}
-                {% when 'latest_news' %}
-                    <div class="d-flex align-items-start gap-3 LatestNewsList">
-                        <div class="img-wrapper">
-                            <img src="{{ block.settings.image |  img_url: 'master' }}" alt="{{ block.settings.text }}" height="40px" width="45px">
-                        </div>
-                        <div class="d-flex flex-column align-items-start gap-1">
-                            <h6>{{ block.settings.text }}</h6>
-                            <div class="d-flex align-items-center gap-2">
-                                {% render 'icon-calendar' %}
-                                <p class="date mb-0">{{ block.settings.date }}</p>
-                                {% render 'icon-message' %}
-                                <p class="text-white mb-0">{{ block.settings.count }}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% endcase %}
-            {% endfor %}
-        </div>
-        <div class="form-group">
-            <span>Tags Cloud</span>
-            <div class="d-flex align-items-start gap-2 flex-wrap">
-                {% for block in section.blocks %}
-                    {% case block.type %}
-                        {% when 'tags_cloud' %}
-                        <a href="{{ block.settings.url }}" class="border border-2 py-1 px-3 text-decoration-none TagsCloudBox">
-                            <small class="text-white">{{ block.settings.text }}</small>
-                        </a>
-                    {% endcase %}
-                {% endfor %}
+        <div class="d-flex align-items-start gap-3 LatestNewsList">
+          <div class="img-wrapper">
+            {% if section.settings.article_3.image %}
+              <img
+                src="{{ section.settings.article_3.image |  img_url: 'master' }}"
+                alt="{{ section.settings.article_3.image.alt }}"
+                height="40px"
+                width="45px"
+              >
+            {% else %}
+              <img
+                src="{{ 'product-placeholder-image.webp' |  asset_url }}"
+                alt="blog image"
+                height="40px"
+                width="45px"
+              >
+            {% endif %}
+          </div>
+          <div class="d-flex flex-column align-items-start gap-1">
+            <h6>{{ section.settings.article_3.title }}</h6>
+            <div class="d-flex align-items-center gap-2">
+              {% render 'icon-calendar' %}
+              <p class="date mb-0">{{ section.settings.article_3.created_at | date: '%B %d, %Y' }}</p>
+              {% render 'icon-message' %}
+              <p class="text-white mb-0">{{ section.settings.article_3.comments_count }}</p>
             </div>
+          </div>
         </div>
+      </div>
+
+      <div class="form-group">
+        <span>Tags Cloud</span>
+        <div class="d-flex align-items-start gap-2 flex-wrap">
+          {%- for filter in collections.all.filters -%}
+            {%- if filter.type == 'list' and filter.label contains 'Tags' -%}
+              {%- for filter_value in filter.values -%}
+                <a href="{{ filter_value.url }}" class="border border-2 py-1 px-3 text-decoration-none TagsCloudBox">
+                  <small class="text-white">{{ filter_value.label }}</small>
+                </a>
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
     </div>
+
     <div class="footer-bottom">
-        <div class="d-flex align-items-center flex-wrap gap-3 justify-content-center justify-content-md-between p-4">
-            <p class="mb-0">Copyright © 2024 Progatix</p>
-            <img src="{{ 'payments.png' |  asset_url }}" alt="payments methods" height="20px" width="auto" >
-        </div>
+      <div class="d-flex align-items-center flex-wrap gap-3 justify-content-center justify-content-md-between p-4">
+        <p class="mb-0">Copyright © 2024 Progatix</p>
+        <img src="{{ 'payments.png' |  asset_url }}" alt="payments methods" height="20px" width="auto">
+      </div>
     </div>
   </div>
 </div>
 
 {% schema %}
+{
+  "name": "footer",
+  "tag": "footer",
+  "settings": [
     {
-      "name": "footer",
-      "tag": "footer",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "logo",
-          "label": "Upload Logo"
-        },
-        {
-          "type": "text",
-          "id": "footerText",
-          "default": "This is easy to update text from the footer widget area. Add here information about your store.",
-          "label": "Footer Description"
-        },
-        {
-          "type": "link_list",
-          "id": "menu",
-          "default": "main-menu",
-          "label": "Heading Navigation Menu"
-        }
-      ],
-      "blocks": [
-        {
-          "type": "cityName",
-          "name": "Add City Name",
-          "settings": [
-            {
-              "type": "text",
-              "id": "name",
-              "label": "city Name"
-            },
-            {
-              "type": "url",
-              "id": "url",
-              "label": "URL"
-            }
-          ]
-        },
-        {
-          "type": "latest_news",
-          "name": "Latest News",
-          "settings": [
-            {
-              "type": "image_picker",
-              "id": "image",
-              "label": "Image"
-            },
-            {
-              "type": "text",
-              "id": "text",
-              "label": "Text"
-            },
-            {
-              "type": "text",
-              "id": "date",
-              "label": "Date"
-            },
-            {
-              "type": "text",
-              "id": "count",
-              "label": "Count",
-              "default":"0"
-            }
-          ]
-        },
-        {
-          "type": "tags_cloud",
-          "name": "Tags Cloud",
-          "settings": [
-            {
-              "type": "url",
-              "id": "url",
-              "label": "URL"
-            },
-            {
-              "type": "text",
-              "id": "text",
-              "label": "Text"
-            }
-          ]
-        }
-      ],
-      "presets": [
-        {
-          "name": "Latest News"
-        },
-        {
-          "name": "Tags Cloud"
-        },
-        {
-            "name": "Add City Name"
-        }
-      ]
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Upload Logo"
+    },
+    {
+      "type": "text",
+      "id": "footerText",
+      "default": "This is easy to update text from the footer widget area. Add here information about your store.",
+      "label": "Footer Description"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Useful Navigation Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "city_menu",
+      "label": "Useful City Menu"
+    },
+    {
+      "type": "text",
+      "id": "article_name",
+      "label": "Latest Blog Name"
+    },
+    {
+      "type": "article",
+      "id": "article_1",
+      "label": "Blog 1"
+    },
+    {
+      "type": "article",
+      "id": "article_2",
+      "label": "Blog 2"
+    },
+    {
+      "type": "article",
+      "id": "article_3",
+      "label": "Blog 3"
     }
-    {% endschema %}
-    
+  ]
+}
+{% endschema %}

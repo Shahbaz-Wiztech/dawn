@@ -1,0 +1,43 @@
+<section class="products-grid-section">
+  <div class="container small">
+    <div class="heading-sec">
+      <h2>Search Results</h2>
+      <form action="{{ routes.search_url }}" method="get" class="">
+        <div class="input-group mb-3">
+          <input
+            type="search"
+            name="q"
+            class="form-control"
+            placeholder="Search Here..."
+            aria-label="Search Here..."
+            aria-describedby="button-addon2"
+            value="{{ search.terms |  escape }}"
+          >
+          <button class="btn btn-dark" type="submit" id="button-addon2">Search</button>
+        </div>
+      </form>
+    </div>
+    <div class="products-items">
+      {% paginate search.results by 12 %}
+        <div class="row gy-lg-0 gy-3">
+          {% for item in search.results %}
+            {% case item.object_type %}
+              {% when 'product' %}
+                <div class="col-lg-4 col-md-6">
+                  {% render 'home-product-card', product: item %}
+                </div>
+              {% when 'article' %}
+                <div class="col-lg-4 col-md-6">
+                  {% render 'home-blog-card', article: item %}
+                </div>
+              {% else %}
+            {% endcase %}
+          {% else %}
+            <p>No results found for search item {{ search.terms }} . Try with different keyword.</p>
+          {% endfor %}
+        </div>
+        {% render 'pagination', pagination: paginate %}
+      {% endpaginate %}
+    </div>
+  </div>
+</section>
