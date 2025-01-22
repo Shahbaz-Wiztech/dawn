@@ -60,29 +60,29 @@
           {% endif %}
           <div class="buy-proccess d-flex flex-column mt-3">
             <span>{{ product.price | money }}</span>
-            <button class="mt-2">Add Prescription</button>
-            <form method="post" action="/cart/add">
-              <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-              <div class="d-flex gap-3 mt-3">
-                <select min="1" type="number" id="quantity" name="quantity" value="1">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
+            <form method="post" action="/cart/add" class="cart-wishlist-buttons-container">
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+            <div class="d-flex gap-3 mb-3">
+              <select min="1" type="number" id="quantity" name="quantity" value="1" class="form-control">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
                 </select>
+                <button>Add Prescription</button>
+                </div>
                 <button href="javascript:void(0);" type="submit" class="add-to-cart">
                   <i class="bi bi-cart"></i> Add to Cart
                 </button>
-              </div>
             </form>
             <div class="or mt-3">
               <p>OR</p>
             </div>
-            <a class="buy-now-btn border-0"><i class="bi bi-cart"></i> Buy Now</a>
+            <button class="buy-now-btn border-0"><i class="bi bi-cart"></i> Buy Now</button>
           </div>
-          <div class="category-wish-list mt-4">
-            <p class="wishlist"><i class="bi bi-star"></i>Add to Wishlist</p>
+          <div class="category-wish-list mt-3">
+            {% comment %} <p class="wishlist" ><i class="bi bi-star"></i>Add to Wishlist</p> {% endcomment %}
             <div class="toast-container">
               <div
                 class="toast align-items-center text-white bg-success"

@@ -165,7 +165,12 @@
         </div>
       </form>
       <div class="wishlist-categories">
-        <button href="#" class="my-3 d-flex align-items-center gap-1 justify-content-start text-black">
+        <button 
+        data-with-epi="true"
+        data-swaction="addToWishlist"
+        data-product-id="{{ product.id }}"
+        data-variant-id="{{ product.variants[0].id }}"
+        data-product-url="{{ shop.url }}{{ product.url }}" class="swym-button swym-add-to-wishlist my-3 d-flex align-items-center gap-1 justify-content-start text-black">
           <i class="bi bi-heart"></i>Add wishlist
         </button>
 

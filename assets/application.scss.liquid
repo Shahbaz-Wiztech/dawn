@@ -1653,6 +1653,25 @@ body{
                                 color: var(--white);
                             }
                         }
+                        .cart-wishlist-buttons-container{
+                            .swym-button-bar {
+                                width: 100% !important;
+                                .swym-btn-container[data-position=default]{
+                                    /* width:100% !important; */
+                                    button{
+                                        background:transparent !important;
+                                        border-color:transparent !important;
+                                        text-align: start;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: flex-start;
+                                        span{
+                                            font-size:16px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
 
                     .category-wish-list {
@@ -5348,6 +5367,19 @@ body{
 
                 .brandImg {
                     width: 90px;
+                }
+            }
+        }
+    }
+}
+
+/* wishlist page */
+#swym-wishlist-render-container{
+    .swym-ui-component.swym-wishlist-page {
+        .swym-simple-wishlist-container{
+            .swym-wishlist-container-title-bar{
+                #swym-user-login-status-btn{
+                    display:none !important;
                 }
             }
         }
