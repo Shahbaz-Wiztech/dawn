@@ -329,6 +329,23 @@ body{
             }
         }
     }
+    .custom-wishlist-header-icon{
+        position: relative;
+        .swym-anchor-badge,
+        .swym-anchor-badge.show-badge{
+            position: absolute;
+            top:-10px;
+            right:-10px;
+            padding:1px 5px;
+            border-radius:50%;
+            color:var(--white);
+            background:var(--primary);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:15px;
+        }
+    }
 }
 .w-screen-modal{
     .modal-dialog{
@@ -1571,8 +1588,7 @@ body{
                             font-size: 20px;
                             color: var(--text-primary);
                         }
-                        button,
-                        a {
+                        button {
                             text-align: center;
                             background-color: var(--dark-brown);
                             color: var(--white);

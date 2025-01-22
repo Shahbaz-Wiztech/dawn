@@ -60,7 +60,7 @@
           {% endif %}
           <div class="buy-proccess d-flex flex-column mt-3">
             <span>{{ product.price | money }}</span>
-            <a class="mt-2">Add Prescription</a>
+            <button class="mt-2">Add Prescription</button>
             <form method="post" action="/cart/add">
               <input type="hidden" name="id" value="{{ product.variants.first.id }}">
               <div class="d-flex gap-3 mt-3">
