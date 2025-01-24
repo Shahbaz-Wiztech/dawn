@@ -14,7 +14,9 @@
       <a href="{{ article.url }}" class="read-more-btn">Read More</a>
     </a>
     <div class="category-name">
-      <a href="{{ article.url }}">{{ article.tags }}</a>
+      {% for tag in article.tags %}
+        <a href="{{ tag.url }}">{{ tag.title }}, &nbsp;&nbsp;</a>
+      {% endfor %}
     </div>
   </div>
   <div class="blog-card-body">

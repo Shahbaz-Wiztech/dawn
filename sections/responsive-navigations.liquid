@@ -1,0 +1,77 @@
+<section class="bottom-navigations">
+  <div class="container">
+    <div class="navigations">
+      <a href="/">
+        <i class="bi bi-house"></i>
+        Home
+      </a>
+      <a href="{{ routes.all_products_collection_url }}">
+        <i class="bi bi-shop-window"></i>
+        Shop
+      </a>
+      <a href="/pages/swym-wishlist?">
+        {% comment %} <span class="count">0</span> {% endcomment %}
+        <i class="bi bi-heart"></i>
+        Wishlist
+      </a>
+      <a href="#" class="moreSettingsClick">
+        <div class="dots">
+          <div class="dot"></div>
+          <i class="bi bi-three-dots"></i>
+        </div>
+        <div class="cross">
+          <i class="bi bi-x-lg"></i>
+        </div>
+        More
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="moreSettingsModal">
+  <div class="container">
+    <div class="moreSettings">
+      <div class="title">
+        <i class="bi bi-three-dots"></i>
+        <h5>MORE</h5>
+      </div>
+      <nav>
+        <ul>
+          {% for item in section.settings.menu.links %}
+            <li>
+              <a href="{{ item.url }}">{{ item.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Responsive Navigations",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Add Navigations Menu"
+    }
+  ],
+  "presets": [{ "name": "Responsive Navigations" }]
+}
+{% endschema %}
+
+<script>
+  const moreSettingsBtn = document.querySelector('.moreSettingsClick');
+  const moreSettingsModal = document.querySelector('.moreSettingsModal');
+  const crossbtn = document.querySelector('.cross');
+  const dotsBtn = document.querySelector('.dots');
+
+  moreSettingsBtn.addEventListener('click', () => {
+    moreSettingsModal.classList.toggle('show');
+
+    crossbtn.style.display = crossbtn.style.display === 'block' ? 'none' : 'block';
+    dotsBtn.style.display = dotsBtn.style.display === 'none' ? 'block' : 'none';
+  });
+</script>
