@@ -19,8 +19,12 @@
                             <div class="title">
                                 <a href="{{ product.url }}">{{ product.title }}</a>
                             </div>
-                            <div class="rating">
-                                <span style="width: 50%;"></span>
+                            <div>
+                                {% comment %} <!-- Start of Judge.me code --> {% endcomment %}
+                                <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
+                                {{ product.metafields.judgeme.badge }}
+                                </div>
+                                {% comment %} <!-- End of Judge.me code --> {% endcomment %}
                             </div>
                             <div class="price">
                                 {% if product.compare_at_price != blank %}
@@ -53,8 +57,12 @@
                             <div class="title">
                                 <a href="{{ product.url }}">{{ product.title }}</a>
                             </div>
-                            <div class="rating">
-                                <span style="width: 50%;"></span>
+                            <div>
+                                {% comment %} <!-- Start of Judge.me code --> {% endcomment %}
+                                <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
+                                {{ product.metafields.judgeme.badge }}
+                                </div>
+                                {% comment %} <!-- End of Judge.me code --> {% endcomment %}
                             </div>
                             <div class="price">
                                 {% if product.compare_at_price != blank %}

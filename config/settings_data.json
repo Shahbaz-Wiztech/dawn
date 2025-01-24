@@ -124,11 +124,43 @@
       "header": {
         "type": "header",
         "blocks": {
+          "announcementbar_bPkXei": {
+            "type": "announcementbar",
+            "settings": {
+              "image": "shopify://shop_images/delivery-truck.png",
+              "title": "Take 30% off when you spend $120",
+              "button": "go to shop",
+              "url": "shopify://collections/all"
+            }
+          },
+          "announcementbar_LAD4t9": {
+            "type": "announcementbar",
+            "settings": {
+              "image": "shopify://shop_images/card.png",
+              "title": "Free 2-days standard shipping on orders $255+",
+              "button": "custom link",
+              "url": "#"
+            }
+          },
+          "mega_menu_rQ4fhe": {
+            "type": "mega_menu",
+            "settings": {
+              "title": "Shop",
+              "category_list": [
+                "find-the-perfect-fit",
+                "frontpage",
+                "men",
+                "women-glasses"
+              ],
+              "brands_list": "brands",
+              "contact_lenses": "contact-lenses",
+              "mega_menu_image": "shopify://shop_images/product-1.webp"
+            }
+          },
           "social_icons_RbAicC": {
             "type": "social_icons",
             "settings": {
               "icon_image": "shopify://shop_images/fb.svg",
-              "icon_image_alt": "facebook",
               "icon_url": "#"
             }
           },
@@ -136,7 +168,6 @@
             "type": "social_icons",
             "settings": {
               "icon_image": "shopify://shop_images/x.svg",
-              "icon_image_alt": "x",
               "icon_url": "#"
             }
           },
@@ -144,7 +175,6 @@
             "type": "social_icons",
             "settings": {
               "icon_image": "shopify://shop_images/instagram.svg",
-              "icon_image_alt": "instagram",
               "icon_url": "#"
             }
           },
@@ -152,12 +182,14 @@
             "type": "social_icons",
             "settings": {
               "icon_image": "shopify://shop_images/pinterest.svg",
-              "icon_image_alt": "pinterest",
               "icon_url": "#"
             }
           }
         },
         "block_order": [
+          "announcementbar_bPkXei",
+          "announcementbar_LAD4t9",
+          "mega_menu_rQ4fhe",
           "social_icons_RbAicC",
           "social_icons_VXhypp",
           "social_icons_F7E4JK",
@@ -165,7 +197,10 @@
         ],
         "settings": {
           "logo": "shopify://shop_images/logo_2.svg",
-          "menu": "main-menu"
+          "menu": "main-menu",
+          "text": "SIGN UP TODAY FOR A",
+          "percentCoupon": "60% OFF COUPON",
+          "percentReward": "5% REWARD"
         }
       },
       "footer": {
@@ -174,11 +209,17 @@
           "logo": "shopify://shop_images/logo-white.svg",
           "footerText": "This is easy to update text from the footer widget area. Add here information about your store.",
           "menu": "footer",
-          "city_menu": "",
-          "article_name": "",
-          "article_1": "",
-          "article_2": "",
-          "article_3": ""
+          "city_menu": "city-menu",
+          "article_name": "latest news",
+          "article_1": "news/consectetur-aliquet",
+          "article_2": "news/adipiscing-duis",
+          "article_3": "news/dapibus-etiam-tellus"
+        }
+      },
+      "responsive-navigations": {
+        "type": "responsive-navigations",
+        "settings": {
+          "menu": ""
         }
       }
     },

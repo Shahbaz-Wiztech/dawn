@@ -11,35 +11,145 @@
   "sections": {
     "bannerSection": {
       "type": "bannerSection",
+      "blocks": {
+        "banner_block_YFWBPL": {
+          "type": "banner_block",
+          "settings": {
+            "arrival_text": "Brand New colection",
+            "brand_name": "brandy",
+            "description": "<p>Each frame features tinted lenses to protect your eyes from harmful UV rays.</p>",
+            "btn_text": "go to shop",
+            "btn_url": "shopify://collections/all",
+            "glasses_image": "shopify://shop_images/first-slide-glasses.webp",
+            "modal_image": "shopify://shop_images/model-1.webp",
+            "background_color": "#6aa6cb"
+          }
+        },
+        "banner_block_J9yAxr": {
+          "type": "banner_block",
+          "settings": {
+            "arrival_text": "Brand New colection",
+            "brand_name": "brandy",
+            "description": "<p>Our collection of women's eyeglasses includes a little taste of every and any style that a woman. </p>",
+            "btn_text": "go to shop",
+            "btn_url": "shopify://collections/all",
+            "glasses_image": "shopify://shop_images/second-slide-glasses.png",
+            "modal_image": "shopify://shop_images/model-2.webp",
+            "background_color": "#ffb75d"
+          }
+        },
+        "banner_block_WDyL7C": {
+          "type": "banner_block",
+          "settings": {
+            "arrival_text": "Brand New colection",
+            "brand_name": "brandy",
+            "description": "<p>Whether you're looking for something designer, retro or rimless; our women’s collection is waiting for you!</p>",
+            "btn_text": "go to shop",
+            "btn_url": "shopify://collections/all",
+            "glasses_image": "shopify://shop_images/third-slide-glasses.webp",
+            "modal_image": "shopify://shop_images/model-3.webp",
+            "background_color": "#f2f2f2"
+          }
+        }
+      },
+      "block_order": [
+        "banner_block_YFWBPL",
+        "banner_block_J9yAxr",
+        "banner_block_WDyL7C"
+      ],
       "settings": {}
     },
     "home-card-grid-1": {
       "type": "home-card-grid",
-      "settings": {}
+      "settings": {
+        "heading": "FIND THE PERFECT FIT",
+        "description": "<p>Find the perfect fit for your style and vision with our curated collection of eyeglasses. Explore chic frames that effortlessly combine fashion and function. Your ideal eyewear awaits – embrace clarity and comfort in every pair</p>",
+        "collection": "find-the-perfect-fit"
+      }
     },
     "home-card-grid-2": {
       "type": "home-card-grid",
-      "settings": {}
+      "settings": {
+        "heading": "NEW COLLECTIONOF RAY BAN",
+        "description": "<p>We offer the best selection of sunglasses and designer glasses at prices you will love! We carry designer sunglasses that retail for much more at other stores.</p>",
+        "collection": "new-collectionof-ray-ban"
+      }
     },
     "home-card-grid-3": {
       "type": "home-card-grid",
-      "settings": {}
+      "settings": {
+        "heading": "LensQuick: Your Shortcut to Stylish VisionShop Now!",
+        "description": "<p>Discover crystal-clear vision in a snap with LensQuick! Shop our contact lens sale for instant style and savings. Don’t miss out – see clearly, shop now!</p>",
+        "collection": "lensquick"
+      }
     },
     "home-category-card": {
       "type": "home-category-card",
-      "settings": {}
+      "blocks": {
+        "category_card_f4GMLN": {
+          "type": "category_card",
+          "settings": {
+            "category": "Sunglasses",
+            "collection_name": "Collection for man",
+            "description_text": "<p>Stay cool and shady with a<br/>full range of our sunglasses</p>",
+            "btn": "View All",
+            "btn_url": "shopify://collections",
+            "modal_image": "shopify://shop_images/category-card-model-1.webp",
+            "color": "#6aa6cb"
+          }
+        },
+        "category_card_M9Kh4R": {
+          "type": "category_card",
+          "settings": {
+            "category": "Sunglasses",
+            "collection_name": "Collection for woman",
+            "description_text": "<p>Choose from basic color tints<br/>to mirrored lenses and polarised tints.</p>",
+            "btn": "View All",
+            "btn_url": "shopify://collections",
+            "modal_image": "shopify://shop_images/glasses-woman-removebg-preview_11791850-f3e3-4fd9-aafd-a782038b74d4.png",
+            "color": "#ffb75d"
+          }
+        }
+      },
+      "block_order": [
+        "category_card_f4GMLN",
+        "category_card_M9Kh4R"
+      ],
+      "settings": {
+        "category": "",
+        "collection_name": "",
+        "description_text": "",
+        "btn": "",
+        "btn_url": "",
+        "color": ""
+      }
     },
     "home-latest-blog": {
       "type": "home-latest-blog",
-      "settings": {}
+      "settings": {
+        "heading": "LATEST FROM OUR BLOG",
+        "paragraph": "<p>Lorem ipsum dolor sit amet, consectetu adipiscing elit, sed do eiusmod lorem solo tempor incididunt ut labore et dolore magna aliqua.</p>",
+        "blog": "news"
+      }
     },
     "branding-banner": {
       "type": "branding-banner",
-      "settings": {}
+      "settings": {
+        "collection_name": "BRAND FOR MAN",
+        "product_name": "STEVE MCQUEEN PERSOL 714 Re-ISSUED",
+        "product_description": "<p>Now is your chance to grab this iconic eye-wear before it disappears again</p>",
+        "discount": "20% OFF",
+        "btn": "Shop Now",
+        "btn_url": "shopify://collections/all",
+        "background_image": "shopify://shop_images/brand-promotion-banner.webp"
+      }
     },
     "home-best-selling": {
       "type": "home-best-selling",
-      "settings": {}
+      "settings": {
+        "primaryCollection": "men",
+        "secondaryCollection": "featured"
+      }
     }
   },
   "order": [
