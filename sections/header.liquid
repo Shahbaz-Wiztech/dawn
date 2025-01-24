@@ -1,12 +1,12 @@
 <div class="bg-primary text-white d-flex align-items-center justify-content-center">
   <div class="container">
-    <div class="announcementbar py-2">
+    <div class="announcementbar">
       <div class="row">
         <div class="d-none d-lg-flex col-md-3">
           <div class="d-flex align-items-center justify-content-center justify-content-md-start gap-2 gap-md-3">
             <a href="#" class="text-white">English</a>
             <strong class="text-center m-0">|</strong>
-            <strong class="text-center m-0">USD ($)</strong>
+            <span class="text-center m-0">USD ($)</span>
           </div>
         </div>
         <div class="col-lg-6 mt-2 mt-md-0">
@@ -24,7 +24,7 @@
                           width="13px"
                           style="filter: invert(1);"
                         >
-                        <strong class="text-center px-2 m-0">{{ block.settings.title }}</strong>
+                        <span class="text-center px-2 m-0">{{ block.settings.title }}</span>
                         <a href="{{ block.settings.url }}" class="text-white">{{ block.settings.button }}</a>
                       </div>
                     </div>
@@ -94,7 +94,7 @@
     </div>
   </div>
 </div>
-<div class="main-header bg-white py-3 py-md-4 border-bottom">
+<div class="main-header bg-white border-bottom">
   <div class="container">
     <div class="row">
       <div class="d-block d-lg-none col-3 col-sm-4">
@@ -115,6 +115,7 @@
               alt="{{ shop.name }}"
               width="auto"
               height="auto"
+              class="logo"
             >
           {% else %}
             <h1 class="">{{ shop.name }}</h1>
@@ -141,8 +142,8 @@
                             <div class="col-md-4 dropdown-menu-category p-1">
                               <ul class="d-flex flex-column align-items-start">
                                 <li>
-                                  <a href="#" class="menu-title">
-                                    <h6>Category</h6>
+                                  <a href="{{ collection.url }}" class="menu-title">
+                                    <h6>Collections</h6>
                                   </a>
                                 </li>
                                 {% for category in block.settings.category_list %}
@@ -157,13 +158,13 @@
                             <div class="col-md-4 dropdown-menu-brands-lens p-1">
                               <ul class="d-flex flex-column align-items-start">
                                 <li>
-                                  <a href="#" class="menu-title">
+                                  <a href="{{ collection.url }}" class="menu-title">
                                     <h6>Brand</h6>
                                   </a>
                                 </li>
                                 {% for brand in block.settings.brands_list.links %}
                                   <li>
-                                    <a href="?filter.p.vendor={{ brand.title }}">
+                                    <a href="{{ shop.url }}/collections/all/?filter.p.vendor={{ brand.title }}">
                                       {{- brand.title -}}
                                     </a>
                                   </li>
@@ -171,7 +172,7 @@
                               </ul>
                               <ul class="d-flex flex-column align-items-start pt-4">
                                 <li>
-                                  <a href="#" class="menu-title">
+                                  <a href="{{ collection.url }}" class="menu-title">
                                     <h6>Contact Lenses</h6>
                                   </a>
                                 </li>

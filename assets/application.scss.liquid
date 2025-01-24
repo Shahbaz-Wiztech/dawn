@@ -176,6 +176,10 @@ body{
     .btn-light{
         background: var(--section-bg) !important;
     }
+    .disabled{
+        opacity: 0.5;
+        pointer-events: none;
+    }
 }
 
 .bg-primary {
@@ -185,7 +189,10 @@ body{
     color:var(--black);
 }
 .announcementbar{
-    font-size: 15px;
+    font-size: 14px;
+    font-weight:400;
+    padding:5px;
+
     .carousel{
         .carousel-control-next-icon, .carousel-control-prev-icon {
             width: 1.5rem;
@@ -208,6 +215,14 @@ body{
 }
 
 .main-header{
+    min-height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    .logo{
+        width: 100%;
+    max-width: 260px;
+    }
     .menu-list{
         .menu-list-item{
             text-decoration: none;
@@ -215,6 +230,7 @@ body{
             text-transform: uppercase;
             border-bottom: 2px solid transparent;
             padding-bottom: 5px;
+            font-size:14px;
             &.active,
             &:hover{
                 color: var(--primary);
@@ -304,13 +320,14 @@ body{
             }
         }
         .dropdown{
-            margin-bottom: 5px;
+            margin-bottom: 7px;
             a{
                 text-decoration: none;
                 font-weight: 400;
                 text-transform: uppercase;
                 border-bottom: 2px solid transparent;
-                padding-bottom: 5px;
+                padding-bottom: 7px;
+                font-size:14px;
                 &.active,
                 &:hover{
                     color: var(--primary);
@@ -818,28 +835,29 @@ body{
 .main-footer{
     background:var(--secondary);
     color:var(--white);
-    padding-top:3rem;
+    padding:4rem 0 2rem;
     .footer-content{
         display:flex;
         align-items:start;
-        gap:2rem;
         flex-wrap:wrap;
-        padding-bottom:3rem;
+        padding-bottom:2rem; 
         .form-group{
             display:flex;
             gap:1rem;
             align-items:center;
             flex-direction:column;
-            max-width: 260px;
-            width: auto;
+            /* max-width: 260px;
+            width: auto; */
             span{
                 color:var(--white);
                 border-bottom: 2px solid var(--border-color);
                 font-size:calc(1 * 1rem);
-                padding:1rem;
+                padding-bottom:1rem;
                 width:100%;
                 text-transform:uppercase;
                 line-height:1.5;
+                font-size:14px;
+                margin-bottom:1rem;
             }
             ul{
                 li{
@@ -849,7 +867,7 @@ body{
                         color:var(--white);
                         text-transform:capitalize;
                         line-height:1.5;
-                        font-size:1.1rem;
+                        font-size:16px;
                         text-decoration:none;
                         white-space: nowrap;
                         overflow: hidden;
@@ -876,6 +894,7 @@ body{
                     overflow: hidden;
                     text-overflow: ellipsis;
                     width:170px;
+                    font-size:16px;
                     &:hover{
                         color:var(--text-primary);
                     }
@@ -890,6 +909,7 @@ body{
                 }
             }
             .TagsCloudBox{
+                padding:1px 20px;
                 &:hover{
                     background:var(--primary);
                 }
