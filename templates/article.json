@@ -11,7 +11,16 @@
   "sections": {
     "template": {
       "type": "template-article",
-      "settings": {}
+      "settings": {
+        "enable_author": true,
+        "enable_published_date": true,
+        "enable_views_count": true,
+        "enable_comment_count": true,
+        "blog_category": "blogs-categories",
+        "latest_blogs": "news",
+        "related_blogs": "news",
+        "enable_comments": true
+      }
     }
   },
   "order": [

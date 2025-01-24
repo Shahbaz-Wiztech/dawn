@@ -12,9 +12,110 @@
     "template": {
       "type": "template-page",
       "settings": {}
+    },
+    "about_banner_UBbWTf": {
+      "type": "about-banner",
+      "settings": {
+        "subText": "Easy to edit text",
+        "page_title": "ABOUT US",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do  labore et dolore magna aliqua.</p>",
+        "facebook_URL": "#",
+        "twitter_URL": "#",
+        "instagram_URL": "#",
+        "pinterest_URL": "#"
+      }
+    },
+    "content_block_intro_Y3aPUG": {
+      "type": "content-block-intro",
+      "settings": {
+        "modal_image": "shopify://shop_images/about-us1.webp",
+        "subtext": "Easy to edit text",
+        "title": "INTRODUCTION",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>"
+      }
+    },
+    "content_block_technology_PANR78": {
+      "type": "content-block-technology",
+      "settings": {
+        "modal_image": "shopify://shop_images/about-us2.webp",
+        "subtext": "Easy to edit text",
+        "title": "NEW TECHNOLOGY",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>"
+      }
+    },
+    "testimonials_hKMwqP": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonials_card_dHiPQA": {
+          "type": "testimonials_card",
+          "settings": {
+            "name": "Joan Barber",
+            "designation": "General Manager",
+            "url": "https://www.8theme.com",
+            "Description": "<p>Id malesuada consectetur eu libero parturient fermentum tempor sem hac scelerisque sem iaculis suspendisse parturient aptent erat parturient id volutpat. A condimentum justo turpis penatibus tristique dolor blandit dictumst feugiat vel arcu ridiculus posuere ad vestibulum vulputate erat at viverra. Mi tempus eu fusce parturient mi per suspendisse a dictumst placerat ligula parturient tincidunt consectetur condimentum integer.</p>"
+          }
+        },
+        "testimonials_card_79RJJe": {
+          "type": "testimonials_card",
+          "settings": {
+            "name": "Charles Benson",
+            "designation": "Lead Developer",
+            "url": "https://www.8theme.com",
+            "Description": "<p>Id malesuada consectetur eu libero parturient fermentum tempor sem hac scelerisque sem iaculis suspendisse parturient aptent erat parturient id volutpat. A condimentum justo turpis penatibus tristique dolor blandit dictumst feugiat vel arcu ridiculus posuere ad vestibulum vulputate erat at viverra. Mi tempus eu fusce parturient mi per suspendisse a dictumst placerat ligula parturient tincidunt consectetur condimentum integer.</p>"
+          }
+        },
+        "testimonials_card_rEUqwr": {
+          "type": "testimonials_card",
+          "settings": {
+            "name": "Kellie Swanson",
+            "designation": "CEO of XStore Ltd",
+            "url": "https://www.8theme.com",
+            "Description": "<p>Id malesuada consectetur eu libero parturient fermentum tempor sem hac scelerisque sem iaculis suspendisse parturient aptent erat parturient id volutpat. A condimentum justo turpis penatibus tristique dolor blandit dictumst feugiat vel arcu ridiculus posuere ad vestibulum vulputate erat at viverra. Mi tempus eu fusce parturient mi per suspendisse a dictumst placerat ligula parturient tincidunt consectetur condimentum integer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "testimonials_card_dHiPQA",
+        "testimonials_card_79RJJe",
+        "testimonials_card_rEUqwr"
+      ],
+      "settings": {
+        "heading": "MORE THEN JUST GLASSES"
+      }
+    },
+    "processes_section_788c8m": {
+      "type": "processes-section",
+      "settings": {
+        "icon_1": "<i class='bi bi-person-fill'></i>",
+        "title_1": "24/7 SUPPORT CENTER",
+        "description_1": "<p>Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+        "icon_2": "<i class='bi bi-megaphone-fill'></i>",
+        "title_2": "PAYMENT PROCESS",
+        "description_2": "<p>Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+        "icon_3": "<i class='bi bi-book-half'></i>",
+        "title_3": "FREE SHIPPING",
+        "description_3": "<p>Lorem ipsum dolor sit amet, consectetur adipis cing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+      }
+    },
+    "about_brand_hLtr6q": {
+      "type": "about-brand",
+      "settings": {
+        "image_1": "shopify://shop_images/bloom.png",
+        "image_2": "shopify://shop_images/monster.png",
+        "image_3": "shopify://shop_images/silverstone.png",
+        "image_4": "shopify://shop_images/modes.png",
+        "image_5": "shopify://shop_images/mangler.png",
+        "image_6": "shopify://shop_images/winston.png"
+      }
     }
   },
   "order": [
-    "template"
+    "template",
+    "about_banner_UBbWTf",
+    "content_block_intro_Y3aPUG",
+    "content_block_technology_PANR78",
+    "testimonials_hKMwqP",
+    "processes_section_788c8m",
+    "about_brand_hLtr6q"
   ]
 }
