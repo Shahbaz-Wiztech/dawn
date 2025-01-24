@@ -1,7 +1,16 @@
 {% assign unique_string = product.title | append: now | replace: ':', '' | replace: ' ', '-' %}
 <div class="product-card">
   <div class="card-img-container">
-    <i class="bi bi-heart"></i>
+    <button
+      data-with-epi="true"
+      data-swaction="addToWishlist"
+      data-product-id="{{ product.id }}"
+      data-variant-id="{{ product.variants[0].id }}"
+      data-product-url="{{ shop.url }}{{ product.url }}"
+      class="colorButton swym-button swym-add-to-wishlist bg-transparent">
+      <i class="bi bi-heart-fill"></i>
+    </button>
+
     <div id="{{ unique_string }}" class="carousel slide product-img-slider">
       <div class="carousel-inner">
         {% if product.images.size > 0 %}
@@ -62,3 +71,15 @@
   </div>
 </div>
 {% render 'quick-view-sidebar', product: product, unique_string: unique_string %}
+
+<script>
+
+  document.querySelectorAll('.colorButton').forEach((button) => {
+    button.addEventListener('click', function () {
+      const icon = this.querySelector('i');
+      if (icon) {
+        icon.classList.add('text-primary');
+      }
+    });
+  });
+</script>
