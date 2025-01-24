@@ -58,7 +58,7 @@
       </div>
       <!-- End of Judge.me code -->
     </div>
-    <p class="price">{{ product.price | money }}</p>
+    <p class="price">${{ product.price | money_without_currency }}</p>
   </div>
 </div>
 {% render 'quick-view-sidebar', product: product, unique_string: unique_string %}

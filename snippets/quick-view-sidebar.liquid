@@ -106,7 +106,7 @@
       <h2>
         <a href="{{ product.url }}">{{ product.title }}</a>
       </h2>
-      <p>{{ product.price | money }}</p>
+      <p>${{ product.price | money_without_currency }}</p>
       <div class="d-flex align-items-center justify-content-start gap-2 mb-3">
         <div class="product-rating">
           <!-- Start of Judge.me code -->

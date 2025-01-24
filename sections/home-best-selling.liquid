@@ -28,9 +28,9 @@
                             </div>
                             <div class="price">
                                 {% if product.compare_at_price != blank %}
-                                    <s>{{ product.compare_at_price |  money }}</s>
+                                    <s>${{ product.compare_at_price }}</s>
                                 {% endif %} 
-                                {{ product.price |  money }} 
+                                ${{ product.price }} 
                             </div>
                         </div>
                     </div>
@@ -66,9 +66,9 @@
                             </div>
                             <div class="price">
                                 {% if product.compare_at_price != blank %}
-                                    <s>{{ product.compare_at_price |  money }}</s>
+                                    <s>${{ product.compare_at_price }}</s>
                                 {% endif %} 
-                                {{ product.price |  money }} 
+                                ${{ product.price }} 
                             </div>
                         </div>
                     </div>

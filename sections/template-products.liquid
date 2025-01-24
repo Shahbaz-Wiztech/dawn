@@ -61,10 +61,10 @@
           <div class="buy-proccess d-flex flex-column mt-2">
             <div class="d-flex align-items-center gap-2 mb-2">
               {% if product.compare_at_price != blank %}
-                <span><s>{{ product.compare_at_price |  money }}</s></span>
-                <span class="text-danger">{{ product.price | money }}</span>
+                <span><s>${{ product.compare_at_price }}</s></span>
+                <span class="text-danger">${{ product.price }}</span>
                 {% else %}
-                <span>{{ product.price | money }}</span>
+                <span>${{ product.price }}</span>
               {% endif %} 
             </div>
             <form method="post" action="/cart/add" class="cart-wishlist-buttons-container">
