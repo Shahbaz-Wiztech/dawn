@@ -163,7 +163,7 @@
                                 </li>
                                 {% for brand in block.settings.brands_list.links %}
                                   <li>
-                                    <a href="{{ brand.url }}">
+                                    <a href="?filter.p.vendor={{ brand.title }}">
                                       {{- brand.title -}}
                                     </a>
                                   </li>
@@ -175,10 +175,10 @@
                                     <h6>Contact Lenses</h6>
                                   </a>
                                 </li>
-                                {% for lenses in block.settings.contact_lenses.links %}
+                                {% for lanses in block.settings.lenses %}
                                   <li>
-                                    <a href="{{ lenses.url }}">
-                                      {{- lenses.title -}}
+                                    <a href="{{ lanses.url }}">
+                                      {{- lanses.title -}}
                                     </a>
                                   </li>
                                 {% endfor %}
@@ -587,8 +587,8 @@
           "label": "Brand List"
         },
         {
-          "type": "link_list",
-          "id": "contact_lenses",
+          "type": "collection_list",
+          "id": "lenses",
           "label": "Contact Lenses"
         },
         {

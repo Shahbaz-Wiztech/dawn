@@ -47,8 +47,8 @@
     <a href="{{ product.url }}">
       {% assign title_words = product.title | split: ' ' %}
       <h3 title="{{ product.title }}">
-        {{ title_words | slice: 0, 6 | join: ' ' }}
-        {% if title_words.size > 6 %}...{% endif %}
+        {{ title_words | slice: 0, 3 | join: ' ' }}
+        {% if title_words.size > 3 %}...{% endif %}
       </h3>
     </a>
     <div class="product-rating">

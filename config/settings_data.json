@@ -148,12 +148,15 @@
               "title": "Shop",
               "category_list": [
                 "find-the-perfect-fit",
-                "frontpage",
                 "men",
-                "women-glasses"
+                "women-glasses",
+                "lensquick"
               ],
               "brands_list": "brands",
-              "contact_lenses": "contact-lenses",
+              "lenses": [
+                "find-the-perfect-fit",
+                "lensquick"
+              ],
               "mega_menu_image": "shopify://shop_images/product-1.webp"
             }
           },
