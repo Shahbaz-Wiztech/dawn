@@ -2,7 +2,7 @@
 <div class="product-card-item {% if product.compare_at_price != blank %}on-sale{% endif %}">
   <div class="product-card-head">
     <div class="on-sale-badge">Sale</div>
-    <div class="add-to-favourite active"><i class="bi bi-heart"></i></div>
+    {% comment %} <div class="add-to-favourite active"><i class="bi bi-heart"></i></div> {% endcomment %}
     <a href="{{ product.url }}" class="normal-img">
       <img src="{{ product.images[0] | img_url: 'master' }}" height="auto" width="auto" alt="product-img">
     </a>
