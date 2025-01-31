@@ -69,19 +69,28 @@
             </div>
             <form method="post" action="/cart/add" class="cart-wishlist-buttons-container">
             <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-            <div class="d-flex gap-3 mb-3">
-              <select min="1" type="number" id="quantity" name="quantity" value="1" class="form-control">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+              <div class="d-flex gap-3 mb-3">
+                <select min="1" type="number" id="quantity" name="quantity" value="1" class="form-control">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
                 </select>
-                <button class="disabled">Add Prescription</button>
-                </div>
-                <button href="javascript:void(0);" type="submit" class="add-to-cart">
-                  <i class="bi bi-cart"></i> Add to Cart
-                </button>
+                {% comment %} <button class="disabled">Add Prescription</button> {% endcomment %}
+                 <a
+                  href="javascript:void(0);"
+                  class="btn add-prescription"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                  >Add Prescription</a
+                > 
+              {% comment %} <label for="shahbazData">shahbazData</label>
+                <input type="text" name="properties[shahbazData]" id="shahbazData">  {% endcomment %}
+              </div>
+              <button type="submit" class="add-to-cart">
+                <i class="bi bi-cart"></i> Add to Cart
+              </button>
             </form>
             <div class="or mt-3">
               <p>OR</p>
@@ -308,3 +317,17 @@
     <!-- End of Judge.me code -->
   </div>
 </section>
+
+ {% comment %} <!-- Modal --> {% endcomment %}
+ <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 100vw;height:400px;">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button type="button" class="btn-close" id="prescription-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% render 'prescription' , product:product %}
+      </div>
+    </div>
+  </div>
+</div> 

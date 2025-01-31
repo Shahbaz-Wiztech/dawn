@@ -44,6 +44,29 @@
                               <div class="product-remove">
                                 <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" class="remove-item text-decoration-underline">Remove</a>
                               </div>
+                              {% comment %} <!-- Button trigger modal --> {% endcomment %}
+                              <a type="button" class="text-decoration-underline" href="javascript:void(0);" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                Show Prescription
+                              </a>
+
+                              {% comment %} <!-- Modal --> {% endcomment %}
+                              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog" >
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="staticBackdropLabel">Prescriptions</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <ul>
+                                      {% for prop in item.properties %}
+                                          <li class="row"><strong class="col-sm-6">{{ prop[0] }}:</strong> <span class="col-sm-6">{{ prop[1] }}</span></li>
+                                        {% endfor %}
+                                        </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                           </td>
                           <td>
