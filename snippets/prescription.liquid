@@ -24,18 +24,18 @@
             <p>Prescription</p>
           </div>
           <div class="stepwizard-step">
-            <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled"> 2 </a>
+            <a href="#step-2" type="button" class="btn btn-light btn-circle" disabled="disabled"> 2 </a>
             <p>Rx Type</p>
           </div>
           <div class="stepwizard-step">
-            <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled"> 3 </a>
+            <a href="#step-3" type="button" class="btn btn-light btn-circle" disabled="disabled"> 3 </a>
             <p>Lens Type</p>
           </div>
           <div class="stepwizard-step" style="display:none;">
             <a
               href="#step-no"
               type="button"
-              class="btn btn-default btn-circle"
+              class="btn btn-light btn-circle"
               disabled="disabled"
               >&nbsp;</a
             >
@@ -43,16 +43,15 @@
           </div>
 
           <div class="stepwizard-step">
-            <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled"> 4 </a>
+            <a href="#step-4" type="button" class="btn btn-light btn-circle" disabled="disabled"> 4 </a>
             <p>Lens Options</p>
           </div>
           <div class="stepwizard-step">
-            <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled"> 5 </a>
+            <a href="#step-5" type="button" class="btn btn-light btn-circle" disabled="disabled"> 5 </a>
             <p>Coating</p>
           </div>
         </div>
       </div>
-
       <form role="form" name="stepfrm" action="" id="stepfrm">
         <input type="hidden" name="lenses_id" id="lenses_id" value="">
         <input type="hidden" name="lenses_label" id="lenses_label" value="">
@@ -178,9 +177,7 @@
         </div>
 
         <div class="row setup-content" id="step-1">
-          <h3 style="color:red;text-align:center;font-size:20px;">
-            Apply coupon code in cart to get discounted price!
-          </h3>
+          {% comment %} <h3 style="color:red;text-align:center;font-size:20px;">Apply coupon code in cart to get discounted price!</h3> {% endcomment %}
           <div class="row" id="savedpresc" style="display:none;">
             <div class="col-md-12">
               <div class="form-group">
@@ -219,12 +216,178 @@
           </div>
 
           <div class="col-xs-12">
-            <h3>Step 1</h3>
+            <h3 class="text-black">Step 1</h3>
 
             <div class="form-group">
               <div class="row">
-                <div class="col-md-8">
-                  <table class="table table-bordered">
+                <div class="col-md-7">
+                  <strong> SAVE PRESCRIPTION </strong>
+                  <div class="form-group">
+                      <label class="control-label" for="patient_name"> Name </label>
+                        <input
+                          name="patient_name"
+                          id="patient_name"
+                          type="text"
+                          placeholder="Enter Patient Name"
+                          class="form-control input-md"
+                          onkeypress="return noEnterOnSubmit()"
+                        >
+                  </div>
+                </div>
+                <div class="col-md-5">
+                  <div style="background:#DCDCDC;border:1px solid;padding:2px;">
+                    <div
+                      id="singlepd"
+                      style="display:block;text-align:center;margin-bottom:20px;"
+                    >
+                      <label> PD </label>
+                      <select
+                        class="form-control select"
+                        id="pd_single"
+                        name="pd_single"
+                      >
+                        <option value="">Select</option>
+                        <option value="79" cid="345" price="0">79</option>
+                        <option value="78" cid="344" price="0">78</option>
+                        <option value="77" cid="343" price="0">77</option>
+                        <option value="76" cid="342" price="0">76</option>
+                        <option value="75" cid="341" price="0">75</option>
+                        <option value="74" cid="340" price="0">74</option>
+                        <option value="73" cid="339" price="0">73</option>
+                        <option value="72" cid="338" price="0">72</option>
+                        <option value="71" cid="337" price="0">71</option>
+                        <option value="70" cid="336" price="0">70</option>
+                        <option value="69" cid="335" price="0">69</option>
+                        <option value="68" cid="334" price="0">68</option>
+                        <option value="67" cid="333" price="0">67</option>
+                        <option value="66" cid="332" price="0">66</option>
+                        <option value="65" cid="331" price="0">65</option>
+                        <option value="64" cid="330" price="0">64</option>
+                        <option value="63" cid="329" price="0" selected>63</option>
+                        <option value="62" cid="328" price="0">62</option>
+                        <option value="61" cid="327" price="0">61</option>
+                        <option value="60" cid="326" price="0">60</option>
+                        <option value="59" cid="325" price="0">59</option>
+                        <option value="58" cid="324" price="0">58</option>
+                        <option value="57" cid="323" price="0">57</option>
+                        <option value="56" cid="322" price="0">56</option>
+                        <option value="55" cid="321" price="0">55</option>
+                        <option value="54" cid="320" price="0">54</option>
+                        <option value="53" cid="319" price="0">53</option>
+                        <option value="52" cid="318" price="0">52</option>
+                        <option value="51" cid="317" price="0">51</option>
+                        <option value="50" cid="316" price="0">50</option>
+                        <option value="49" cid="315" price="0">49</option>
+                        <option value="48" cid="314" price="0">48</option>
+                        <option value="47" cid="313" price="0">47</option>
+                      </select>
+                    </div>
+                    <div id="dualpd" style="display:none;padding:5px;">
+                      <table class="table">
+                        <tr>
+                          <td>RIGHT PD</td>
+                          <td>LEFT PD</td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <select
+                              class="form-control select"
+                              id="pd_right"
+                              name="pd_right"
+                            >
+                              <option value="">Select</option>
+                              <option value="40" cid="391" price="0">40</option>
+                              <option value="39.5" cid="390" price="0">39.5</option>
+                              <option value="39" cid="389" price="0">39</option>
+                              <option value="38.5" cid="388" price="0">38.5</option>
+                              <option value="38" cid="387" price="0">38</option>
+                              <option value="37.5" cid="386" price="0">37.5</option>
+                              <option value="37" cid="385" price="0">37</option>
+                              <option value="36.5" cid="384" price="0">36.5</option>
+                              <option value="36" cid="383" price="0">36</option>
+                              <option value="35.5" cid="382" price="0">35.5</option>
+                              <option value="35" cid="381" price="0">35</option>
+                              <option value="34.5" cid="380" price="0">34.5</option>
+                              <option value="34" cid="379" price="0">34</option>
+                              <option value="33.5" cid="378" price="0">33.5</option>
+                              <option value="33" cid="377" price="0">33</option>
+                              <option value="32.5" cid="376" price="0">32.5</option>
+                              <option value="32" cid="375" price="0">32</option>
+                              <option value="31.5" cid="374" price="0" selected>31.5</option>
+                              <option value="31" cid="373" price="0">31</option>
+                              <option value="30.5" cid="372" price="0">30.5</option>
+                              <option value="30" cid="371" price="0">30</option>
+                              <option value="29.5" cid="370" price="0">29.5</option>
+                              <option value="29" cid="369" price="0">29</option>
+                              <option value="28.5" cid="368" price="0">28.5</option>
+                              <option value="28" cid="367" price="0">28</option>
+                              <option value="27.5" cid="366" price="0">27.5</option>
+                              <option value="27" cid="365" price="0">27</option>
+                              <option value="26.5" cid="364" price="0">26.5</option>
+                              <option value="26" cid="363" price="0">26</option>
+                              <option value="25.5" cid="362" price="0">25.5</option>
+                              <option value="25" cid="361" price="0">25</option>
+                              <option value="24.5" cid="360" price="0">24.5</option>
+                              <option value="24" cid="359" price="0">24</option>
+                              <option value="23.5" cid="358" price="0">23.5</option>
+                              <option value="23" cid="357" price="0">23</option>
+                            </select>
+                          </td>
+                          <td>
+                            <select
+                              class="form-control select"
+                              id="pd_left"
+                              name="pd_left"
+                            >
+                              <option value="">Select</option>
+                              <option value="40" cid="391" price="0">40</option>
+                              <option value="39.5" cid="390" price="0">39.5</option>
+                              <option value="39" cid="389" price="0">39</option>
+                              <option value="38.5" cid="388" price="0">38.5</option>
+                              <option value="38" cid="387" price="0">38</option>
+                              <option value="37.5" cid="386" price="0">37.5</option>
+                              <option value="37" cid="385" price="0">37</option>
+                              <option value="36.5" cid="384" price="0">36.5</option>
+                              <option value="36" cid="383" price="0">36</option>
+                              <option value="35.5" cid="382" price="0">35.5</option>
+                              <option value="35" cid="381" price="0">35</option>
+                              <option value="34.5" cid="380" price="0">34.5</option>
+                              <option value="34" cid="379" price="0">34</option>
+                              <option value="33.5" cid="378" price="0">33.5</option>
+                              <option value="33" cid="377" price="0">33</option>
+                              <option value="32.5" cid="376" price="0">32.5</option>
+                              <option value="32" cid="375" price="0">32</option>
+                              <option value="31.5" cid="374" price="0" selected>31.5</option>
+                              <option value="31" cid="373" price="0">31</option>
+                              <option value="30.5" cid="372" price="0">30.5</option>
+                              <option value="30" cid="371" price="0">30</option>
+                              <option value="29.5" cid="370" price="0">29.5</option>
+                              <option value="29" cid="369" price="0">29</option>
+                              <option value="28.5" cid="368" price="0">28.5</option>
+                              <option value="28" cid="367" price="0">28</option>
+                              <option value="27.5" cid="366" price="0">27.5</option>
+                              <option value="27" cid="365" price="0">27</option>
+                              <option value="26.5" cid="364" price="0">26.5</option>
+                              <option value="26" cid="363" price="0">26</option>
+                              <option value="25.5" cid="362" price="0">25.5</option>
+                              <option value="25" cid="361" price="0">25</option>
+                              <option value="24.5" cid="360" price="0">24.5</option>
+                              <option value="24" cid="359" price="0">24</option>
+                              <option value="23.5" cid="358" price="0">23.5</option>
+                              <option value="23" cid="357" price="0">23</option>
+                            </select>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                    <input type="hidden" name="pdtype" id="pdtype" value="single">
+                    <p style="text-align:center;"><a href="javascript:;;" id="showpd"> I have 2 PD numbers. </a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12">
+                  <table class="table">
                     <tr>
                       <td></td>
                       <td class="phead">SPH</td>
@@ -1131,161 +1294,7 @@
                     </tr>
                   </table>
                 </div>
-                <div class="col-md-4">
-                  <div style="background:#DCDCDC;border:1px solid;padding:2px;">
-                    <div
-                      id="singlepd"
-                      style="display:block;text-align:center;margin-bottom:20px;"
-                    >
-                      <label> PD </label>
-                      <select
-                        class="form-control select"
-                        style="width:30%;margin:auto;"
-                        id="pd_single"
-                        name="pd_single"
-                      >
-                        <option value="">Select</option>
-                        <option value="79" cid="345" price="0">79</option>
-                        <option value="78" cid="344" price="0">78</option>
-                        <option value="77" cid="343" price="0">77</option>
-                        <option value="76" cid="342" price="0">76</option>
-                        <option value="75" cid="341" price="0">75</option>
-                        <option value="74" cid="340" price="0">74</option>
-                        <option value="73" cid="339" price="0">73</option>
-                        <option value="72" cid="338" price="0">72</option>
-                        <option value="71" cid="337" price="0">71</option>
-                        <option value="70" cid="336" price="0">70</option>
-                        <option value="69" cid="335" price="0">69</option>
-                        <option value="68" cid="334" price="0">68</option>
-                        <option value="67" cid="333" price="0">67</option>
-                        <option value="66" cid="332" price="0">66</option>
-                        <option value="65" cid="331" price="0">65</option>
-                        <option value="64" cid="330" price="0">64</option>
-                        <option value="63" cid="329" price="0" selected>63</option>
-                        <option value="62" cid="328" price="0">62</option>
-                        <option value="61" cid="327" price="0">61</option>
-                        <option value="60" cid="326" price="0">60</option>
-                        <option value="59" cid="325" price="0">59</option>
-                        <option value="58" cid="324" price="0">58</option>
-                        <option value="57" cid="323" price="0">57</option>
-                        <option value="56" cid="322" price="0">56</option>
-                        <option value="55" cid="321" price="0">55</option>
-                        <option value="54" cid="320" price="0">54</option>
-                        <option value="53" cid="319" price="0">53</option>
-                        <option value="52" cid="318" price="0">52</option>
-                        <option value="51" cid="317" price="0">51</option>
-                        <option value="50" cid="316" price="0">50</option>
-                        <option value="49" cid="315" price="0">49</option>
-                        <option value="48" cid="314" price="0">48</option>
-                        <option value="47" cid="313" price="0">47</option>
-                      </select>
-                    </div>
-                    <div id="dualpd" style="display:none;padding:5px;">
-                      <table class="table table-bordered">
-                        <tr>
-                          <td>RIGHT PD</td>
-                          <td>LEFT PD</td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <select
-                              class="form-control select"
-                              id="pd_right"
-                              name="pd_right"
-                            >
-                              <option value="">Select</option>
-                              <option value="40" cid="391" price="0">40</option>
-                              <option value="39.5" cid="390" price="0">39.5</option>
-                              <option value="39" cid="389" price="0">39</option>
-                              <option value="38.5" cid="388" price="0">38.5</option>
-                              <option value="38" cid="387" price="0">38</option>
-                              <option value="37.5" cid="386" price="0">37.5</option>
-                              <option value="37" cid="385" price="0">37</option>
-                              <option value="36.5" cid="384" price="0">36.5</option>
-                              <option value="36" cid="383" price="0">36</option>
-                              <option value="35.5" cid="382" price="0">35.5</option>
-                              <option value="35" cid="381" price="0">35</option>
-                              <option value="34.5" cid="380" price="0">34.5</option>
-                              <option value="34" cid="379" price="0">34</option>
-                              <option value="33.5" cid="378" price="0">33.5</option>
-                              <option value="33" cid="377" price="0">33</option>
-                              <option value="32.5" cid="376" price="0">32.5</option>
-                              <option value="32" cid="375" price="0">32</option>
-                              <option value="31.5" cid="374" price="0" selected>31.5</option>
-                              <option value="31" cid="373" price="0">31</option>
-                              <option value="30.5" cid="372" price="0">30.5</option>
-                              <option value="30" cid="371" price="0">30</option>
-                              <option value="29.5" cid="370" price="0">29.5</option>
-                              <option value="29" cid="369" price="0">29</option>
-                              <option value="28.5" cid="368" price="0">28.5</option>
-                              <option value="28" cid="367" price="0">28</option>
-                              <option value="27.5" cid="366" price="0">27.5</option>
-                              <option value="27" cid="365" price="0">27</option>
-                              <option value="26.5" cid="364" price="0">26.5</option>
-                              <option value="26" cid="363" price="0">26</option>
-                              <option value="25.5" cid="362" price="0">25.5</option>
-                              <option value="25" cid="361" price="0">25</option>
-                              <option value="24.5" cid="360" price="0">24.5</option>
-                              <option value="24" cid="359" price="0">24</option>
-                              <option value="23.5" cid="358" price="0">23.5</option>
-                              <option value="23" cid="357" price="0">23</option>
-                            </select>
-                          </td>
-                          <td>
-                            <select
-                              class="form-control select"
-                              id="pd_left"
-                              name="pd_left"
-                            >
-                              <option value="">Select</option>
-                              <option value="40" cid="391" price="0">40</option>
-                              <option value="39.5" cid="390" price="0">39.5</option>
-                              <option value="39" cid="389" price="0">39</option>
-                              <option value="38.5" cid="388" price="0">38.5</option>
-                              <option value="38" cid="387" price="0">38</option>
-                              <option value="37.5" cid="386" price="0">37.5</option>
-                              <option value="37" cid="385" price="0">37</option>
-                              <option value="36.5" cid="384" price="0">36.5</option>
-                              <option value="36" cid="383" price="0">36</option>
-                              <option value="35.5" cid="382" price="0">35.5</option>
-                              <option value="35" cid="381" price="0">35</option>
-                              <option value="34.5" cid="380" price="0">34.5</option>
-                              <option value="34" cid="379" price="0">34</option>
-                              <option value="33.5" cid="378" price="0">33.5</option>
-                              <option value="33" cid="377" price="0">33</option>
-                              <option value="32.5" cid="376" price="0">32.5</option>
-                              <option value="32" cid="375" price="0">32</option>
-                              <option value="31.5" cid="374" price="0" selected>31.5</option>
-                              <option value="31" cid="373" price="0">31</option>
-                              <option value="30.5" cid="372" price="0">30.5</option>
-                              <option value="30" cid="371" price="0">30</option>
-                              <option value="29.5" cid="370" price="0">29.5</option>
-                              <option value="29" cid="369" price="0">29</option>
-                              <option value="28.5" cid="368" price="0">28.5</option>
-                              <option value="28" cid="367" price="0">28</option>
-                              <option value="27.5" cid="366" price="0">27.5</option>
-                              <option value="27" cid="365" price="0">27</option>
-                              <option value="26.5" cid="364" price="0">26.5</option>
-                              <option value="26" cid="363" price="0">26</option>
-                              <option value="25.5" cid="362" price="0">25.5</option>
-                              <option value="25" cid="361" price="0">25</option>
-                              <option value="24.5" cid="360" price="0">24.5</option>
-                              <option value="24" cid="359" price="0">24</option>
-                              <option value="23.5" cid="358" price="0">23.5</option>
-                              <option value="23" cid="357" price="0">23</option>
-                            </select>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                    <input type="hidden" name="pdtype" id="pdtype" value="single">
-                    <p style="text-align:center;"><a href="javascript:;;" id="showpd"> I have 2 PD numbers. </a></p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                   <label
                     ><input
                       type="radio"
@@ -1296,7 +1305,7 @@
                   >
                   &nbsp;&nbsp;PRISM
                   </label>
-                  <table class="table table-bordered" id="prismtbl" style="display:none;">
+                  <table class="table" id="prismtbl" style="display:none;">
                     <tr>
                       <td>TYPE</td>
                       <td>Prism</td>
@@ -1398,27 +1407,6 @@
                     </tr>
                   </table>
                 </div>
-                <div class="col-md-12">
-                  <h5>
-                    <strong> SAVE PRESCRIPTION </strong>
-                  </h5>
-                  <div class="form-group">
-                    <div class="col-md-12">
-                      <div class="col-sm-1"><label class="control-label" for="patient_name"> Name </label></div>
-                      &nbsp;&nbsp;
-                      <div class="col-sm-4">
-                        <input
-                          name="patient_name"
-                          id="patient_name"
-                          type="text"
-                          placeholder="Enter Patient Name"
-                          class="form-control input-md"
-                          onkeypress="return noEnterOnSubmit()"
-                        >
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -1449,12 +1437,7 @@
         <div class="row setup-content" id="step-2">
           <div class="col-xs-12">
             <div class="col-md-12">
-              <h3>
-                Step 2
-                <label style="color:red;text-align:centerf;font-size:20px;"
-                  >Apply coupon code in cart to get discounted price!</label
-                >
-              </h3>
+              <h3 class="text-black">Step 2</h3>
               <div class="form-group">
                 <div class="row rx_pres_type">
                   <input type="hidden" name="hid_rx_type" id="hid_rx_type" value="">
@@ -1556,12 +1539,7 @@
           <input type="hidden" id="hid_lens_type_label" name="hid_lens_type_label" value="">
           <div class="col-xs-12">
             <div class="col-md-12">
-              <h3>
-                Step 3
-                <label style="color:red;text-align:center;font-size:20px"
-                  >Apply coupon code in cart to get discounted price!</label
-                >
-              </h3>
+              <h3 class="text-black">Step 3</h3>
               <div class="form-group">
                 <div class="row rx">
                   <div class="col-sm-4">
@@ -1645,13 +1623,7 @@
           <div class="col-xs-12">
             <div class="col-md-12">
               <div class="form-group" id="tintsection">
-                <hr style="height:5px;">
-                <h3>
-                  Tint Options
-                  <label style="color:red;text-align:center;font-size:20px;"
-                    >Apply coupon code in cart to get discounted price!</label
-                  >
-                </h3>
+                <h3 class="text-black">Tint Options</h3>
                 <div class="row">
                   <div class="col-sm-6 my-2">
                     <div class="rx_type" style="cursor:pointer">
@@ -1663,7 +1635,7 @@
                               <div class="input-group">
                                 <div id="radioBtn" class="btn-group">
                                   <span
-                                    class="btn btn-default btn-sm notActive"
+                                    class="btn btn-light btn-sm notActive"
                                     data-toggle="tint_solid_variant"
                                     data-value="Light"
                                     data-tint="Solid Tint"
@@ -1672,14 +1644,14 @@
                                     Light
                                   </span>
                                   <span
-                                    class="btn btn-default btn-sm notActive"
+                                    class="btn btn-light btn-sm notActive"
                                     data-toggle="tint_solid_variant"
                                     data-value="Medium"
                                   >
                                     Medium
                                   </span>
                                   <span
-                                    class="btn btn-default btn-sm notActive"
+                                    class="btn btn-light btn-sm notActive"
                                     data-toggle="tint_solid_variant"
                                     data-value="Dark"
                                   >
@@ -2153,15 +2125,10 @@
         <div class="row setup-content" id="step-4">
           <div class="col-xs-12">
             <div class="col-md-12">
-              <h3>
-                Step 4
-                <label style="color:red;text-align:center;font-size:20px;"
-                  >Apply coupon code in cart to get discounted price!</label
-                >
-              </h3>
+              <h3 class="text-black">Step 4</h3>
               <div class="form-group">
                 {% comment %} <div class="row" id="lenses"></div> {% endcomment %}
-                <div class="row row flex flex-wrap row-gap-30" id="lenses">
+                <div class="row flex flex-wrap row-gap-30" id="lenses">
                     <div class="col-sm-3">
 
                         <div class="rx_type lens" lenses="41" lenses_label="1.56 standard (scratch resistant + anti-reflective + UV protection)+ $25"
@@ -2262,15 +2229,10 @@
         <div class="row setup-content" id="step-5">
           <div class="col-xs-12">
             <div class="col-md-12">
-              <h3>
-                Step 5
-                <label style="color:red;text-align:center;font-size:20px"
-                  >Apply coupon code in cart to get discounted price!</label
-                >
-              </h3>
+              <h3 class="text-black">Step 5</h3>
               <div class="form-group">
                 {% comment %} <div class="row" id="coating"></div> {% endcomment %}
-                <div class="row row flex flex-wrap row-gap-30" id="coating">
+                <div class="row flex flex-wrap row-gap-30" id="coating">
                     <div class="col-sm-3">
                         <div class="rx_type coating" coating="14" coating_label="NO COATINGS"
                             price="0" style="cursor:pointer;">
@@ -2356,7 +2318,7 @@
               </div>
               <button class="btn btn-dark prevBtn btn-lg pull-left mt-4" type="button">Previous</button>
               <button
-                class="btn btn-success btn-lg pull-right mt-4"
+                class="btn btn-dark btn-lg pull-right mt-4"
                 type="button"
                 disabled="true"
                 id="save_btn"
@@ -2424,7 +2386,7 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close btn-transparent border-none" data-dismiss="modal" aria-label="Close">
+          <button type="button" id="confirmation-close" class="close btn-transparent border-none" data-dismiss="modal" aria-label="Close" style="background:transparent !important; border:none !important;">
             <span
               aria-hidden="true"
               >&times;</span
@@ -2439,7 +2401,7 @@
           </p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" id="modal-btn-si">Confirm</button>
+          <button type="button" class="btn btn-light" id="modal-btn-si">Confirm</button>
           <button
             type="button"
             class="btn btn-dark"
@@ -2472,6 +2434,7 @@
             data-dismiss="modal"
             aria-label="Close"
             id="close_div_loader_butn"
+            style="background:transparent !important;border:none !important;"
           >
             <span aria-hidden="true">&times;</span>
           </button>
@@ -2482,50 +2445,55 @@
           {% comment %} <!-- modal send later and browse --> {% endcomment %}
 
           <div id="btnactions" style="display: flex;">
-            <div class="upload_prescription_div_rx col-sm-6 ">
-              <div class="upload_prescription_div_rx_heading">
-                <label> Upload Using Computer </label>
-              </div>
-              <div class="media">
-                <div class="media-body">
-                  <div class="upload_presc_div_rx">
-                    Select file from your computer folder to upload <br>
-                    Most of image formats are allowed <br>
-                    jpg,gif,png,jpeg etc<br>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="upload_prescription_div_rx">
+                  <div class="upload_prescription_div_rx_heading">
+                    <label> Upload Using Computer </label>
                   </div>
+                  <div class="media">
+                    <div class="media-body">
+                      <div class="upload_presc_div_rx">
+                        Select file from your computer folder to upload <br>
+                        Most of image formats are allowed <br>
+                        jpg,gif,png,jpeg etc<br>
+                      </div>
 
-                  <h3 style="margin-top: 2px;">
-                    <label class="upload_image_button_browse">
-                      Browse
-                      <input
-                        id="img_file"
-                        type="file"
-                        accept="image/*"
-                        style="display:none;"
-                      >
-                    </label>
-                  </h3>
+                      <h3 style="margin-top: 2px;">
+                        <label class="upload_image_button_browse">
+                          Browse
+                          <input
+                            id="img_file"
+                            type="file"
+                            accept="image/*"
+                            style="display:none;"
+                          >
+                        </label>
+                      </h3>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div class="col-sm-6">
+                <div class="upload_prescription_div_rx">
+                  <div class="upload_prescription_div_rx_heading">
+                    <label> Upload Using Mobile Camera </label>
+                  </div>
+                  <div class="media">
+                    <div class="upload_presc_div_rx">Open your phone camera and scan QR Code below</div>
 
-            <div class="upload_prescription_div_rx col-sm-6">
-              <div class="upload_prescription_div_rx_heading">
-                <label> Upload Using Mobile Camera </label>
-              </div>
-              <div class="media">
-                <div class="upload_presc_div_rx">Open your phone camera and scan QR Code below</div>
-
-                <img
-                  class="img_barcode_gogle"
-                  src="{{ 'eb21f5e4610e84e7e5cde8b4e53b9fad.png' |  asset_url }}"
-                  height="auto"
-                  width="auto"
-                  title="GoogleforU"
-                  alt="barcode image"
-                >
-                <div class="media-body">
-                  <div class="rx_desc"></div>
+                    <img
+                      class="img_barcode_gogle"
+                      src="{{ 'eb21f5e4610e84e7e5cde8b4e53b9fad.png' |  asset_url }}"
+                      height="auto"
+                      width="auto"
+                      title="GoogleforU"
+                      alt="barcode image"
+                    >
+                    <div class="media-body">
+                      <div class="rx_desc"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2639,7 +2607,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+          <button type="button" class="btn btn-light" data-dismiss="modal">OK</button>
         </div>
       </div>
       {% comment %} <!-- /.modal-content --> {% endcomment %}
@@ -2750,7 +2718,7 @@
       var attr = $item.attr('disabled');
       //console.log("---"+attr);
       if (typeof attr == typeof undefined || attr == false) {
-        navListItems.removeClass('btn-dark').addClass('btn-default');
+        navListItems.removeClass('btn-dark').addClass('btn-light');
         $item.addClass('btn-dark');
         allWells.hide();
         $target.show();
@@ -3209,7 +3177,7 @@
         $('#tint_solid_variant').val('');
         $('#tint_color').val('');
         $('.tint_color_opt > img').removeClass('selected');
-        $('span[data-toggle="tint_solid_variant"]').removeClass('active btn-dark').addClass('notActive btn-default');
+        $('span[data-toggle="tint_solid_variant"]').removeClass('active btn-dark').addClass('notActive btn-light');
         tint_price = 0;
         var temp = parseFloat(price) + parseFloat(tint_price);
         var tmp_rxprice = parseFloat(pres_price) + parseFloat(tint_price);
@@ -3444,13 +3412,13 @@ console.log('coatingid', data);
       tint_selected = $(this).data('tintid');
       $('#' + tog).val(sel);
       $('#tint_opt').val($(this).data('tint'));
-      // You can change these lines to change classes (Ex. btn-default to btn-danger)
+      // You can change these lines to change classes (Ex. btn-light to btn-danger)
       $('span[data-toggle="' + tog + '"]')
         .not('[data-value="' + sel + '"]')
         .removeClass('active btn-dark')
-        .addClass('notActive btn-default');
+        .addClass('notActive btn-light');
       $('span[data-toggle="' + tog + '"][data-value="' + sel + '"]')
-        .removeClass('notActive btn-default')
+        .removeClass('notActive btn-light')
         .addClass('active btn-dark');
     });
 
@@ -3458,7 +3426,7 @@ console.log('coatingid', data);
       e.preventDefault();
       var tintopt = $(this).attr('tintid');
       if (tint_selected != '' && tintopt != '1') {
-        $('span[data-toggle="tint_solid_variant"]').removeClass('active btn-dark').addClass('notActive btn-default');
+        $('span[data-toggle="tint_solid_variant"]').removeClass('active btn-dark').addClass('notActive btn-light');
         $('#tint_solid_variant').val('');
       }
       var tog = $(this).attr('color_id');
@@ -3487,7 +3455,7 @@ console.log('coatingid', data);
     });
 
     /*$('#tintsection .rx_type').click(function() {
-                               $('span[data-toggle="tint_solid_variant"]').removeClass('active btn-dark').addClass('notActive btn-default');
+                               $('span[data-toggle="tint_solid_variant"]').removeClass('active btn-dark').addClass('notActive btn-light');
                                $('#tint_color').val("");
                                $('.tint_color_opt').removeClass('selected');
                                $('#tintsection .rx_type').removeClass('selected');
@@ -3837,6 +3805,12 @@ console.log('coatingid', data);
 
     /* END */
     /* actions for quick order*/
+    $('#close_dialog_btn').on('click', function () {
+        $('#mi-modal').modal('hide');
+    });
+    $('#confirmation-close').on('click', function () {
+        $('#mi-modal').modal('hide');
+    });
     $('#quickorder').on('click', function () {
       if (quick_order == 1) {
       } else {
@@ -3845,6 +3819,8 @@ console.log('coatingid', data);
     });
 
     $('#modal-btn-si').on('click', function () {
+      $('#mi-modal').modal('hide');
+      $('#exampleModal').modal('hide');
 
     // $("#prescription-close").trigger("click");
     //   $("#mi-modal").modal('hide');
@@ -4248,10 +4224,12 @@ console.log('coatingid', data);
   });
 
   $('#close_dialog_btn_modal').click(function () {
+    $('#mi-modal2').modal('hide');
     stopStuff();
   });
 
   $('#close_div_loader_butn').click(function () {
+    $('#mi-modal2').modal('hide');
     stopStuff();
   });
 
