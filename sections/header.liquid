@@ -24,8 +24,8 @@
                           width="13px"
                           style="filter: invert(1);"
                         >
-                        <span class="text-center px-2 m-0">{{ block.settings.title }}</span>
-                        <a href="{{ block.settings.url }}" class="text-white">{{ block.settings.button }}</a>
+                        <span class="text-center px-2 m-0 text-nowrap">{{ block.settings.title }}</span>
+                        <a href="{{ block.settings.url }}" class="text-white text-nowrap">{{ block.settings.button }}</a>
                       </div>
                     </div>
                 {% endcase %}
@@ -309,7 +309,7 @@
   aria-labelledby="searchModalLabel"
   aria-hidden="true"
 >
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width:100%;max-width:100%;margin-top:0px;">
     <div class="modal-content">
       <div class="modal-header border-bottom-0">
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

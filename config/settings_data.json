@@ -222,7 +222,7 @@
       "responsive-navigations": {
         "type": "responsive-navigations",
         "settings": {
-          "menu": ""
+          "menu": "main-menu"
         }
       }
     },
