@@ -55,101 +55,259 @@ var swiper = new Swiper(".blog-carousel", {
   });
 
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const track = document.querySelector('.slider-track');
-      const range = document.getElementById('slider-range');
-      const thumbMin = document.getElementById('thumb-min');
-      const thumbMax = document.getElementById('thumb-max');
-      const inputMin = document.getElementById('price-min');
-      const inputMax = document.getElementById('price-max');
-      const resetBtn = document.getElementById('reset-btn');
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.slider-track');
+    const range = document.getElementById('slider-range');
+    const thumbMin = document.getElementById('thumb-min');
+    const thumbMax = document.getElementById('thumb-max');
+    const inputMin = document.getElementById('price-min');
+    const inputMax = document.getElementById('price-max');
+    const resetBtn = document.getElementById('reset-btn');
     
-      const rangeMax = parseInt('{{ filter.range_max | money_without_currency | replace: ",", "" }}', 10) || 1000;
-      let min = parseInt(inputMin.value, 10) || 0;
-      let max = parseInt(inputMax.value, 10) || rangeMax;
+    const rangeElement = document.getElementById('slider-range');
+    const rangeMax = parseInt(rangeElement.getAttribute('data-range-max'), 10);
+    console.log('rangeMax:', rangeMax);
+    console.log('rangeMax', rangeMax)
+    let min = parseInt(inputMin.value, 10) || '';
+    let max = parseInt(inputMax.value, 10) || rangeMax;
     
-      const updateSlider = () => {
-        const minPercent = (min / rangeMax) * 100;
-        const maxPercent = (max / rangeMax) * 100;
+    const updateSlider = () => {
+      const minPercent = Math.min(100, (min / rangeMax) * 100);
+      const maxPercent = Math.min(100, (max / rangeMax) * 100);
     
-        thumbMin.style.left = `${minPercent}%`;
-        thumbMax.style.left = `${maxPercent}%`;
-        range.style.left = `${minPercent}%`;
-        range.style.width = `${maxPercent - minPercent}%`;
-      };
+      thumbMin.style.left = `${minPercent}%`;
+      thumbMax.style.left = `${maxPercent}%`;
+      range.style.left = `${minPercent}%`;
+      range.style.width = `${Math.min(100, maxPercent - minPercent)}%`; // ✅ Fix: Ensure width never exceeds 100%
+    };
     
-      const updateInputs = () => {
-        inputMin.value = min;
-        inputMax.value = max;
-      };
+    const updateInputs = () => {
+      inputMin.value = Math.max(0, Math.min(min, rangeMax)); // ✅ Fix: Ensure min doesn't exceed rangeMax
+      inputMax.value = Math.max(0, Math.min(max, rangeMax)); // ✅ Fix: Ensure max doesn't exceed rangeMax
+    };
     
-      const onThumbMove = (e, isMin) => {
-        const rect = track.getBoundingClientRect();
-        const offset = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
-        const value = Math.round((offset / rect.width) * rangeMax);
-    
-        if (isMin) {
-          min = Math.min(value, max - 1);
-        } else {
-          max = Math.max(value, min + 1);
-        }
-    
-        updateSlider();
-        updateInputs();
-        const form = range.closest('form');
-        if (form) {
-          form.submit();
-        }
-      };
-    
-      const addThumbListeners = (thumb, isMin) => {
-        const onMouseUp = () => {
-          document.removeEventListener('mousemove', onMouseMoveHandler);
-          document.removeEventListener('mouseup', onMouseUp);
-        };
-    
-        const onMouseMoveHandler = (e) => onThumbMove(e, isMin);
-    
-        thumb.addEventListener('mousedown', () => {
-          document.addEventListener('mousemove', onMouseMoveHandler);
-          document.addEventListener('mouseup', onMouseUp);
-        });
-      };
-    
-      const onInputChange = (isMin) => {
-        const value = parseInt(isMin ? inputMin.value : inputMax.value, 10) || 0;
-    
-        if (isMin) {
-          min = Math.min(value, max - 1);
-        } else {
-          max = Math.max(value, min + 1);
-        }
-    
-        updateSlider();
-      };
-    
-      const resetValues = () => {
-        min = 0;
-        max = parseInt('{{ filter.range_max | money_without_currency | replace: ",", "" }}', 10);
-        updateSlider();
-        updateInputs();
-        const form = range.closest('form');
-        if (form) {
-          form.submit();
-        }
-      };
-    
-      // Event Listeners
-      addThumbListeners(thumbMin, true);
-      addThumbListeners(thumbMax, false);
-      inputMin.addEventListener('input', () => onInputChange(true));
-      inputMax.addEventListener('input', () => onInputChange(false));
-      resetBtn.addEventListener('click', resetValues);
-    
-      // Initialize slider and inputs
+  
+    const onThumbMove = (e, isMin) => {
+      const rect = track.getBoundingClientRect();
+      const offset = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
+      const value = Math.round((offset / rect.width) * rangeMax);
+  
+      if (isMin) {
+        min = Math.min(value, max - 1);
+      } else {
+        max = Math.max(value, min + 1);
+      }
+  
       updateSlider();
       updateInputs();
-    });
+      const form = range.closest('form');
+      if (form) {
+        form.submit();
+      }
+    };
+  
+    const addThumbListeners = (thumb, isMin) => {
+      const onMouseUp = () => {
+        document.removeEventListener('mousemove', onMouseMoveHandler);
+        document.removeEventListener('mouseup', onMouseUp);
+      };
+  
+      const onMouseMoveHandler = (e) => onThumbMove(e, isMin);
+  
+      thumb.addEventListener('mousedown', () => {
+        document.addEventListener('mousemove', onMouseMoveHandler);
+        document.addEventListener('mouseup', onMouseUp);
+      });
+    };
+  
+    const onInputChange = (isMin) => {
+      let value = parseInt(isMin ? inputMin.value : inputMax.value, 10) || 0;
+    
+      // Ensure values stay within the allowed range
+      if (value < 0) value = 0;
+      if (value > rangeMax) value = rangeMax; // ✅ Fix: Prevent breaking UI by capping value
+    
+      if (isMin) {
+        min = Math.min(value, max - 1);
+      } else {
+        max = Math.max(value, min + 1);
+      }
+    
+      updateSlider();
+      updateInputs(); // ✅ Fix: Ensure UI gets updated to reflect correct value
+    
+      // Form submit for instant filtering
+      const form = range.closest('form');
+      if (form) {
+        form.submit();
+      }
+    };
+    
+  
+    const resetValues = () => {
+      min = 0;
+      max = rangeMax;
+      updateSlider();
+      updateInputs();
+      const form = range.closest('form');
+      if (form) {
+        form.submit();
+      }
+    };
+  
+    // Event Listeners
+    addThumbListeners(thumbMin, true);
+    addThumbListeners(thumbMax, false);
+    inputMin.addEventListener('input', () => onInputChange(true));
+    inputMax.addEventListener('input', () => onInputChange(false));
+    resetBtn.addEventListener('click', resetValues);
+  
+    // Initialize slider and inputs
+    updateSlider();
+    updateInputs();
+  });
+  
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   const track = document.querySelector('.slider-track');
+    //   const range = document.getElementById('slider-range');
+    //   const thumbMin = document.getElementById('thumb-min');
+    //   const thumbMax = document.getElementById('thumb-max');
+    //   const inputMin = document.getElementById('price-min');
+    //   const inputMax = document.getElementById('price-max');
+    //   const resetBtn = document.getElementById('reset-btn');
+    
+    //   const rangeMax = parseInt('{{ filter.range_max | money_without_currency | replace: ",", "" }}', 10) || 1000000;
+    //   let min = parseInt(inputMin.value, 10) || 0;
+    //   let max = parseInt(inputMax.value, 10) || rangeMax;
+    
+    //   const updateSlider = () => {
+    //     const minPercent = (min / rangeMax) * 100;
+    //     const maxPercent = (max / rangeMax) * 100;
+    
+    //     thumbMin.style.left = `${minPercent}%`;
+    //     thumbMax.style.left = `${maxPercent}%`;
+    //     range.style.left = `${minPercent}%`;
+    //     range.style.width = `${maxPercent - minPercent}%`;
+    //   };
+    
+    //   const updateInputs = () => {
+    //     inputMin.value = min;
+    //     inputMax.value = max;
+    //   };
+    
+    //   const onThumbMove = (e, isMin) => {
+    //     const rect = track.getBoundingClientRect();
+    //     const offset = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
+    //     const value = Math.round((offset / rect.width) * rangeMax);
+    
+    //     if (isMin) {
+    //       min = Math.min(value, max - 1);
+    //     } else {
+    //       max = Math.max(value, min + 1);
+    //     }
+    
+    //     updateSlider();
+    //     updateInputs();
+    //     const form = range.closest('form');
+    //     if (form) {
+    //       form.submit();
+    //     }
+    //   };
+    
+    //   const addThumbListeners = (thumb, isMin) => {
+    //     const onMouseUp = () => {
+    //       document.removeEventListener('mousemove', onMouseMoveHandler);
+    //       document.removeEventListener('mouseup', onMouseUp);
+    //     };
+    
+    //     const onMouseMoveHandler = (e) => onThumbMove(e, isMin);
+    
+    //     thumb.addEventListener('mousedown', () => {
+    //       document.addEventListener('mousemove', onMouseMoveHandler);
+    //       document.addEventListener('mouseup', onMouseUp);
+    //     });
+    //   };
+    
+    //   // const onInputChange = (isMin) => {
+    //   //   const value = parseInt(isMin ? inputMin.value : inputMax.value, 10) || 0;
+    
+    //   //   if (isMin) {
+    //   //     min = Math.min(value, max - 1);
+    //   //   } else {
+    //   //     max = Math.max(value, min + 1);
+    //   //   }
+    
+    //   //   updateSlider();
+
+    //   //   const form = range.closest('form');
+    //   //   if (form) {
+    //   //     form.submit();
+    //   //   }
+    //   // };
+    
+    //   // const onInputChange = (isMin) => {
+    //   //   let value = parseInt(isMin ? inputMin.value : inputMax.value, 0) || 0;
+      
+    //   //   // Ensure value is within allowed range
+    //   //   if (isMin) {
+    //   //     value = Math.min(Math.max(value, 0), rangeMax); // Clamp between 0 and rangeMax
+    //   //     min = Math.min(value, max - 1);
+    //   //   } else {
+    //   //     value = Math.min(Math.max(value, 0), rangeMax); // Clamp between 0 and rangeMax
+    //   //     max = Math.max(value, min + 1);
+    //   //   } 
+      
+    //   //   updateSlider();
+    //   //   updateInputs(); // Ensure inputs reflect clamped values
+       
+    //   //   // Form submit for instant filtering
+    //   //   const form = range.closest('form');
+    //   //   if (form) {
+    //   //     form.submit();
+    //   //   }
+    //   // };
+      
+    //   const onInputChange = (isMin) => {
+    //     const value = parseInt(isMin ? inputMin.value : inputMax.value, 10) || 0;
+    
+    //     if (isMin) {
+    //       min = Math.min(value, max - 1);
+    //     } else {
+    //       max = Math.max(value, min + 1);
+    //     }
+    
+    //     updateSlider();
+    
+    //     // Form submit for instant filtering
+    //     const form = range.closest('form');
+    //     if (form) {
+    //       form.submit();
+    //     }
+    //   };
+      
+
+    //   const resetValues = () => {
+    //     min = 0;
+    //     max = parseInt('{{ filter.range_max | money_without_currency | replace: ",", "" }}', 10);
+    //     updateSlider();
+    //     updateInputs();
+    //     const form = range.closest('form');
+    //     if (form) {
+    //       form.submit();
+    //     }
+    //   };
+    
+    //   // Event Listeners
+    //   addThumbListeners(thumbMin, true);
+    //   addThumbListeners(thumbMax, false);
+    //   inputMin.addEventListener('input', () => onInputChange(true));
+    //   inputMax.addEventListener('input', () => onInputChange(false));
+    //   resetBtn.addEventListener('click', resetValues);
+    
+    //   // Initialize slider and inputs
+    //   updateSlider();
+    //   updateInputs();
+    // });
     
 
 

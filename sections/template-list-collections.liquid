@@ -5,16 +5,16 @@
       {% render 'shop-left-filteration' %}
       <div class="shop-right">
         <div class="product-container">
-          <div class="product-header">
+          <div class="product-header justify-content-end">
             <div class="sorting-selector">
-              <select class="sorting-dropdown">
+              {% comment %} <select class="sorting-dropdown">
                 <option value="default">Default sorting</option>
                 <option value="popularity">Sort by popularity</option>
                 <option value="rating">Sort by average rating</option>
                 <option value="latest">Sort by latest</option>
                 <option value="low-to-high">Sort by price: low to high</option>
                 <option value="high-to-low">Sort by price: high to low</option>
-              </select>
+              </select> {% endcomment %}
               <div class="view-options">
                 <button class="grid-list-view active" onclick="gridListToggle(event)">
                   <i class="bi bi-grid-3x3-gap"></i>
@@ -22,7 +22,7 @@
                 <button class="grid-list-view" onclick="gridListToggle(event)"><i class="bi bi-list-ul"></i></button>
               </div>
             </div>
-            <div class="showing-result">
+            {% comment %} <div class="showing-result">
               <p>Show</p>
               <select class="sorting-dropdown">
                 <option>9</option>
@@ -31,7 +31,7 @@
                 <option>36</option>
                 <option>All</option>
               </select>
-            </div>
+            </div> {% endcomment %}
           </div>
           <div class="product-grid" id="product-cards-container">
             {% for collection in collections %}

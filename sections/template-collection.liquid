@@ -21,7 +21,7 @@
           }
         }">
           <div class="product-header">
-            <div class="sorting-selector">
+            <div class="sorting-selector w-100 justify-content-between">
               <select class="sorting-dropdown" x-model="sort" @change="sorting()">
                 {% for option in collection.sort_options %}
                   <option value="{{ option.value |  escape }}" {% if option.value == sort_by %}
@@ -67,7 +67,7 @@
                 <option value="all">All</option>
               </select>
             </variant-selector> {% endcomment %}
-            <div class="showing-result">
+            {% comment %} <div class="showing-result">
               <p>Show</p>
               <select class="sorting-dropdown">
                 <option>9</option>
@@ -76,10 +76,10 @@
                 <option>36</option>
                 <option>All</option>
               </select>
-            </div> 
+            </div>  {% endcomment %}
           </div>
-          {% if collection.products.size > 12 %}
-            {% paginate collection.products by 12 %}
+          {% if collection.products.size > section.settings.range %}
+            {% paginate collection.products by section.settings.range %}
               <div class="product-grid" id="product-cards-container">
                 {% for product in collection.products %}
                   {% render 'product-card', product: product %}
@@ -150,3 +150,19 @@
 // }
 //   customElements.define("variant-selector", VariantSelector);
 </script>
+
+{% schema %}
+{
+  "name": "collection",
+  "settings": [
+    {
+      "type": "range",
+      "id": "range",
+      "max": 100,
+      "min": 1,
+      "default": 12,
+      "label": "Number Of Products To Show"
+    }
+    ],
+}
+{% endschema %}
