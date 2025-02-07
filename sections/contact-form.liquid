@@ -26,33 +26,37 @@
         >
       </div>
     </div>
-    {% form 'contact' %}
-      {% if form.errors %}
-        <div class="alert alert-danger" role="alert">
-          {% render 'icon-failed' %}
-          Your form was not posted!
-          <ul>
-            {% for error in form.errors %}
-              <li>
-                <span>{{ form.errors.messages[error] }}</span>
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% elsif form.posted_successfully? %}
-        <div class="alert alert-success" role="alert">
-          {% render 'icon-success' %}
-          Your Form Posted Successfully!
-        </div>
-      {% endif %}
-      <div class="contactUsSec mt-4">
-        <div class="contact-form-left">
+    <div class="contactUsSec mt-4">
+      <div class="contact-form-left">
+        {% form 'contact' %}
+          {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+              {% render 'icon-failed' %}
+              Your form was not posted!
+              <ul>
+                {% for error in form.errors %}
+                  <li>
+                    <span>{{ form.errors.messages[error] }}</span>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% elsif form.posted_successfully? %}
+            <div class="alert alert-success" role="alert">
+              {% render 'icon-success' %}
+              Your Form Posted Successfully!
+            </div>
+          {% endif %}
           <div class="d-flex gap-4 w-100">
             <div class="form-group w-100">
               <label for="contact_name">Your Name (required)</label>
-              <input type="text"
-              name="contact[name]"
-              id="contact_name" class="form-control" required>
+              <input
+                type="text"
+                name="contact[name]"
+                id="contact_name"
+                class="form-control"
+                required
+              >
             </div>
             <div class="form-group w-100">
               <label for="contact_username">Your Surname (required)</label>
@@ -72,52 +76,59 @@
           <div class="d-flex gap-4 w-100 mt-3">
             <div class="form-group">
               <label for="contact_message">Your Message</label>
-              <textarea name="contact[body]" id="contact_message" cols="40" rows="10" maxlength="2000" class="form-control" rows="8"></textarea>
+              <textarea
+                name="contact[body]"
+                id="contact_message"
+                cols="40"
+                rows="10"
+                maxlength="2000"
+                class="form-control"
+                rows="8"
+              ></textarea>
             </div>
           </div>
           <div class="d-flex gap-4 w-100 mt-3">
             <button type="submit">Send Message</button>
           </div>
+        {% endform %}
+      </div>
+      <div class="contact-form-right">
+        <div class="discription">
+          {% if section.settings.title != blank %}
+            <h2>{{ section.settings.title }}</h2>
+          {% else %}
+            <h2>Lorem ipsum dolor sit amet, conse ctetuer adipiscing elit.</h2>
+          {% endif %}
+          {% if section.settings.description != blank %}
+            {{ section.settings.description }}
+          {% else %}
+            <p>
+              Etiam nulla nunc, aliquet vel metus nec, scelerisque tempus enim. Sed eget blandit lectus. Donec facilisis
+              ornare turpis id pretium. Maecenas scelerisque interdum dolor in vestibulum proin euismod dui purus.
+            </p>
+          {% endif %}
         </div>
-        <div class="contact-form-right">
-          <div class="discription">
-            {% if section.settings.title != blank %}
-              <h2>{{ section.settings.title }}</h2>
-            {% else %}
-              <h2>Lorem ipsum dolor sit amet, conse ctetuer adipiscing elit.</h2>
-            {% endif %}
-            {% if section.settings.description != blank %}
-              {{ section.settings.description }}
-            {% else %}
-              <p>
-                Etiam nulla nunc, aliquet vel metus nec, scelerisque tempus enim. Sed eget blandit lectus. Donec
-                facilisis ornare turpis id pretium. Maecenas scelerisque interdum dolor in vestibulum proin euismod dui
-                purus.
-              </p>
-            {% endif %}
-          </div>
-          <div class="details border-top border-bottom">
-            {% if section.settings.address != blank %}
-              <p>{{ section.settings.address }}</p>
-            {% else %}
-              <p>30 Dummy Avenue San Lorem Ipsum</p>
-            {% endif %}
-            <p>
-              Phone: {% if section.settings.phone %}{{ section.settings.phone }}{% else %}+01 123 456 789{% endif %}
-            </p>
-            <p>
-              Email:
-              {%- if section.settings.email != blank -%}
-                <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
-              {%- else -%}
-                <a href="mailto:"> Support@eyesightclear.com</a>
-              {%- endif %}
-            </p>
-            <a href="#">www.eyesightclear.com</a>
-          </div>
+        <div class="details border-top border-bottom">
+          {% if section.settings.address != blank %}
+            <p>{{ section.settings.address }}</p>
+          {% else %}
+            <p>30 Dummy Avenue San Lorem Ipsum</p>
+          {% endif %}
+          <p>
+            Phone: {% if section.settings.phone %}{{ section.settings.phone }}{% else %}+01 123 456 789{% endif %}
+          </p>
+          <p>
+            Email:
+            {%- if section.settings.email != blank -%}
+              <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+            {%- else -%}
+              <a href="mailto:"> Support@eyesightclear.com</a>
+            {%- endif %}
+          </p>
+          <a href="#">eyesight-clear.myshopify.com</a>
         </div>
       </div>
-    {% endform %}
+    </div>
   </div>
 </section>
 
