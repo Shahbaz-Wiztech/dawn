@@ -75,7 +75,7 @@
                           <td class="product-sku">{{ item.sku }}</td>
                           <td>
                             <div class="product-quantity">
-                              <button type="submit" class="minus-et-icon" onclick="decrementQuantity(event)">
+                              <button type="submit" class="minus-et-icon" onclick="decrementEachQuantity(event, '#quantity-{{ forloop.index }}')">
                                 <svg
                                   version="1.1"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@
                                 class="quantity"
                                 id="quantity-{{ forloop.index }}"
                               >
-                              <button class="plus-et-icon" type="submit" onclick="incrementQuantity(event)">
+                              <button class="plus-et-icon" type="submit" onclick="incrementEachQuantity(event, '#quantity-{{ forloop.index }}')">
                                 <svg
                                   version="1.1"
                                   xmlns="http://www.w3.org/2000/svg"
@@ -168,6 +168,23 @@
     </div>
   </div>
 </section>
+
+<script>
+    function incrementEachQuantity(button, input){
+    const currentButton = button.currentTarget;
+    const quantityInput = document.querySelector(input);
+    const currentValue = parseInt(quantityInput.value, 10);
+    quantityInput.value = currentValue + 1;
+  }
+  function decrementEachQuantity(button, input){
+    const currentButton = button.currentTarget;
+    const quantityInput = document.querySelector(input);
+    const currentValue = parseInt(quantityInput.value, 10);
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+    }
+  }
+</script>
 
 {% comment %} {% if cart.item_count > 0 %}
   <div class="p-4">

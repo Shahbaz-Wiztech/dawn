@@ -327,7 +327,7 @@
                     {% if form.errors %}
                       <div class="alert alert-danger" role="alert">
                         {% render 'icon-failed' %}
-                        Your form was not posted!
+                        Your Comment was not posted!
                         <ul>
                           {% for error in form.errors %}
                             <li>
@@ -337,20 +337,10 @@
                         </ul>
                       </div>
                     {% elsif form.posted_successfully? %}
-                      <div class="alert alert-success" role="alert" id="success-alert">
+                      <div class="alert alert-success" role="alert">
                         {% render 'icon-success' %}
                         Your Comment Posted Successfully!
                       </div>
-                      <script>
-                        document.addEventListener('DOMContentLoaded', function () {
-                          const successAlert = document.getElementById('success-alert');
-                          if (successAlert) {
-                            setTimeout(() => {
-                              successAlert.style.display = 'none';
-                            }, 2000);
-                          }
-                        });
-                      </script>
                     {% endif %}
                     <textarea name="comment[body]" id="comment_content" placeholder="comment" rows="6" cols="45"></textarea>
                     <div class="author-details">
@@ -393,7 +383,7 @@
               {%- for filter in collections.all.filters -%}
                 {%- if filter.type == 'list' and filter.label contains 'Tags' -%}
                   {%- for filter_value in filter.values -%}
-                    <a href="{{ product.url }}">{{ filter_value.label }}</a>
+                    <a href="{{ routes.all_products_collection_url }}?filter.p.tag={{ filter_value.label }}">{{ filter_value.label }}</a>
                   {%- endfor -%}
                 {%- endif -%}
               {%- endfor -%}

@@ -194,7 +194,7 @@
             <ul>
               <!-- Start of Judge.me code -->
               {% for product in products  %}
-                <li>
+                <li class="p-0">
                   <a href="{{ product.url }}">
                     <div class="jdgm-widget jdgm-preview-badge" data-id="{{ product.id }}">
                       {{ product.metafields.judgeme.badge }}
@@ -238,3 +238,18 @@
     </div>
   </div>
 </div>
+
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+      const checkboxes = document.querySelectorAll('.shop-left input[type="checkbox"]');
+    
+      checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function () {
+          const form = checkbox.closest('form');
+          if (form) {
+            form.submit();
+          }
+        });
+      });
+    });
+</script>

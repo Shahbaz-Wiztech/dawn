@@ -313,19 +313,19 @@ var swiper = new Swiper(".blog-carousel", {
 
 
 
-    document.addEventListener('DOMContentLoaded', function () {
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    // document.addEventListener('DOMContentLoaded', function () {
+    //   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     
-      checkboxes.forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-          // Find the form containing the checkbox
-          const form = checkbox.closest('form');
-          if (form) {
-            form.submit();
-          }
-        });
-      });
-    });
+    //   checkboxes.forEach(checkbox => {
+    //     checkbox.addEventListener('change', function () {
+    //       // Find the form containing the checkbox
+    //       const form = checkbox.closest('form');
+    //       if (form) {
+    //         form.submit();
+    //       }
+    //     });
+    //   });
+    // });
     
     // function changeQuantity(amount) {
     //   let quantityInput = document.getElementById('quantity');
