@@ -1,0 +1,37 @@
+<section class="related-posts-container px-0 px-md-4">
+  <div class="container-fluid">
+      <h1 class="text-black">Related products</h1>
+    <div class="slides products-grid-section">
+      <div class="swiper related-products">
+        <div class="swiper-wrapper">
+          {% if section.settings.relatedProducts %}
+            {% assign products = section.settings.relatedProducts.products %}
+            {% for product in products %}
+              <div class="swiper-slide">
+                {% render 'home-product-card', product: product %}
+              </div>
+            {% endfor %}
+          {% else %}
+            No Related Products
+          {% endif %}
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Related products",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "relatedProducts",
+      "label": "Add Related products"
+    }
+  ],
+  "presets": [{ "name": "Related products" }]
+}
+{% endschema %}

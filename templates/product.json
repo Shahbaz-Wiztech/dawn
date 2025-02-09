@@ -13,13 +13,21 @@
       "type": "template-products",
       "settings": {}
     },
+    "product_related_post_gqmEpP": {
+      "type": "product-related-post",
+      "settings": {
+        "relatedProducts": "related-products"
+      }
+    },
     "1737458999d4393d6c": {
       "type": "apps",
+      "disabled": true,
       "settings": {}
     }
   },
   "order": [
     "template",
+    "product_related_post_gqmEpP",
     "1737458999d4393d6c"
   ]
 }

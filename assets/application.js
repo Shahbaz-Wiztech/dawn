@@ -1,4 +1,4 @@
-    // related post slider
+    // related blog post slider
     var swiper = new Swiper(".related-post", {
       slidesPerView: 1,
       pagination: {
@@ -24,6 +24,33 @@
           },
       },
   });
+
+  // related products slider
+  var swiper = new Swiper(".related-products", {
+    slidesPerView: 1,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    breakpoints: {
+        992: {
+            slidesPerView: 4,
+            spaceBetween: 40,
+        },
+        768: {
+            slidesPerView: 2,
+            spaceBetween: 30,
+        },
+        576: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+        },
+    },
+});
 // Swipper Carousel
 var swiper = new Swiper(".blog-carousel", {
   slidesPerView: 4,
