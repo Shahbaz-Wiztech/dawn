@@ -1,6 +1,6 @@
 <section class="related-posts-container px-0 px-md-4">
   <div class="container-fluid">
-      <h1 class="text-black">Related products</h1>
+    <h1 class="text-black">Related products</h1>
     <div class="slides products-grid-section">
       <div class="swiper related-products">
         <div class="swiper-wrapper">
@@ -8,7 +8,62 @@
             {% assign products = section.settings.relatedProducts.products %}
             {% for product in products %}
               <div class="swiper-slide">
-                {% render 'home-product-card', product: product %}
+                {% assign unique_string = product.title | append: now | replace: ':', '' | replace: ' ', '-' %}
+                <div class="product-card-item {% if product.compare_at_price != blank %}on-sale{% endif %}">
+                  <div class="product-card-head">
+                    <div class="on-sale-badge">Sale</div>
+                    {% comment %} <div class="add-to-favourite active"><i class="bi bi-heart"></i></div> {% endcomment %}
+                    <a href="{{ product.url }}" class="normal-img">
+                      <img
+                        src="{{ product.images[0] | img_url: 'master' }}"
+                        height="auto"
+                        width="auto"
+                        alt="product-img"
+                      >
+                    </a>
+                    <a href="{{ product.url }}" class="hover-img">
+                      <img
+                        src="{{ product.images[1] | img_url: 'master' }}"
+                        height="auto"
+                        width="auto"
+                        alt="product-img"
+                      >
+                    </a>
+                    <a
+                      href="javascript:void(0);"
+                      type="button"
+                      data-bs-toggle="offcanvas"
+                      data-bs-target="#{{ unique_string }}-offcanvasScrolling"
+                      aria-controls="offcanvasScrolling"
+                      class="btn btn-light"
+                      >Quick View</a
+                    >
+                  </div>
+                  <div class="product-card-body">
+                    <div class="product-category">
+                      <a href="{{ product.url }}">
+                        {{ product.category }}
+                      </a>
+                    </div>
+                    <a href="{{ product.url }}" class="product-name">{{ product.title }}</a>
+                    <div class="product-brand">
+                      {% for brand in product.vendor %}
+                        <a href="/collections/all?vendor={{ brand | handleize }}">{{ brand }}</a>
+                      {% endfor %}
+                    </div>
+                    <div class="product-price {% if product.compare_at_price != blank %}compare{% endif %}">
+                      <s>${{ product.compare_at_price | money_without_currency }}</s>
+                      ${{ product.price | money_without_currency }}
+                    </div>
+                    {% if product.metafields.custom.usage %}
+                      <div class="product-description">Usage: {{ product.metafields.custom.usage }}</div>
+                    {% endif %}
+                    <form method="post" action="/cart/add">
+                      <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                      <button type="submit" class="btn btn-secondary">Add to Cart</button>
+                    </form>
+                  </div>
+                </div>
               </div>
             {% endfor %}
           {% else %}
@@ -21,6 +76,13 @@
     </div>
   </div>
 </section>
+{% if section.settings.relatedProducts.products %}
+  {% assign products = section.settings.relatedProducts.products %}
+  {% for product in products %}
+    {% assign unique_string = product.title | append: now | replace: ':', '' | replace: ' ', '-' %}
+    {% render 'quick-view-sidebar', product: product, unique_string: unique_string %}
+  {% endfor %}
+{% endif %}
 
 {% schema %}
 {
