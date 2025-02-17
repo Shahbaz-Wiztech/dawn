@@ -54,7 +54,7 @@
                                 <div class="modal-dialog" >
                                   <div class="modal-content">
                                     <div class="modal-header">
-                                      <h5 class="modal-title" id="staticBackdropLabel">Prescriptions</h5>
+                                      <h5 class="modal-title text-black" id="staticBackdropLabel">Prescriptions</h5>
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
@@ -63,7 +63,7 @@
                                           {% assign first_prop = prop | first %}
                                           {% if first_prop != 'lenses_id' and first_prop != 'coating_id' and first_prop != 'store_id' and first_prop != 'prescription_id' and first_prop != 'tint_opt_id' %}
                                             {% assign names = first_prop | replace: '_', ' ' %}
-                                            <li class="row p-2 border-bottom"><strong class="col-sm-6">{{ names }}:</strong> <span class="col-sm-6">{% if first_prop == 'pres_price' %}${% endif %}{{ prop[1] }}</span></li>
+                                            <li class="row p-2 border-bottom"><strong class="col-sm-6 text-capitalize">{{ names }}:</strong> <span class="col-sm-6">{% if first_prop == 'pres_price' %}${% endif %}{{ prop[1] }}</span></li>
                                           {% endif %}
                                         {% endfor %}
                                         </ul>
