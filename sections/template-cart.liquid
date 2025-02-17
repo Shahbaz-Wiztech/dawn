@@ -60,7 +60,9 @@
                                     <div class="modal-body">
                                       <ul>
                                       {% for prop in item.properties %}
-                                          <li class="row"><strong class="col-sm-6">{{ prop[0] }}:</strong> <span class="col-sm-6">{{ prop[1] }}</span></li>
+                                          {% assign first_prop = prop | first %}
+                                          {% assign names = first_prop | replace: '_', ' ' %}
+                                          <li class="row"><strong class="col-sm-6">{{ names }}:</strong> <span class="col-sm-6">{{ prop[1] }}</span></li>
                                         {% endfor %}
                                         </ul>
                                     </div>
