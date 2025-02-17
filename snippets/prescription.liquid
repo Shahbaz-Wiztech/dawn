@@ -2368,14 +2368,14 @@
         Frame Price :
         <span>
           {% if product.compare_at_price %}
-            <s>${{ product.compare_at_price }}</s> &nbsp;&nbsp;
+            <s>{{ product.compare_at_price }}</s> &nbsp;&nbsp;
           {% endif %}
-          ${{ product.price |  money_without_currency }}
+          {{ product.price |  money }}
         </span>
       </h5>
       {% comment %} <!--<p>Lens Price : </p>--> {% endcomment %}
       <h5 class="border-bottom text-black font-bold w-100 py-1 d-flex align-items-center justify-content-between">
-        Total<span id="totalp" class="text-black font-bold">${{ product.price | money_without_currency }}</span>
+        Total<span id="totalp" class="text-black font-bold">{{ product.price | money }}</span>
       </h5>
     </div>
   </div>

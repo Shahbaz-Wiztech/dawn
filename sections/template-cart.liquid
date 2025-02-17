@@ -72,7 +72,7 @@
                             </div>
                           </td>
                           <td>
-                            <span class="price-amount">${{ item.price |  money_without_currency }}</span>
+                            <span class="price-amount">{{ item.price |  money }}</span>
                           </td>
                           <td class="product-sku">{{ item.sku }}</td>
                           <td>
@@ -115,7 +115,7 @@
                             </div>
                           </td>
                           <td>
-                            <span class="product-subtotal">${{ item.quantity | times: item.price | money_without_currency }}</span>
+                            <span class="product-subtotal">{{ item.quantity | times: item.price | money }}</span>
                           </td>
                         </tr>
                       {% endfor %}
@@ -139,14 +139,14 @@
               </div>
               <div class="cart-subtotal d-flex justify-content-between align-itmes-center mt-4 mb-1 w-100">
                 <span>Subtotal</span>
-                <span class="text-secondary">${{ cart.items_subtotal_price |  money_without_currency }}</span>
+                <span class="text-secondary">{{ cart.items_subtotal_price |  money }}</span>
               </div>
               <div
                 class="cart-total d-flex justify-content-between align-itmes-center mt-4 w-100"
                 style="font-weight: 500"
               >
                 <h5 class="text-dark text-uppercase">Total</h5>
-                <h5 class="text-dark fw-normal">${{ cart.total_price |  money_without_currency }}</h5>
+                <h5 class="text-dark fw-normal">{{ cart.total_price |  money }}</h5>
               </div>
               <div class="procees-btns d-flex flex-column gap-2 text-center mt-3">
                 <button type="submit" name="checkout" class="btn black">Proceed to checkout</button>
