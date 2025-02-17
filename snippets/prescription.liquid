@@ -58,7 +58,7 @@
         <input type="hidden" name="rx_image_file" id="rx_image_file" value="">
         <input type="hidden" name="coating_id" id="coating_id" value="">
         <input type="hidden" name="coating_label" id="coating_label" value="">
-        <input type="hidden" name="sid" id="sid" value="ilcvgmbjruqok4mmmq8oqrvnb4">
+        <input type="hidden" name="sid" id="sid" value="">
         <input type="hidden" name="prescription_id" id="prescription_id" value="">
         <input type="hidden" name="store_id" id="store_id" value="1">
         <input type="hidden" name="pres_price" id="pres_price" value="0">
@@ -2375,7 +2375,7 @@
       </h5>
       {% comment %} <!--<p>Lens Price : </p>--> {% endcomment %}
       <h5 class="border-bottom text-black font-bold w-100 py-1 d-flex align-items-center justify-content-between">
-        Total<span id="totalp" class="text-black font-bold">{{ product.price | money }}</span>
+        Total<span class="text-black font-bold">$<span id="totalp">{{ product.price | money_without_currency }}</span></span>
       </h5>
     </div>
   </div>
