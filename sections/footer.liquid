@@ -138,7 +138,7 @@
             {%- if filter.type == 'list' and filter.label contains 'Tags' -%}
               {%- for filter_value in filter.values -%}
                 <a href="{{ routes.all_products_collection_url }}?filter.p.tag={{ filter_value.label }}" class="border border-1 text-decoration-none TagsCloudBox">
-                  <small class="text-white">{{ filter_value.label }}</small>
+                  <small class="text-white text-capitalize">{{ filter_value.label }}</small>
                 </a>
               {%- endfor -%}
             {%- endif -%}
