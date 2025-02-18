@@ -64,6 +64,7 @@
         <input type="hidden" name="pres_price" id="pres_price" value="0">
         <input type="hidden" name="referer" id="referer" value="">
         <input type="hidden" name="quickOrder" id="quickOrder" value="0">
+        <input type="hidden" name="image_uploader" id="image_uploader" value="">
 
         <div class="row error-content" style="display:none;" id="errors">
           <div class="col-xs-12" style="margin-top:5px;">
@@ -170,6 +171,19 @@
             </div>
           </div>
           {% comment %} <!-- end of btnactions --> {% endcomment %}
+          <div class="container" style="display:none;" id="image_file">
+            <div class="text-center md-4 custom-div">
+            <img src="" alt="" id="display_image" height="300px" width="100%" />
+            <br>
+            <button
+                class="btn btn-dark btn-lg pull-right mt-4"
+                type="button"
+                id="goSendlater"
+              >
+                Next
+              </button>
+            </div>
+          </div>
           <div class="container" style="display:none;" id="spinloader">
             <div class="text-center md-4 custom-div">
               <i class="fa fa-spinner fa-spin" style="font-size:50px"></i>
@@ -2368,7 +2382,7 @@
         Frame Price :
         <span>
           {% if product.compare_at_price %}
-            <s>{{ product.compare_at_price }}</s> &nbsp;&nbsp;
+            <s>{{ product.compare_at_price |  money }}</s> &nbsp;&nbsp;
           {% endif %}
           {{ product.price |  money }}
         </span>
@@ -4021,27 +4035,83 @@ console.log('coatingid', data);
   }
 
   //function picChange(evt){
-  $('#img_file').change(function () {
-    if (typeof FileReader != 'undefined') {
-      //var dvPreview = $("#capturedImage");
-      //dvPreview.html("");
-      var regex = /^([a-zA-Z0-9\s_\(\)\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
-      $($(this)[0].files).each(function () {
-        var file = $(this);
-        console.log('image---' + file[0].name);
-        if (regex.test(file[0].name.toLowerCase())) {
-          $('.navbar-fixed-top').show();
-          uploadPrescriptionPhoto();
+    $('#goSendlater').click(function () {
+      send_later_flag_pres(3);
+      console.log('session_id-----' + session_id);
+      $('.showprescription').hide();
+      $('.uploadprescription').hide();
+      $('.navbar-fixed-bottom').show();
+      $('#rx_image_file').val('');
+      $('#pres_back_button').show();
+      $('.prevBtn').show();
+      //$('#msteps').html("STEP 1");$('#msteps-nav-prev').html("Previous");$('#msteps-nav-next').html("Next");
+      $('#stepwizard').show();
+
+      //$('#mtotal').css("display", "block");
+      //$('#msteps').attr('stepid','step-0');$('#msteps-nav-next').attr('stepid','step-1');
+      var nextStepWizard = $('div.setup-panel div a[href="#step-1"]').parent().next().children('a');
+      nextStepWizard.removeAttr('disabled').trigger('click');
+    })
+    $('#img_file').change(function () {
+        if (typeof FileReader !== 'undefined') {
+            var fileInput = document.getElementById('img_file');
+            var files = fileInput.files;
+            
+            if (files.length > 0) {
+                var file = files[0];
+                console.log('image---', file.name);
+
+                var regex = /^([a-zA-Z0-9\s_\(\)\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                
+                if (regex.test(file.name.toLowerCase())) {
+                    $('.navbar-fixed-top').show();
+                    uploadPrescriptionPhoto();
+                    console.log(file , 'file---------')
+                    // Set the selected image to the img tag
+                    var imgUrl = URL.createObjectURL(file);
+                    console.log(imgUrl, 'imgUrl')
+                    $('#display_image').attr('src', imgUrl);
+                    $('#save_btn').prop('disabled', false);
+
+                    // Optionally set the file input value (not necessary in most cases)
+                    $('#image_uploader').val(imgUrl);
+                    $('#image_file').show()
+                    $('#spinloader').hide()
+                } else {
+                    alert(file.name + ' is not a valid image file.');
+                }
+            }
         } else {
-          alert(file[0].name + ' is not a valid image file.');
-          //dvPreview.html("");
-          return false;
+            alert('This browser does not support HTML5 FileReader.');
         }
-      });
-    } else {
-      alert('This browser does not support HTML5 FileReader.');
-    }
-  });
+    });
+
+  // $('#img_file').change(function () {
+  //   if (typeof FileReader != 'undefined') {
+  //     //var dvPreview = $("#capturedImage");
+  //     //dvPreview.html("");
+  //     var regex = /^([a-zA-Z0-9\s_\(\)\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+  //     $($(this)[0].files).each(function () {
+  //       var file = $(this);
+  //       console.log('image---' + file[0].name);
+  //       var file = document.getElementById('img_file').files;
+  //       console.log(file , 'file')
+  //     $('#image_uploader').val(file);
+  //     $('#display_image').src = file;
+  //     console.log($('#image_uploader'), "$('#image_uploader')")
+  //       if (regex.test(file[0].name.toLowerCase())) {
+  //         $('.navbar-fixed-top').show();
+  //         uploadPrescriptionPhoto();
+  //       } else {
+  //         alert(file[0].name + ' is not a valid image file.');
+  //         //dvPreview.html("");
+  //         return false;
+  //       }
+  //     });
+  //   } else {
+  //     alert('This browser does not support HTML5 FileReader.');
+  //   }
+  // });
 
   /*save final data */
 

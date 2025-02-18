@@ -61,7 +61,10 @@
                                       <ul>
                                         {% for prop in item.properties %}
                                           {% assign first_prop = prop | first %}
-                                          {% if first_prop != 'lenses_id' and first_prop != 'coating_id' and first_prop != 'store_id' and first_prop != 'prescription_id' and first_prop != 'tint_opt_id' %}
+                                          {% if first_prop == 'image_uploader' %}
+                                          <li class="row p-2 border-bottom"><strong class="col-sm-6 text-capitalize">File:</strong> <span class="col-sm-6"><img src="" alt="" data-image="{{ prop[1] }}" id="myImage" height="70px" width="100px"></span></li>
+                                          {% comment %} {% endif %} {% endcomment %}
+                                          {% elsif first_prop != 'lenses_id' and first_prop != 'coating_id' and first_prop != 'store_id' and first_prop != 'prescription_id' and first_prop != 'tint_opt_id' %}
                                             {% assign names = first_prop | replace: '_', ' ' %}
                                             <li class="row p-2 border-bottom"><strong class="col-sm-6 text-capitalize">{{ names }}:</strong> <span class="col-sm-6">{% if first_prop == 'pres_price' %}${% endif %}{{ prop[1] }}</span></li>
                                           {% endif %}
@@ -174,6 +177,11 @@
 </section>
 
 <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    let image = document.getElementById('myImage');
+    let value = image.getAttribute('data-image');
+    image.src = value;
+  })
     function incrementEachQuantity(button, input){
     const currentButton = button.currentTarget;
     const quantityInput = document.querySelector(input);
